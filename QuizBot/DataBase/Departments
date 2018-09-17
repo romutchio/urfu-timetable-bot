@@ -1,0 +1,272 @@
+[
+    {
+        "updated": false,
+        "short": "БИиММ",
+        "parent_id": 14858,
+        "id": 22272,
+        "external_id": 24,
+        "actual": true,
+        "title": "Бизнес-информатики и математического моделирования"
+    },
+    {
+        "updated": false,
+        "short": "ВИШ",
+        "parent_id": 14889,
+        "id": 25708,
+        "external_id": 62398,
+        "actual": true,
+        "title": "Высшая инженерная школа УрФУ"
+    },
+    {
+        "updated": false,
+        "short": "ВШЭМ(департамент)",
+        "parent_id": 14858,
+        "id": 22452,
+        "external_id": 62378,
+        "actual": true,
+        "title": "Высшая школа экономики и менеджмента"
+    },
+    {
+        "updated": false,
+        "short": "ГиМУ",
+        "parent_id": 14879,
+        "id": 14880,
+        "external_id": 57,
+        "actual": true,
+        "title": "Государственного и муниципального управления"
+    },
+    {
+        "updated": false,
+        "short": "ИСБиУН",
+        "parent_id": 14858,
+        "id": 22373,
+        "external_id": 332,
+        "actual": true,
+        "title": "Инвестиционно-строительный бизнес и управление недвижимостью"
+    },
+    {
+        "updated": false,
+        "short": "ИШНИ",
+        "parent_id": 14889,
+        "id": 25712,
+        "external_id": 62402,
+        "actual": true,
+        "title": "Инженерная школа новой индустрии"
+    },
+    {
+        "updated": false,
+        "short": "ИиП",
+        "parent_id": 14879,
+        "id": 14978,
+        "external_id": 299,
+        "actual": true,
+        "title": "Инноваций и предпринимательства"
+    },
+    {
+        "updated": false,
+        "short": "И",
+        "parent_id": 14876,
+        "id": 14962,
+        "external_id": 185,
+        "actual": true,
+        "title": "Исторический факультет"
+    },
+    {
+        "updated": false,
+        "short": "Л",
+        "parent_id": 14876,
+        "id": 15075,
+        "external_id": 62382,
+        "actual": true,
+        "title": "Лингвистики"
+    },
+    {
+        "updated": false,
+        "short": "МКиБ",
+        "parent_id": 14879,
+        "id": 14979,
+        "external_id": 301,
+        "actual": true,
+        "title": "Маркетинговых коммуникаций и брендинга"
+    },
+    {
+        "updated": false,
+        "short": "М",
+        "parent_id": 14889,
+        "id": 25711,
+        "external_id": 62401,
+        "actual": true,
+        "title": "Машиностроения"
+    },
+    {
+        "updated": false,
+        "short": "МО",
+        "parent_id": 14876,
+        "id": 24208,
+        "external_id": 264,
+        "actual": true,
+        "title": "Международных отношений"
+    },
+    {
+        "updated": false,
+        "short": "МН",
+        "parent_id": 14858,
+        "id": 22288,
+        "external_id": 53,
+        "actual": true,
+        "title": "Менеджмента"
+    },
+    {
+        "updated": false,
+        "short": "МиМ",
+        "parent_id": 14889,
+        "id": 25710,
+        "external_id": 62400,
+        "actual": true,
+        "title": "Металлургии и металловедения"
+    },
+    {
+        "updated": false,
+        "short": "НОЦ ИНЖЭК",
+        "parent_id": 14858,
+        "id": 22315,
+        "external_id": 107,
+        "actual": true,
+        "title": "Научно-образовательный центр \"Инженерно-экономические, финансовые, эколого-экономические исследования и образовательные программы в высокотехнологичных отраслях\""
+    },
+    {
+        "updated": false,
+        "short": "ПиС",
+        "parent_id": 14876,
+        "id": 24018,
+        "external_id": 250,
+        "actual": true,
+        "title": "Политологии и социологии"
+    },
+    {
+        "updated": false,
+        "short": "ПБиМ",
+        "parent_id": 14858,
+        "id": 22316,
+        "external_id": 111,
+        "actual": true,
+        "title": "Промышленного бизнеса и менеджмента"
+    },
+    {
+        "updated": false,
+        "short": "П",
+        "parent_id": 14876,
+        "id": 24395,
+        "external_id": 258,
+        "actual": true,
+        "title": "Психологии"
+    },
+    {
+        "updated": false,
+        "short": "СМ",
+        "parent_id": 14889,
+        "id": 25709,
+        "external_id": 62399,
+        "actual": true,
+        "title": "Строительного материаловедения"
+    },
+    {
+        "updated": false,
+        "short": "Ж",
+        "parent_id": 14876,
+        "id": 25611,
+        "external_id": 206,
+        "actual": true,
+        "title": "Факультет журналистики"
+    },
+    {
+        "updated": false,
+        "short": "ИиСТ",
+        "parent_id": 14876,
+        "id": 23637,
+        "external_id": 212,
+        "actual": true,
+        "title": "Факультет искусствоведения и социокультурных технологий"
+    },
+    {
+        "updated": false,
+        "short": "Ф",
+        "parent_id": 14876,
+        "id": 25610,
+        "external_id": 194,
+        "actual": true,
+        "title": "Филологический факультет"
+    },
+    {
+        "updated": false,
+        "short": "Ф",
+        "parent_id": 14876,
+        "id": 24950,
+        "external_id": 242,
+        "actual": true,
+        "title": "Философии"
+    },
+    {
+        "updated": false,
+        "short": "ФиЭБ",
+        "parent_id": 14858,
+        "id": 22314,
+        "external_id": 103,
+        "actual": true,
+        "title": "Финансовой и экономической безопасности"
+    },
+    {
+        "updated": false,
+        "short": "ЦСПОЭиМ",
+        "parent_id": 14858,
+        "id": 22449,
+        "external_id": 62374,
+        "actual": true,
+        "title": "Центр сетевых программ в области экономики и менеджмента"
+    },
+    {
+        "updated": false,
+        "short": "ШБ",
+        "parent_id": 14891,
+        "id": 15077,
+        "external_id": 62386,
+        "actual": true,
+        "title": "Школа бакалавриата"
+    },
+    {
+        "updated": false,
+        "short": "ШБ",
+        "parent_id": 14966,
+        "id": 25714,
+        "external_id": 62404,
+        "actual": true,
+        "title": "Школа бакалавриата (ЕНиМ)"
+    },
+    {
+        "updated": false,
+        "short": "ШН",
+        "parent_id": 14966,
+        "id": 25713,
+        "external_id": 62403,
+        "actual": true,
+        "title": "Школа наук"
+    },
+    {
+        "updated": false,
+        "short": "ШПиАО",
+        "parent_id": 14891,
+        "id": 15078,
+        "external_id": 62387,
+        "actual": true,
+        "title": "Школа профессионального и академического образования"
+    },
+    {
+        "updated": false,
+        "short": "ЭиФ",
+        "parent_id": 14858,
+        "id": 14911,
+        "external_id": 109,
+        "actual": true,
+        "title": "Экономики и финансов"
+    }
+]
