@@ -1,5 +1,3 @@
-import jdk.jshell.spi.ExecutionControl;
-
 import java.util.Scanner;
 
 public class Bot {
@@ -16,9 +14,9 @@ public class Bot {
                 System.out.println(messages.Decline());
                 break;
             default:
-                System.out.println("Я вас не понял \nПопробуйте еще раз\n\n"); //перенести в ответы
-
-                handleWelcome(messages, in);
+                System.out.println("Я вас не понял \nПопробуйте еще раз\n"); //перенести в ответы
+//
+//                handleWelcome(messages, in);
                 break;
         }
     }
@@ -56,6 +54,7 @@ public class Bot {
                 case "/exit":
                     System.exit(1);
                     break;
+
                 default:
                     System.out.println("Я вас не понял, чтобы увидеть подсказки наберите: \"/help\"");
                     break;

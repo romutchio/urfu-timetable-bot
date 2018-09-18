@@ -10,7 +10,7 @@ public class Messages {
     public String GroupSelection(Group group){
         if (group != null)
             return String.format("Расписание для группы {%s} было успешно загружено. Пример для просмотра расписания: /1 - Понедельник", group.title);
-        else return "Что-то пошло не так. Желаете повторить попытку?";
+        else return "Что-то пошло не так.";
     }
 
     public String Decline(){
