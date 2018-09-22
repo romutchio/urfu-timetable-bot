@@ -52,12 +52,28 @@ public class DatabaseOfSessions {
     public static void AddNewUserInDatabase(String userHandle, Group group) {
         String rawJson = ReadFile();
         Gson gson = new Gson();
+
         Type type = new TypeToken<HashMap<String, Group>>() {
         }.getType();
         HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-        userGroupDictionary.put(userHandle, group);
 
+        userGroupDictionary.put(userHandle, group);
         var jsonToWrite = gson.toJson(userGroupDictionary);
+
+        WriteFile(jsonToWrite);
+    }
+
+    public static void RemoveUserFromDatabase(String userHandle) {
+        String rawJson = ReadFile();
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<HashMap<String, Group>>() {
+        }.getType();
+        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
+
+        userGroupDictionary.remove(userHandle);
+        var jsonToWrite = gson.toJson(userGroupDictionary);
+
         WriteFile(jsonToWrite);
     }
 }

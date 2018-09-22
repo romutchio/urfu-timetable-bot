@@ -1,0 +1,20 @@
+{
+  "admin": {
+    "updated": false,
+    "title": "МЕН-180101",
+    "course": 1,
+    "id": 978680,
+    "external_id": 35175,
+    "actual": true,
+    "institute_id": 25714
+  },
+  "vaspagomov": {
+    "updated": false,
+    "title": "МЕН-180101",
+    "course": 1,
+    "id": 978680,
+    "external_id": 35175,
+    "actual": true,
+    "institute_id": 25714
+  }
+}
