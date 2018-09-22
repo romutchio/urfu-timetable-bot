@@ -15,8 +15,12 @@ public class Bot {
                 break;
             default:
                 System.out.println("Я вас не понял \nПопробуйте еще раз\n"); //перенести в ответы
+<<<<<<< HEAD
 //
 //                handleWelcome(messages, in);
+=======
+                handleWelcome(messages, in);
+>>>>>>> vaspahomov-branch
                 break;
         }
     }
@@ -58,8 +62,6 @@ public class Bot {
                 default:
                     System.out.println("Я вас не понял, чтобы увидеть подсказки наберите: \"/help\"");
                     break;
-
-
             }
         }
     }
