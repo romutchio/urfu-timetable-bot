@@ -15,12 +15,7 @@ public class Bot {
                 break;
             default:
                 System.out.println("Я вас не понял \nПопробуйте еще раз\n"); //перенести в ответы
-<<<<<<< HEAD
-//
-//                handleWelcome(messages, in);
-=======
                 handleWelcome(messages, in);
->>>>>>> vaspahomov-branch
                 break;
         }
     }
