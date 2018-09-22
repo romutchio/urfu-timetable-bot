@@ -1,3 +1,5 @@
+package Server;
+
 import java.util.Scanner;
 
 public class Bot {

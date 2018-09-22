@@ -1,3 +1,5 @@
+package Server;
+
 public class Messages {
     public String Welcome() {
         return "Доброго времени суток, %username%!\nЯ чат-бот, который поможет тебе не пропустить пары\n" +

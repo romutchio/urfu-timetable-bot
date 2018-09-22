@@ -1,3 +1,5 @@
+package Server;
+
 public class Group {
     boolean updated;
     String title;
