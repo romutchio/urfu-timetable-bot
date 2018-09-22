@@ -1,22 +1,18 @@
 package Server;
 
 public class Messages {
-    public String Welcome() {
-        return "Доброго времени суток, %username%!\nЯ чат-бот, который поможет тебе не пропустить пары\n" +
-                "и всегда иметь быстрый доступ к расписанию. Приступим?";
-    }
+    public String Welcome =
+            "Доброго времени суток, %username%!\n" +
+            "Я чат-бот, который поможет тебе не пропустить пары\n" +
+            "и всегда иметь быстрый доступ к расписанию. Приступим?";
 
-    public String GroupQuestion() {
-        return "Напиши свою группу в такой нотации -> 'МЕН-170810'";
-    }
+    public String GroupQuestion =
+            "Напиши свою группу в такой нотации -> 'МЕН-170810'";
 
-    public String GroupSelection(Group group) {
-        if (group != null)
-            return String.format("Расписание для группы {%s} было успешно загружено. Пример для просмотра расписания: /1 - Понедельник", group.title);
-        else return "Что-то пошло не так.";
-    }
+    public String GroupSelection =
+            "Расписание для группы {%s} было успешно загружено.\n" +
+            "Пример для просмотра расписания: /1 - Понедельник";
 
-    public String Decline() {
-        return "Ну как хочешь, запоминай расписание сам ¯\\_(ツ)_/¯";
-    }
+    public String Decline =
+            "Ну как хочешь, запоминай расписание сам ¯\\_(ツ)_/¯";
 }
