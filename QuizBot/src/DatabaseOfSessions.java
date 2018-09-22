@@ -3,19 +3,17 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonWriter;
 
-import java.io.DataInput;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Dictionary;
-import java.util.List;
+import java.util.*;
 
 public class DatabaseOfSessions {
     private static String ReadFile() {
         String content = null;
         try {
-            String fileName = "./QuizBot/DataBase/Sessions.txt";
+            String fileName = "./QuizBot/DataBase/Sessions.json";
             content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
         } catch (Exception e) {
             System.out.println(e);
@@ -23,25 +21,43 @@ public class DatabaseOfSessions {
         return content;
     }
 
-    public static Group GetGroupByUser(User user) {
-        String rawJson = ReadFile();
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Group>>() {
-        }.getType();
-        Dictionary<User, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-
-        return userGroupDictionary.get(user);
+    private static void WriteFile(String textToWrite) {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("./QuizBot/DataBase/Sessions.json", "UTF-8");
+            writer.println(textToWrite);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void AddNewUserInDatabase(User user, Group group) throws Exception {
+    public static Group GetGroupByUser(String userHandle) {
+        var rawJson = ReadFile();
+        var gson = new Gson();
+        var type = new TypeToken<HashMap<String, Group>>() {
+        }.getType();
+        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
+        if (userGroupDictionary.isEmpty()) {
+            return null;
+        }
+        if (!userGroupDictionary.containsKey(userHandle))
+            return null;
+
+        return userGroupDictionary.get(userHandle);
+    }
+
+    public static void AddNewUserInDatabase(String userHandle, Group group) {
         String rawJson = ReadFile();
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Group>>() {
+        Type type = new TypeToken<HashMap<String, Group>>() {
         }.getType();
-        Dictionary<User, Group> userGroupDictionary = gson.fromJson(rawJson, type);
+        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
+        userGroupDictionary.put(userHandle, group);
 
-        userGroupDictionary.put(user, group);
-
-        throw new Exception();
+        var jsonToWrite = gson.toJson(userGroupDictionary);
+        WriteFile(jsonToWrite);
     }
 }

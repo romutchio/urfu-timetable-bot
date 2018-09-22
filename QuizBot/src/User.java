@@ -1,4 +1,4 @@
-public class User{
+public class User {
     String handle;
     Group group;
 }
