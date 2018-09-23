@@ -1,13 +1,14 @@
 package Server;
 
-import java.util.ArrayList;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Message {
     public String question;
-    public ArrayList<String> availiableAnswers;
+    public Consumer<String> answerValidator;
 
-    public Message(String question, new ArrayList<String> availableAnswers) {
+    public Message(String question, Consumer<String> availableAnswers) {
         this.question = question;
-        this.availiableAnswers = availableAnswers;
+        this.answerValidator = availableAnswers;
     }
 }
