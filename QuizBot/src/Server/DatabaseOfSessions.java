@@ -34,46 +34,41 @@ public class DatabaseOfSessions {
         }
     }
 
-    public static Group GetGroupByUser(String userHandle) {
+    private static HashMap<String, User> getDatabaseOfUsers()
+    {
         var rawJson = ReadFile();
         var gson = new Gson();
-        var type = new TypeToken<HashMap<String, Group>>() {
-        }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-        if (userGroupDictionary.isEmpty()) {
-            return null;
-        }
-        if (!userGroupDictionary.containsKey(userHandle))
-            return null;
 
-        return userGroupDictionary.get(userHandle);
+        var type = new TypeToken<HashMap<String, User>>() {
+        }.getType();
+        return gson.fromJson(rawJson, type);
+
+    }
+    public static User GetUserByUsername(String username)
+    {
+        var userDatabase = getDatabaseOfUsers();
+        return userDatabase.get(username);
     }
 
-    public static void AddNewUserInDatabase(String userHandle, Group group) {
-        String rawJson = ReadFile();
-        Gson gson = new Gson();
+    public static void AddNewUserInDatabase(String userHandle) {
+        var gson = new Gson();
+        var userDatabase = getDatabaseOfUsers();
+        userDatabase.put(userHandle, new User(userHandle));
+        WriteFile(gson.toJson(userDatabase));
+    }
+    public static void UpdateUserInDatabase(User user) {
+        var gson = new Gson();
+        var userDatabase = getDatabaseOfUsers();
 
-        Type type = new TypeToken<HashMap<String, Group>>() {
-        }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-
-        userGroupDictionary.put(userHandle, group);
-        var jsonToWrite = gson.toJson(userGroupDictionary);
-
-        WriteFile(jsonToWrite);
+        userDatabase.remove(user.handle);
+        userDatabase.put(user.handle, user);
+        WriteFile(gson.toJson(userDatabase));
     }
 
     public static void RemoveUserFromDatabase(String userHandle) {
-        String rawJson = ReadFile();
         Gson gson = new Gson();
-
-        Type type = new TypeToken<HashMap<String, Group>>() {
-        }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-
-        userGroupDictionary.remove(userHandle);
-        var jsonToWrite = gson.toJson(userGroupDictionary);
-
-        WriteFile(jsonToWrite);
+        HashMap<String, User> userDatabase = getDatabaseOfUsers();
+        userDatabase.remove(userHandle);
+        WriteFile(gson.toJson(userDatabase));
     }
 }

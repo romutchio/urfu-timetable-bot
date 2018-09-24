@@ -18,29 +18,33 @@ public class GraphOfMessages {
             "Напиши свою группу в такой нотации -> 'МЕН-170810'",
             GraphOfMessages::onGroupAddition);
 
-    private static void onSessionInitialization(String username)
+    private static void onSessionInitialization(User user)
     {
-        var userGroup = DatabaseOfSessions.GetGroupByUser(username);
-        if (userGroup == null)
-        {
-            var user = new User(username, null, addGroupToUser);
-        }
+        if (user.group == null)
+            user.nextMessage = addGroupToUser;
         else
-        {
-            var user = new User(username, userGroup, null);
-        }
+            user.nextMessage = null;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
-    private static void onGroupAddition(String username)
+    private static void onGroupAddition(User user)
     {
-
-        var group = AnswerValidator.RecognizeGroup(groupStr);
-        DatabaseOfSessions.AddNewUserInDatabase(username, group);
+        var group = AnswerValidator.RecognizeGroup(user.lastAnswer);
+        user.group = group;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
-    public Message initializeSession()
+
+    public static String initializeSession(String username)
     {
-        var response = sessionInitialization;
-        return sessionInitialization;
+        return sessionInitialization.question;
+    }
+
+    public static String HandleAnswer(String username, String answer)
+    {
+        var user = DatabaseOfSessions.GetUserByUsername(username);
+        user.nextMessage.answerValidator.accept(user);
+        var message = user.nextMessage;
+        return message.question;
     }
 
     public void handleSessionInitializationAnswer(String answer)
