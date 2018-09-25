@@ -11,4 +11,8 @@ public class Message {
         this.question = question;
         this.answerValidator = availableAnswers;
     }
+    public Message() {
+        this.question = null;
+        this.answerValidator = null;
+    }
 }

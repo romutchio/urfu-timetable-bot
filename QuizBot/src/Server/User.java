@@ -6,18 +6,27 @@ public class User {
     public Message nextMessage;
     public String lastAnswer;
 
-    public User(String handle, Group group, Message nextMessage)
+    public User(String handle, Group group, Message nextMessage, String lastAnswer)
     {
         this.handle = handle;
         this.group = group;
         this.nextMessage = nextMessage;
-        this.lastAnswer = null;
+        this.lastAnswer = lastAnswer;
     }
+
+//    public User(String handle, Group group, Message nextMessage)
+//    {
+//        this.handle = handle;
+//        this.group = group;
+//        this.nextMessage = nextMessage;
+//        this.lastAnswer = null;
+//    }
+
     public User(String handle)
     {
         this.handle = handle;
-        this.group = null;
-        this.nextMessage = null;
+        this.group = new Group();
+        this.nextMessage = new Message();
         this.lastAnswer = null;
     }
 }
