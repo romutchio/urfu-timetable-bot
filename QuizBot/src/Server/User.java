@@ -11,9 +11,13 @@ public class User {
         this.handle = handle;
         this.group = group;
         this.nextMessage = nextMessage;
+        this.lastAnswer = null;
     }
     public User(String handle)
     {
         this.handle = handle;
+        this.group = null;
+        this.nextMessage = null;
+        this.lastAnswer = null;
     }
 }

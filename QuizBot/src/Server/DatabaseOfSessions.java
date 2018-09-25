@@ -50,10 +50,16 @@ public class DatabaseOfSessions {
         return userDatabase.get(username);
     }
 
-    public static void AddNewUserInDatabase(String userHandle) {
+    public static boolean Contains(String username)
+    {
+        var userDatabase = getDatabaseOfUsers();
+        return userDatabase.containsKey(username);
+    }
+
+    public static void AddNewUserInDatabase(User user) {
         var gson = new Gson();
         var userDatabase = getDatabaseOfUsers();
-        userDatabase.put(userHandle, new User(userHandle));
+        userDatabase.put(user.handle, user);
         WriteFile(gson.toJson(userDatabase));
     }
     public static void UpdateUserInDatabase(User user) {

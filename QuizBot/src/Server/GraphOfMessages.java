@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class GraphOfMessages {
-    public User user = new User("vaspahomov", null, null);
+//    public User user = new User("vaspahomov", null, null);
 
     public static Message sessionInitialization = new Message(
             "Доброго времени суток!\n" +
@@ -36,12 +36,24 @@ public class GraphOfMessages {
 
     public static String initializeSession(String username)
     {
+        User user;
+        if (DatabaseOfSessions.Contains(username))
+            user = DatabaseOfSessions.GetUserByUsername(username);
+        else
+        {
+            user = new User(username);
+            DatabaseOfSessions.AddNewUserInDatabase(user);
+        }
+        user.nextMessage = sessionInitialization;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
+
         return sessionInitialization.question;
     }
 
     public static String HandleAnswer(String username, String answer)
     {
         var user = DatabaseOfSessions.GetUserByUsername(username);
+        user.lastAnswer = answer;
         user.nextMessage.answerValidator.accept(user);
         var message = user.nextMessage;
         return message.question;
