@@ -39,12 +39,13 @@ public class DatabaseOfSessions {
     private static HashMap<String, User> getDatabaseOfUsers()
     {
         var rawJson = ReadFile();
-//        var gson = new Gson();
-        var der = new JSONDeserializer<HashMap<String, User>>();
-//        var type = new TypeToken<HashMap<String, User>>() {
-//        }.getType();
-        return der.deserialize(rawJson);
-
+        var gson = new Gson();
+//        var der = new JSONDeserializer<HashMap<String, User>>();
+        var type = new TypeToken<HashMap<String, User>>() {
+        }.getType();
+//        System.out.println(der.deserialize(rawJson).values());
+//        return der.deserialize(rawJson);
+        return gson.fromJson(rawJson, type);
     }
     public static User GetUserByUsername(String username)
     {

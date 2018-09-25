@@ -10,6 +10,8 @@
     <orderEntry type="library" name="com.google.code.gson:gson:Release" level="application" />
     <orderEntry type="library" name="com.squareup.okhttp3:okhttp:Release" level="application" />
     <orderEntry type="library" name="org.mnode.ical4j:ical4j:1.0.2" level="application" />
-    <orderEntry type="library" name="net.sf.flexjson:flexjson:2.0" level="application" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="net.sf.flexjson:flexjson:2.0" level="project" />
+    <orderEntry type="library" name="org.mnode.ical4j:ical4j:1.0.7" level="project" />
   </component>
 </module>

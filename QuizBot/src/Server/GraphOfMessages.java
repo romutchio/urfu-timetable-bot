@@ -12,18 +12,18 @@ public class GraphOfMessages {
             "Доброго времени суток!\n" +
                     "Я чат-бот, который поможет тебе не пропустить пары\n" +
                     "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
-            GraphOfMessages::onSessionInitialization);
+            1);
 
     public static Message addGroupToUser = new Message(
             "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-            GraphOfMessages::onGroupAddition);
+            1);
 
     private static void onSessionInitialization(User user)
     {
         if (user.group == null)
             user.nextMessage = addGroupToUser;
         else
-            user.nextMessage = null;
+            user.nextMessage = sessionInitialization;
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
@@ -41,10 +41,10 @@ public class GraphOfMessages {
             user = DatabaseOfSessions.GetUserByUsername(username);
         else
         {
-            user = new User(username);
+            user = new User(username, new Group(), sessionInitialization, null);
             DatabaseOfSessions.AddNewUserInDatabase(user);
         }
-        user.nextMessage = sessionInitialization;
+//        user.nextMessage = sessionInitialization;
         DatabaseOfSessions.UpdateUserInDatabase(user);
 
         return sessionInitialization.question;
@@ -54,8 +54,12 @@ public class GraphOfMessages {
     {
         var user = DatabaseOfSessions.GetUserByUsername(username);
         user.lastAnswer = answer;
-        user.nextMessage.answerValidator.accept(user);
+        var id = user.nextMessage.operationIdentifier;
+        if (id ==0)
+            onGroupAddition(user);
+        else onGroupAddition(user);
         var message = user.nextMessage;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
         return message.question;
     }
 

@@ -22,11 +22,11 @@ public class User {
 //        this.lastAnswer = null;
 //    }
 
-    public User(String handle)
-    {
-        this.handle = handle;
-        this.group = new Group();
-        this.nextMessage = new Message();
-        this.lastAnswer = null;
-    }
+//    public User(String handle)
+//    {
+//        this.handle = handle;
+//        this.group = new Group();
+//        this.nextMessage = new Message();
+//        this.lastAnswer = null;
+//    }
 }

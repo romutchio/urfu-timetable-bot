@@ -5,14 +5,14 @@ import java.util.function.Function;
 
 public class Message {
     public String question;
-    public Consumer<User> answerValidator;
+    public int operationIdentifier;
 
-    public Message(String question, Consumer<User> availableAnswers) {
+    public Message(String question, int operationIdentifier) {
         this.question = question;
-        this.answerValidator = availableAnswers;
+        this.operationIdentifier = operationIdentifier;
     }
-    public Message() {
-        this.question = null;
-        this.answerValidator = null;
-    }
+//    public Message() {
+//        this.question = null;
+//        this.answerValidator = null;
+//    }
 }
