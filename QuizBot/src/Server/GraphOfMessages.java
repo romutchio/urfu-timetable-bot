@@ -2,6 +2,7 @@ package Server;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -12,7 +13,7 @@ public class GraphOfMessages {
             "Доброго времени суток!\n" +
                     "Я чат-бот, который поможет тебе не пропустить пары\n" +
                     "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
-            1);
+            0);
 
     public static Message addGroupToUser = new Message(
             "Напиши свою группу в такой нотации -> 'МЕН-170810'",
@@ -34,20 +35,25 @@ public class GraphOfMessages {
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
-    public static String initializeSession(String username)
+    public static String initializeSession()
     {
+        Message mes = sessionInitialization;
+        System.out.println(mes.question);
+        Scanner in = new Scanner(System.in);
+        String username = in.nextLine();
         User user;
-        if (DatabaseOfSessions.Contains(username))
+        if (DatabaseOfSessions.Contains(username)) {
+            System.out.println("Here");
             user = DatabaseOfSessions.GetUserByUsername(username);
+        }
         else
         {
-            user = new User(username, new Group(), sessionInitialization, null);
+            user = new User(username, new Group(), addGroupToUser, null);
             DatabaseOfSessions.AddNewUserInDatabase(user);
         }
-//        user.nextMessage = sessionInitialization;
         DatabaseOfSessions.UpdateUserInDatabase(user);
 
-        return sessionInitialization.question;
+        return username;
     }
 
     public static String HandleAnswer(String username, String answer)
@@ -55,6 +61,7 @@ public class GraphOfMessages {
         var user = DatabaseOfSessions.GetUserByUsername(username);
         user.lastAnswer = answer;
         var id = user.nextMessage.operationIdentifier;
+        System.out.println(id);
         if (id ==0)
             onGroupAddition(user);
         else onGroupAddition(user);
