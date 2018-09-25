@@ -1,1 +1,6 @@
-{"vaspahomov":{"handle":"vaspahomov","nextMessage":{"question":"Доброго времени суток!\nЯ чат-бот, который поможет тебе не пропустить пары\nи всегда иметь быстрый доступ к расписанию. Как твое имя?","answerValidator":{}}}}
+{
+  "vaspahomov": {
+    "class": "Server.User",
+    "handle": "vaspahomov"
+  }
+}

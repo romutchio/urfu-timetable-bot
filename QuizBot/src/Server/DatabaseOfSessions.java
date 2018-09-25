@@ -2,6 +2,8 @@ package Server;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -37,11 +39,11 @@ public class DatabaseOfSessions {
     private static HashMap<String, User> getDatabaseOfUsers()
     {
         var rawJson = ReadFile();
-        var gson = new Gson();
-
-        var type = new TypeToken<HashMap<String, User>>() {
-        }.getType();
-        return gson.fromJson(rawJson, type);
+//        var gson = new Gson();
+        var der = new JSONDeserializer<HashMap<String, User>>();
+//        var type = new TypeToken<HashMap<String, User>>() {
+//        }.getType();
+        return der.deserialize(rawJson);
 
     }
     public static User GetUserByUsername(String username)
@@ -57,24 +59,26 @@ public class DatabaseOfSessions {
     }
 
     public static void AddNewUserInDatabase(User user) {
-        var gson = new Gson();
+//        var gson = new Gson();
+        var ser = new JSONSerializer();
         var userDatabase = getDatabaseOfUsers();
         userDatabase.put(user.handle, user);
-        WriteFile(gson.toJson(userDatabase));
+        WriteFile(ser.deepSerialize(userDatabase));
     }
     public static void UpdateUserInDatabase(User user) {
-        var gson = new Gson();
+//        var gson = new Gson();
         var userDatabase = getDatabaseOfUsers();
-
+        var ser = new JSONSerializer();
         userDatabase.remove(user.handle);
         userDatabase.put(user.handle, user);
-        WriteFile(gson.toJson(userDatabase));
+        WriteFile(ser.deepSerialize(userDatabase));
     }
 
     public static void RemoveUserFromDatabase(String userHandle) {
-        Gson gson = new Gson();
+        var ser = new JSONSerializer();
+//        Gson gson = new Gson();
         HashMap<String, User> userDatabase = getDatabaseOfUsers();
         userDatabase.remove(userHandle);
-        WriteFile(gson.toJson(userDatabase));
+        WriteFile(ser.deepSerialize(userDatabase));
     }
 }
