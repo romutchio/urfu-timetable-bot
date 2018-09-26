@@ -1,79 +1,113 @@
 package Server;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class GraphOfMessages {
-//    public User user = new User("vaspahomov", null, null);
+import static java.util.stream.Collectors.toList;
 
-    public static Message sessionInitialization = new Message(
+public final class GraphOfMessages {
+    public GraphOfMessages()
+    {
+        graphInit();
+    }
+
+    private static HashMap<String, Consumer<User>> transitionDict;
+
+    private static Message sessionInitialization = new Message(
             "Доброго времени суток!\n" +
                     "Я чат-бот, который поможет тебе не пропустить пары\n" +
                     "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
-            0);
+            "initialization");
 
-    public static Message addGroupToUser = new Message(
+    private static Message addGroupToUser = new Message(
             "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-            1);
+            "group addition");
 
+    private static Message getTimetableOnDate = new Message(
+            "",
+            "get timetable");
+
+    private static Message getInformationAboutClass = new Message(
+            "",
+            "get information about class");
+
+    private static Message getInformationAboutNextClass = new Message(
+            "",
+            "get information about next class");
+
+    private static void graphInit()
+    {
+        transitionDict = new HashMap<String, Consumer<User>>();
+        transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
+        transitionDict.put("group addition", GraphOfMessages::onGroupAddition);
+    }
+    private static String getTimetableOnDate(String date)
+    {
+        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
+        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
+        var calOnDate = cal.get(date).stream()
+                .map(subject -> subject.lessonName)
+                .collect(Collectors.joining("\n"));
+
+
+        return calOnDate;
+    }
+    private static boolean transitToAnyNodes(User user)
+    {
+        if (user.lastAnswer.equals("расписание на четверг"))
+        {
+            user.nextMessage = getTimetableOnDate;
+            user.nextMessage.question = getTimetableOnDate("Четверг");
+            DatabaseOfSessions.UpdateUserInDatabase(user);
+            return true;
+        }
+
+        if (user.lastAnswer.equals("какая первая пара в четверг"))
+        {
+            user.nextMessage = getInformationAboutClass;
+            DatabaseOfSessions.UpdateUserInDatabase(user);
+            return true;
+        }
+
+        return false;
+    }
     private static void onSessionInitialization(User user)
     {
         if (user.group == null)
             user.nextMessage = addGroupToUser;
         else
-            user.nextMessage = sessionInitialization;
+        {
+            if (!transitToAnyNodes(user))
+                user.nextMessage = sessionInitialization;
+        }
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
     private static void onGroupAddition(User user)
     {
-        var group = AnswerValidator.RecognizeGroup(user.lastAnswer);
-        user.group = group;
+        user.group = AnswerValidator.RecognizeGroup(user.lastAnswer);
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
-    public static String initializeSession()
+    public static Consumer<User> getTransitionFunction(User user)
     {
-        Message mes = sessionInitialization;
-        System.out.println(mes.question);
-        Scanner in = new Scanner(System.in);
-        String username = in.nextLine();
-        User user;
-        if (DatabaseOfSessions.Contains(username)) {
-            System.out.println("Here");
-            user = DatabaseOfSessions.GetUserByUsername(username);
-        }
-        else
-        {
-            user = new User(username, new Group(), addGroupToUser, null);
-            DatabaseOfSessions.AddNewUserInDatabase(user);
-        }
-        DatabaseOfSessions.UpdateUserInDatabase(user);
-
-        return username;
-    }
-
-    public static String HandleAnswer(String username, String answer)
-    {
-        var user = DatabaseOfSessions.GetUserByUsername(username);
-        user.lastAnswer = answer;
         var id = user.nextMessage.operationIdentifier;
-        System.out.println(id);
-        if (id ==0)
-            onGroupAddition(user);
-        else onGroupAddition(user);
-        var message = user.nextMessage;
-        DatabaseOfSessions.UpdateUserInDatabase(user);
-        return message.question;
+        return transitionDict.get(id);
     }
 
-    public void handleSessionInitializationAnswer(String answer)
+    public static Message getInitMessage()
     {
-
+        return sessionInitialization;
     }
+    public static Consumer<User> getTransit(String key)
+    {
+        return transitionDict.get(key);
+    }
+
+
     public static class Messages {
 
 

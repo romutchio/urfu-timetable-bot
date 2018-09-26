@@ -5,9 +5,9 @@ import java.util.function.Function;
 
 public class Message {
     public String question;
-    public int operationIdentifier;
+    public String operationIdentifier;
 
-    public Message(String question, int operationIdentifier) {
+    public Message(String question, String operationIdentifier) {
         this.question = question;
         this.operationIdentifier = operationIdentifier;
     }

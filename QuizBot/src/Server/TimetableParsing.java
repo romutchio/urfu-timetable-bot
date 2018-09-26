@@ -14,8 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static java.util.stream.Collectors.toList;
+
 public class TimetableParsing {
-    private String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
+    private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
 
     public static Calendar ReadFile(String filename) {
@@ -29,7 +31,7 @@ public class TimetableParsing {
         return calendar;
     }
 
-    public HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(Calendar calendar) {
+    public static HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(Calendar calendar) {
         var timetable = new HashMap<String, ArrayList<Subject>>();
         for (String day : WeekDays) {
             timetable.put(day, new ArrayList<>());
@@ -57,16 +59,23 @@ public class TimetableParsing {
         return timetable;
     }
 
-    public String DetermineDay(Date date) {
+    public static String DetermineDay(Date date) {
         var dateParser = java.util.Calendar.getInstance();
         dateParser.setTime(date);
         return WeekDays[dateParser.get(java.util.Calendar.DAY_OF_WEEK) - 1];
     }
 
     public static void main(String[] args) {
-        var parser = new TimetableParsing();
-        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
-        var timetable = parser.CreateTimeTableDataBase(calendar);
+//        var parser = new TimetableParsing();
+//        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
+//        var timetable = parser.CreateTimeTableDataBase(calendar);
+//        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
+        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
+        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
+        var calOnDate = cal.get("Четверг").stream()
+                .map(subject -> subject.lessonName)
+                .collect(toList());
+        System.out.println(calOnDate);
     }
 
     private static void WriteFile(String textToWrite) {

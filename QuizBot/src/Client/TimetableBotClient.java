@@ -1,5 +1,6 @@
 package Client;
 
+import Server.AnswerHendler;
 import Server.GraphOfMessages;
 import Server.Message;
 import org.apache.commons.lang.NotImplementedException;
@@ -8,12 +9,13 @@ import java.util.Scanner;
 
 public class TimetableBotClient {
     public static void main(String[] args) {
-        var username = GraphOfMessages.initializeSession();
-        Scanner in = new Scanner(System.in);
+        var username = AnswerHendler.initializeSession();
+        var in = new Scanner(System.in);
+
         while(true)
         {
-            String answer = in.nextLine();
-            var answ = GraphOfMessages.HandleAnswer(username, answer);
+            var answer = in.nextLine(); //при инициализации ждет ввод 2 раза
+            var answ = AnswerHendler.handleAnswer(username, answer);
             System.out.println(answ);
         }
     }
