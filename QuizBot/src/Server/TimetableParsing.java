@@ -66,16 +66,16 @@ public class TimetableParsing {
     }
 
     public static void main(String[] args) {
-//        var parser = new TimetableParsing();
-//        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
-//        var timetable = parser.CreateTimeTableDataBase(calendar);
-//        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
-        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
-        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
-        var calOnDate = cal.get("Четверг").stream()
-                .map(subject -> subject.lessonName)
-                .collect(toList());
-        System.out.println(calOnDate);
+        var parser = new TimetableParsing();
+        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
+        var timetable = parser.CreateTimeTableDataBase(calendar);
+        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
+//        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
+//        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
+//        var calOnDate = cal.get("Четверг").stream()
+//                .map(subject -> subject.lessonName)
+//                .collect(toList());
+//        System.out.println(calOnDate);
     }
 
     private static void WriteFile(String textToWrite) {

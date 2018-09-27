@@ -1,46 +1,4 @@
 {
-  "test2": {
-    "class": "Server.User",
-    "handle": "test2",
-    "group": null,
-    "nextMessage": {
-      "class": "Server.Message",
-      "question": "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-      "operationIdentifier": "group addition"
-    },
-    "lastAnswer": ""
-  },
-  "test 3": {
-    "class": "Server.User",
-    "handle": "test 3",
-    "group": null,
-    "nextMessage": {
-      "class": "Server.Message",
-      "question": "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-      "operationIdentifier": "group addition"
-    },
-    "lastAnswer": ""
-  },
-  "test": {
-    "class": "Server.User",
-    "handle": "test",
-    "group": {
-      "class": "Server.Group",
-      "updated": false,
-      "title": "МЕН-180101",
-      "course": 1,
-      "id": 978680,
-      "external_id": 35175,
-      "actual": true,
-      "institute_id": 25714
-    },
-    "nextMessage": {
-      "class": "Server.Message",
-      "question": "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-      "operationIdentifier": "group addition"
-    },
-    "lastAnswer": "МЕН-180101"
-  },
   "vaspahomov": {
     "class": "Server.User",
     "handle": "vaspahomov",
@@ -56,10 +14,12 @@
     },
     "nextMessage": {
       "class": "Server.Message",
-      "question": "Прикладная физическая культура\nНачало: 08:30\n\nХотите узнать еще что-нибудь?",
-      "operationIdentifier": "get information about class"
+      "question": "Объектно-ориентированное программирование\nОбъектно-ориентированное программирование\nКомпьютерные сети\nКратные интегралы и ряды\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nАрхитектура ЭВМ\nОбъектно-ориентированное программирование\nОбъектно-ориентированное программирование\nКомпьютерные сети\nЭкономическая теория\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nАрхитектура ЭВМ\n\nХотите узнать еще что-нибудь?",
+      "operationIdentifier": "get timetable"
     },
-    "lastAnswer": "какая первая пара в четверг"
+    "lastAnswer": "расписание на вторник",
+    "lastDayRequest": "Понедельник",
+    "lastClassNumRequest": 1
   },
   "bully434": {
     "class": "Server.User",
@@ -79,6 +39,8 @@
       "question": "Напиши свою группу в такой нотации -> 'МЕН-170810'",
       "operationIdentifier": "1"
     },
-    "lastAnswer": "ЭММ-272006"
-  }
+    "lastAnswer": "ЭММ-272006",
+    "lastDayRequest": null,
+    "lastClassNumRequest": 0
+  },
 }

@@ -5,7 +5,8 @@ public class User {
     public Group group;
     public Message nextMessage;
     public String lastAnswer;
-
+    public String lastDayRequest;
+    public int lastClassNumRequest;
     public User(String handle, Group group, Message nextMessage, String lastAnswer)
     {
         this.handle = handle;
