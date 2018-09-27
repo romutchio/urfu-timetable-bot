@@ -59,7 +59,7 @@ public class AnswerHendler {
 
 
         if (DatabaseOfSessions.Contains(username)) {
-            System.out.println("Here");
+            System.out.println("Можете спросить у меня что-нибудь про расписание");
             user = DatabaseOfSessions.GetUserByUsername(username);
         }
         else
@@ -78,7 +78,7 @@ public class AnswerHendler {
         var user = DatabaseOfSessions.GetUserByUsername(username);
         user.lastAnswer = answer;
         var id = user.nextMessage.operationIdentifier;
-        System.out.println(id);
+//        System.out.println(id);
 
         GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
         var message = user.nextMessage;

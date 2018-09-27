@@ -1,6 +1,7 @@
 package Server;
 
 import java.util.Date;
+import java.util.stream.Collector;
 
 public class Subject {
     String weekday;
@@ -17,4 +18,5 @@ public class Subject {
         this.lessonEndTime = lessonEndTime;
         this.teacher = teacher;
     }
+
 }

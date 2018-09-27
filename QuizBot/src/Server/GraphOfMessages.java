@@ -43,6 +43,9 @@ public final class GraphOfMessages {
         transitionDict = new HashMap<String, Consumer<User>>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
         transitionDict.put("group addition", GraphOfMessages::onGroupAddition);
+        transitionDict.put("get timetable", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("get information about class", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("get information about next class", GraphOfMessages::transitToAnyNodes);
     }
     private static String getTimetableOnDate(String date)
     {
@@ -55,12 +58,25 @@ public final class GraphOfMessages {
 
         return calOnDate;
     }
+    private static String getInformationAboutClass(String time)
+    {
+        var timeDict = time.split(" ");
+        var day = timeDict[0];
+        var classNumber = Integer.parseInt(timeDict[1]);
+
+        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
+        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
+        var dayCal = cal.get(day);
+        var subj = dayCal.get(classNumber - 1);
+        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
+//        return subj.lessonName + "\nНачало: " + subj.lessonStartTime + "\nПреподаватель: " + subj.teacher;
+    }
     private static boolean transitToAnyNodes(User user)
     {
         if (user.lastAnswer.equals("расписание на четверг"))
         {
             user.nextMessage = getTimetableOnDate;
-            user.nextMessage.question = getTimetableOnDate("Четверг");
+            user.nextMessage.question = getTimetableOnDate("Четверг") + "\n\nХотите узнать еще что-нибудь?";
             DatabaseOfSessions.UpdateUserInDatabase(user);
             return true;
         }
@@ -68,6 +84,7 @@ public final class GraphOfMessages {
         if (user.lastAnswer.equals("какая первая пара в четверг"))
         {
             user.nextMessage = getInformationAboutClass;
+            user.nextMessage.question = getInformationAboutClass("Четверг 1") + "\n\nХотите узнать еще что-нибудь?";
             DatabaseOfSessions.UpdateUserInDatabase(user);
             return true;
         }
@@ -89,6 +106,8 @@ public final class GraphOfMessages {
     private static void onGroupAddition(User user)
     {
         user.group = AnswerValidator.RecognizeGroup(user.lastAnswer);
+        if (!transitToAnyNodes(user))
+            user.nextMessage = sessionInitialization;
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
