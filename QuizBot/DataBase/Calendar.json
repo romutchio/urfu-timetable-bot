@@ -1,0 +1,401 @@
+{
+  "Суббота": [
+    {
+      "weekday": "Суббота",
+      "lessonName": "Физический практикум. Механика",
+      "lessonStartTime": "12:15",
+      "lessonEndTime": "15:25",
+      "teacher": "Преподаватель: Студенок Сергей Игоревич"
+    },
+    {
+      "weekday": "Суббота",
+      "lessonName": "Физический практикум. Механика",
+      "lessonStartTime": "12:15",
+      "lessonEndTime": "15:25",
+      "teacher": "Преподаватель: Студенок Сергей Игоревич"
+    }
+  ],
+  "Четверг": [
+    {
+      "weekday": "Четверг",
+      "lessonName": "Прикладная физическая культура",
+      "lessonStartTime": "08:30",
+      "lessonEndTime": "10:00"
+    },
+    {
+      "weekday": "Четверг",
+      "lessonName": "Механика",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Скулкина Надежда Александровна"
+    },
+    {
+      "weekday": "Четверг",
+      "lessonName": "Математический анализ",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Бовкун Вадим Андреевич"
+    },
+    {
+      "weekday": "Четверг",
+      "lessonName": "Прикладная физическая культура",
+      "lessonStartTime": "08:30",
+      "lessonEndTime": "10:00"
+    },
+    {
+      "weekday": "Четверг",
+      "lessonName": "Механика",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Скулкина Надежда Александровна"
+    },
+    {
+      "weekday": "Четверг",
+      "lessonName": "Математический анализ",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Бовкун Вадим Андреевич"
+    }
+  ],
+  "Воскресенье": [],
+  "Пятница": [
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35",
+      "teacher": "Преподаватель: Волегов Алексей Сергеевич"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Введение в высшую математику",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Алексеева Ульяна Алексеевна"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Механика",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Поликарпов Алексей Филиппович"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Волегов Алексей Сергеевич"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Степанова Елена Александровна"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35",
+      "teacher": "Преподаватель: Волегов Алексей Сергеевич"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Механика",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Скулкина Надежда Александровна"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Механика",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Поликарпов Алексей Филиппович"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Волегов Алексей Сергеевич"
+    },
+    {
+      "weekday": "Пятница",
+      "lessonName": "Методы обработки результатов измерений",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Степанова Елена Александровна"
+    }
+  ],
+  "Понедельник": [
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35",
+      "teacher": "Преподаватель: Поликарпов Филипп Джонович"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Гасенегер Екатерина Евгеньевна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Ядрова Надежда Андреевна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Пряникова Марина Александровна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Сорогина Тамара Ивановна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Тарасова Елена Владимировна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Поликарпов Филипп Джонович"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Чиков Александр Алексеевич"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "История",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Азаров Вячеслав Николаевич"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35",
+      "teacher": "Преподаватель: Поликарпов Филипп Джонович"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Гасенегер Екатерина Евгеньевна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Ядрова Надежда Андреевна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Пряникова Марина Александровна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Сорогина Тамара Ивановна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Тарасова Елена Владимировна"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Поликарпов Филипп Джонович"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Программирование",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Чиков Александр Алексеевич"
+    },
+    {
+      "weekday": "Понедельник",
+      "lessonName": "Введение в высшую математику",
+      "lessonStartTime": "15:00",
+      "lessonEndTime": "16:35",
+      "teacher": "Преподаватель: Бовкун Вадим Андреевич"
+    }
+  ],
+  "Вторник": [
+    {
+      "weekday": "Вторник",
+      "lessonName": "Прикладная физическая культура",
+      "lessonStartTime": "08:30",
+      "lessonEndTime": "10:00"
+    },
+    {
+      "weekday": "Вторник",
+      "lessonName": "История",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Азаров Вячеслав Николаевич"
+    },
+    {
+      "weekday": "Вторник",
+      "lessonName": "Математический анализ",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Алексеева Ульяна Алексеевна"
+    },
+    {
+      "weekday": "Вторник",
+      "lessonName": "Прикладная физическая культура",
+      "lessonStartTime": "08:30",
+      "lessonEndTime": "10:00"
+    },
+    {
+      "weekday": "Вторник",
+      "lessonName": "История",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Азаров Вячеслав Николаевич"
+    },
+    {
+      "weekday": "Вторник",
+      "lessonName": "Математический анализ",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "14:45",
+      "teacher": "Преподаватель: Алексеева Ульяна Алексеевна"
+    }
+  ],
+  "Среда": [
+    {
+      "weekday": "Среда",
+      "lessonName": "Введение в физику",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Гасенегер Екатерина Евгеньевна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Ядрова Надежда Андреевна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Пряникова Марина Александровна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Сорогина Тамара Ивановна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Тарасова Елена Владимировна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Физический практикум. Механика",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "16:20",
+      "teacher": "Преподаватель: Шихова Вера Анатольевна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Введение в физику",
+      "lessonStartTime": "09:00",
+      "lessonEndTime": "10:35"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Гасенегер Екатерина Евгеньевна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Ядрова Надежда Андреевна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Пряникова Марина Александровна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Сорогина Тамара Ивановна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Иностранный язык",
+      "lessonStartTime": "10:50",
+      "lessonEndTime": "12:25",
+      "teacher": "Преподаватель: Тарасова Елена Владимировна"
+    },
+    {
+      "weekday": "Среда",
+      "lessonName": "Физический практикум. Механика",
+      "lessonStartTime": "13:10",
+      "lessonEndTime": "16:20",
+      "teacher": "Преподаватель: Шихова Вера Анатольевна"
+    }
+  ]
+}

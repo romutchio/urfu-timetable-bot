@@ -1,0 +1,88 @@
+package Server;
+
+import java.util.Scanner;
+
+
+
+public class AnswerHendler {
+//    public static String initializeSession()
+//    {
+//        Message mes = GraphOfMessages.getInitMessage();
+//        System.out.println(mes.question);
+//
+//
+//        var operationId = mes.operationIdentifier;
+//        var transit = GraphOfMessages.getTransit(operationId);
+//        Scanner in = new Scanner(System.in);
+//        String username = in.nextLine();
+//        User user;
+//        if (DatabaseOfSessions.Contains(username)) {
+//            System.out.println("Here");
+//            user = DatabaseOfSessions.GetUserByUsername(username);
+//        }
+//        else
+//        {
+//            user = new User(null, new Group(), GraphOfMessages.getInitMessage(), null);
+//            transit.accept(user);
+//            DatabaseOfSessions.AddNewUserInDatabase(user);
+//        }
+//        DatabaseOfSessions.UpdateUserInDatabase(user);
+//
+//        return username;
+//    }
+//
+//    public static String handleAnswer(String username, String answer)
+//    {
+//        var user = DatabaseOfSessions.GetUserByUsername(username);
+//        user.lastAnswer = answer;
+//        var id = user.nextMessage.operationIdentifier;
+//        System.out.println(id);
+//
+//        GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
+//        var message = user.nextMessage;
+//        DatabaseOfSessions.UpdateUserInDatabase(user);
+//        return message.question;
+//    }
+
+    public static String initializeSession()
+    {
+        new GraphOfMessages();
+        Message mes = GraphOfMessages.getInitMessage();
+        System.out.println(mes.question);//только для консольного клиента, в tg будем получать token
+        var operationId = mes.operationIdentifier;
+        var transit = GraphOfMessages.getTransit(operationId);
+
+
+        Scanner in = new Scanner(System.in);
+        String username = in.nextLine();
+        User user;
+
+
+        if (DatabaseOfSessions.Contains(username)) {
+            System.out.println("Можете спросить у меня что-нибудь про расписание");
+            user = DatabaseOfSessions.GetUserByUsername(username);
+        }
+        else
+        {
+            user = new User(username, null, GraphOfMessages.getInitMessage(), null);
+            DatabaseOfSessions.AddNewUserInDatabase(user);
+            transit.accept(user);
+        }
+        DatabaseOfSessions.UpdateUserInDatabase(user);
+
+        return username;
+    }
+
+    public static String handleAnswer(String username, String answer)
+    {
+        var user = DatabaseOfSessions.GetUserByUsername(username);
+        user.lastAnswer = answer;
+        var id = user.nextMessage.operationIdentifier;
+//        System.out.println(id);
+
+        GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
+        var message = user.nextMessage;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
+        return message.question;
+    }
+}

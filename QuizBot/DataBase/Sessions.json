@@ -1,20 +1,46 @@
 {
-  "admin": {
-    "updated": false,
-    "title": "МЕН-180101",
-    "course": 1,
-    "id": 978680,
-    "external_id": 35175,
-    "actual": true,
-    "institute_id": 25714
+  "vaspahomov": {
+    "class": "Server.User",
+    "handle": "vaspahomov",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "МЕН-180101",
+      "course": 1,
+      "id": 978680,
+      "external_id": 35175,
+      "actual": true,
+      "institute_id": 25714
+    },
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "Объектно-ориентированное программирование\nОбъектно-ориентированное программирование\nКомпьютерные сети\nКратные интегралы и ряды\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nАрхитектура ЭВМ\nОбъектно-ориентированное программирование\nОбъектно-ориентированное программирование\nКомпьютерные сети\nЭкономическая теория\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nИностранный язык\nАрхитектура ЭВМ\n\nХотите узнать еще что-нибудь?",
+      "operationIdentifier": "get timetable"
+    },
+    "lastAnswer": "расписание на вторник",
+    "lastDayRequest": "Понедельник",
+    "lastClassNumRequest": 1
   },
-  "vaspagomov": {
-    "updated": false,
-    "title": "МЕН-180101",
-    "course": 1,
-    "id": 978680,
-    "external_id": 35175,
-    "actual": true,
-    "institute_id": 25714
-  }
+  "bully434": {
+    "class": "Server.User",
+    "handle": "bully434",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "ЭММ-272006",
+      "course": 2,
+      "id": 978529,
+      "external_id": 35024,
+      "actual": true,
+      "institute_id": 14911
+    },
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "Напиши свою группу в такой нотации -> 'МЕН-170810'",
+      "operationIdentifier": "1"
+    },
+    "lastAnswer": "ЭММ-272006",
+    "lastDayRequest": null,
+    "lastClassNumRequest": 0
+  },
 }

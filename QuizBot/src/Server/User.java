@@ -1,6 +1,33 @@
 package Server;
 
 public class User {
-    String handle;
-    Group group;
+    public String handle;
+    public Group group;
+    public Message nextMessage;
+    public String lastAnswer;
+    public String lastDayRequest;
+    public int lastClassNumRequest;
+    public User(String handle, Group group, Message nextMessage, String lastAnswer)
+    {
+        this.handle = handle;
+        this.group = group;
+        this.nextMessage = nextMessage;
+        this.lastAnswer = lastAnswer;
+    }
+
+//    public User(String handle, Group group, Message nextMessage)
+//    {
+//        this.handle = handle;
+//        this.group = group;
+//        this.nextMessage = nextMessage;
+//        this.lastAnswer = null;
+//    }
+
+//    public User(String handle)
+//    {
+//        this.handle = handle;
+//        this.group = new Group();
+//        this.nextMessage = new Message();
+//        this.lastAnswer = null;
+//    }
 }

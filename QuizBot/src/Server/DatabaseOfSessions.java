@@ -2,6 +2,8 @@ package Server;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -34,46 +36,50 @@ public class DatabaseOfSessions {
         }
     }
 
-    public static Group GetGroupByUser(String userHandle) {
+    private static HashMap<String, User> getDatabaseOfUsers()
+    {
         var rawJson = ReadFile();
         var gson = new Gson();
-        var type = new TypeToken<HashMap<String, Group>>() {
+//        var der = new JSONDeserializer<HashMap<String, User>>();
+        var type = new TypeToken<HashMap<String, User>>() {
         }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-        if (userGroupDictionary.isEmpty()) {
-            return null;
-        }
-        if (!userGroupDictionary.containsKey(userHandle))
-            return null;
-
-        return userGroupDictionary.get(userHandle);
+//        System.out.println(der.deserialize(rawJson).values());
+//        return der.deserialize(rawJson);
+        return gson.fromJson(rawJson, type);
+    }
+    public static User GetUserByUsername(String username)
+    {
+        var userDatabase = getDatabaseOfUsers();
+        return userDatabase.get(username);
     }
 
-    public static void AddNewUserInDatabase(String userHandle, Group group) {
-        String rawJson = ReadFile();
-        Gson gson = new Gson();
+    public static boolean Contains(String username)
+    {
+        var userDatabase = getDatabaseOfUsers();
+        return userDatabase.containsKey(username);
+    }
 
-        Type type = new TypeToken<HashMap<String, Group>>() {
-        }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-
-        userGroupDictionary.put(userHandle, group);
-        var jsonToWrite = gson.toJson(userGroupDictionary);
-
-        WriteFile(jsonToWrite);
+    public static void AddNewUserInDatabase(User user) {
+//        var gson = new Gson();
+        var ser = new JSONSerializer();
+        var userDatabase = getDatabaseOfUsers();
+        userDatabase.put(user.handle, user);
+        WriteFile(ser.deepSerialize(userDatabase));
+    }
+    public static void UpdateUserInDatabase(User user) {
+//        var gson = new Gson();
+        var userDatabase = getDatabaseOfUsers();
+        var ser = new JSONSerializer();
+        userDatabase.remove(user.handle);
+        userDatabase.put(user.handle, user);
+        WriteFile(ser.deepSerialize(userDatabase));
     }
 
     public static void RemoveUserFromDatabase(String userHandle) {
-        String rawJson = ReadFile();
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<HashMap<String, Group>>() {
-        }.getType();
-        HashMap<String, Group> userGroupDictionary = gson.fromJson(rawJson, type);
-
-        userGroupDictionary.remove(userHandle);
-        var jsonToWrite = gson.toJson(userGroupDictionary);
-
-        WriteFile(jsonToWrite);
+        var ser = new JSONSerializer();
+//        Gson gson = new Gson();
+        HashMap<String, User> userDatabase = getDatabaseOfUsers();
+        userDatabase.remove(userHandle);
+        WriteFile(ser.deepSerialize(userDatabase));
     }
 }
