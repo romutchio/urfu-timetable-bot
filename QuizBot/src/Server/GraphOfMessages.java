@@ -33,20 +33,25 @@ public final class GraphOfMessages {
             "",
             "get information about next class");
 
+    private static Message repeatAnswer = new Message(
+            "Я вас не понял, повторите пожалуйста",
+            "repeat answer");
+
     private static void graphInit() {
         transitionDict = new HashMap<String, Consumer<User>>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
         transitionDict.put("group addition", GraphOfMessages::onGroupAddition);
-        transitionDict.put("get timetable", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("get timetable", GraphOfMessages::onGetTimetable);
         transitionDict.put("get information about class", GraphOfMessages::onGetInformationAboutClass);
         transitionDict.put("get information about next class", GraphOfMessages::onGetInformationAboutClass);
+        transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
     }
 
     private static String getTimetableOnDate(String date) {
         var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var calOnDate = cal.get(date).stream()
-                .map(subject -> subject.lessonName)
+                .map(subject -> subject.lessonStartTime + ": " + subject.lessonName)
                 .collect(Collectors.joining("\n"));
 
 
@@ -63,7 +68,11 @@ public final class GraphOfMessages {
         var dayCal = cal.get(day);
         var subj = dayCal.get(classNumber - 1);
 //        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
-        return subj.lessonName + "\nНачало: " + subj.lessonStartTime + "\nПреподаватель: " + subj.teachers.get(0);
+        return String.format("%s\nНачало: %s\nКонец: %s\nПреподаватель: %s",
+                subj.lessonName,
+                subj.lessonStartTime,
+                subj.lessonEndTime,
+                subj.teachers.stream().collect(Collectors.joining(", ")));
     }
 
     private static boolean handleTimetableOnDate(User user) {
@@ -157,18 +166,25 @@ public final class GraphOfMessages {
         return false;
     }
 
+    private static void onGetTimetable(User user) {
+        if (!transitToAnyNodes(user))
+            user.nextMessage = repeatAnswer;
+        DatabaseOfSessions.UpdateUserInDatabase(user);
+    }
+
     private static void onGetInformationAboutClass(User user) {
         if (!transitToAnyNodes(user))
             if (user.lastAnswer.contains("следующая пара")) {
                 user.nextMessage = getInformationAboutNextClass;
+                user.lastClassNumRequest++;
 
                 user.nextMessage.question = getInformationAboutClass(
-                        user.lastDayRequest + " " + user.lastClassNumRequest + 1);
+                        user.lastDayRequest + " " + user.lastClassNumRequest);
 
                 DatabaseOfSessions.UpdateUserInDatabase(user);
                 return;
             }
-        user.nextMessage = sessionInitialization;
+        user.nextMessage = repeatAnswer;
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
