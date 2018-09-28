@@ -63,7 +63,7 @@ public final class GraphOfMessages {
         var dayCal = cal.get(day);
         var subj = dayCal.get(classNumber - 1);
 //        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
-        return subj.lessonName + "\nНачало: " + subj.lessonStartTime + "\nПреподаватель: " + subj.teacher;
+        return subj.lessonName + "\nНачало: " + subj.lessonStartTime + "\nПреподаватель: " + subj.teachers.get(0);
     }
 
     private static boolean handleTimetableOnDate(User user) {
