@@ -2,6 +2,8 @@ package Server;
 
 import com.google.gson.Gson;
 import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.filter.Filter;
+import net.fortuna.ical4j.filter.PeriodRule;
 import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
@@ -12,7 +14,9 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
@@ -36,9 +40,15 @@ public class TimetableParsing {
         for (String day : WeekDays) {
             timetable.put(day, new ArrayList<>());
         }
-        ComponentList listEvent = calendar.getComponents(Component.VEVENT);
+        ComponentList wholeTimetable = calendar.getComponents(Component.VEVENT);
+        var firstSubject = (VEvent) wholeTimetable.get(0);
+        var startDate = firstSubject.getStartDate().getDate();
+        Period period = new Period(new DateTime(startDate.getTime()), new Dur(7, 0, 0, 0));
+        Filter filter = new Filter(new PeriodRule((period)));
 
-        for (Object elem : listEvent) {
+        Collection timetableParsed = filter.filter(calendar.getComponents(Component.VEVENT));
+
+        for (Object elem : timetableParsed) {
             VEvent event = (VEvent) elem;
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             var subject = event.getSummary().getValue();
@@ -47,14 +57,27 @@ public class TimetableParsing {
             var dateStartTime = timeFormat.format(dateStart);
             var dateEndTime = timeFormat.format(dateEnd);
             var weekday = DetermineDay(dateStart);
-            String description = null;
+            String teacher = null;
             try {
-                description = event.getDescription().getValue();
+                teacher = event.getDescription().getValue();
+                if (teacher != null){
+                    teacher = teacher.substring(15);
+                }
             } catch (Exception ignored) {
             }
-            var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, description);
+            var teachers = new ArrayList<String>();
+            teachers.add(teacher);
+            var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers);
             var day = timetable.get(weekday);
-            day.add(currentSubject);
+            var addNewSubject = true;
+            for (var subj: day){
+                if(subj.lessonName.equals(currentSubject.lessonName)){
+                    subj.teachers.add(teacher);
+                    addNewSubject = false;
+                }
+            }
+            if (addNewSubject)
+                day.add(currentSubject);
         }
         return timetable;
     }
@@ -68,7 +91,14 @@ public class TimetableParsing {
     public static void main(String[] args) {
         var parser = new TimetableParsing();
         var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
-        var timetable = parser.CreateTimeTableDataBase(calendar);
+//        var timetable = parser.CreateTimeTableDataBase(calendar);
+//        for (var lesson:timetable.get("Вторник")
+//             ) {
+//            System.out.println(lesson.lessonName
+//                    +" " +lesson.teachers + " " + lesson.lessonStartTime+"-" + lesson.lessonEndTime
+//            );
+//
+//        }
         AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
 //        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
 //        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
