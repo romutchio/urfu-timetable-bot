@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public final class GraphOfMessages {
+public class GraphOfMessages {
     public GraphOfMessages() {
         graphInit();
     }
@@ -176,7 +176,8 @@ public final class GraphOfMessages {
                 user.lastClassNumRequest++;
 
                 user.nextMessage.question = getInformationAboutClass(
-                        user.lastDayRequest + " " + user.lastClassNumRequest);
+                        user.lastDayRequest + " " + user.lastClassNumRequest) +
+                        "\n\nХотите узнать еще что-нибудь?";
                 return;
             }
         user.nextMessage = repeatAnswer;

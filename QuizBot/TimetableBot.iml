@@ -13,5 +13,7 @@
     <orderEntry type="library" name="de.javakaffee.msm:msm-flexjson-serializer:2.3.0" level="project" />
     <orderEntry type="library" name="junit:junit:4.12" level="application" />
     <orderEntry type="library" name="org.mockito:mockito-core:Release" level="application" />
+    <orderEntry type="library" name="org.powermock:powermock-api-mockito:1.7.1" level="application" />
+    <orderEntry type="library" name="org.powermock:powermock-module-junit4:1.7.1" level="application" />
   </component>
 </module>
