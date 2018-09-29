@@ -71,7 +71,9 @@ public class TimetableParsing {
             var day = timetable.get(weekday);
             var addNewSubject = true;
             for (var subj: day){
-                if(subj.lessonName.equals(currentSubject.lessonName)){
+                if(subj.lessonName.equals(currentSubject.lessonName)
+                    && subj.lessonStartTime.equals(currentSubject.lessonStartTime))
+                {
                     subj.teachers.add(teacher);
                     addNewSubject = false;
                 }
