@@ -89,8 +89,8 @@ public class TimetableParsing {
     }
 
     public static void main(String[] args) {
-        var parser = new TimetableParsing();
-        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
+//        var parser = new TimetableParsing();
+//        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
 //        var timetable = parser.CreateTimeTableDataBase(calendar);
 //        for (var lesson:timetable.get("Вторник")
 //             ) {
