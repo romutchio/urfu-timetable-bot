@@ -1,911 +1,1190 @@
 [
     {
-        "updated": false,
-        "title": "МЕН-180101",
-        "course": 1,
         "id": 978680,
+        "title": "МЕН-180101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35175,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180102",
-        "course": 1,
         "id": 978681,
+        "title": "МЕН-180102",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35176,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180206",
-        "course": 1,
         "id": 978743,
+        "title": "МЕН-180206",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35238,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180207",
-        "course": 1,
         "id": 978741,
+        "title": "МЕН-180207",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35236,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180208",
-        "course": 1,
         "id": 978742,
+        "title": "МЕН-180208",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35237,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180301",
-        "course": 1,
         "id": 978682,
+        "title": "МЕН-180301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35177,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180302",
-        "course": 1,
         "id": 978683,
+        "title": "МЕН-180302",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35178,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180303",
-        "course": 1,
         "id": 978684,
+        "title": "МЕН-180303",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35179,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180401",
-        "course": 1,
         "id": 978711,
+        "title": "МЕН-180401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35206,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180409",
-        "course": 1,
         "id": 978706,
+        "title": "МЕН-180409",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35201,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180410",
-        "course": 1,
         "id": 978707,
+        "title": "МЕН-180410",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35202,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180411",
-        "course": 1,
         "id": 978708,
+        "title": "МЕН-180411",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35203,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180501",
-        "course": 1,
         "id": 979452,
+        "title": "МЕН-180501",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 36115,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180504",
-        "course": 1,
         "id": 978749,
+        "title": "МЕН-180504",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35244,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180601",
-        "course": 1,
         "id": 978710,
+        "title": "МЕН-180601",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35205,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180602",
-        "course": 1,
         "id": 978747,
+        "title": "МЕН-180602",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35242,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180603",
-        "course": 1,
         "id": 978748,
+        "title": "МЕН-180603",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35243,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180705",
-        "course": 1,
         "id": 978679,
+        "title": "МЕН-180705",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35174,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180809",
-        "course": 1,
         "id": 978744,
+        "title": "МЕН-180809",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35239,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-180810",
-        "course": 1,
         "id": 978745,
+        "title": "МЕН-180810",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35240,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-181015",
-        "course": 1,
         "id": 978746,
+        "title": "МЕН-181015",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35241,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-181101",
-        "course": 1,
         "id": 978705,
+        "title": "МЕН-181101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35200,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-181301",
-        "course": 1,
         "id": 978689,
+        "title": "МЕН-181301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35184,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-181401",
-        "course": 1,
         "id": 978709,
+        "title": "МЕН-181401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35204,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182101",
-        "course": 1,
         "id": 978688,
+        "title": "МЕН-182101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35183,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182201",
-        "course": 1,
         "id": 978753,
+        "title": "МЕН-182201",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35248,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182203",
-        "course": 1,
         "id": 978754,
+        "title": "МЕН-182203",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35249,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182701",
-        "course": 1,
         "id": 978687,
+        "title": "МЕН-182701",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35182,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182801",
-        "course": 1,
         "id": 978686,
+        "title": "МЕН-182801",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35181,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-182901",
-        "course": 1,
         "id": 978685,
+        "title": "МЕН-182901",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35180,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-183009",
-        "course": 1,
         "id": 978752,
+        "title": "МЕН-183009",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35247,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-183105",
-        "course": 1,
         "id": 978750,
+        "title": "МЕН-183105",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35245,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-183110",
-        "course": 1,
         "id": 978751,
-        "external_id": 35246,
+        "title": "МЕН-183110",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
-    },
-    {
-        "updated": false,
-        "title": "МЕН-183201",
         "course": 1,
+        "external_id": 35246,
+        "updated": false
+    },
+    {
         "id": 978807,
+        "title": "МЕН-183201",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 1,
         "external_id": 35302,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270301",
+        "id": 978713,
+        "title": "МЕН-270101",
+        "institute_id": 25714,
+        "actual": true,
         "course": 2,
+        "external_id": 35208,
+        "updated": false
+    },
+    {
+        "id": 978714,
+        "title": "МЕН-270102",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35209,
+        "updated": false
+    },
+    {
+        "id": 978734,
+        "title": "МЕН-270206",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35229,
+        "updated": false
+    },
+    {
+        "id": 978716,
+        "title": "МЕН-270207",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35211,
+        "updated": false
+    },
+    {
+        "id": 978717,
+        "title": "МЕН-270208",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35212,
+        "updated": false
+    },
+    {
         "id": 978725,
+        "title": "МЕН-270301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35220,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270302",
-        "course": 2,
         "id": 978731,
+        "title": "МЕН-270302",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35226,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270303",
-        "course": 2,
         "id": 978733,
+        "title": "МЕН-270303",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35228,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270409",
-        "course": 2,
         "id": 978728,
+        "title": "МЕН-270409",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35223,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270410",
-        "course": 2,
         "id": 978729,
+        "title": "МЕН-270410",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35224,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270411",
-        "course": 2,
         "id": 978730,
+        "title": "МЕН-270411",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35225,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270504",
-        "course": 2,
         "id": 978703,
+        "title": "МЕН-270504",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35198,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270601",
-        "course": 2,
         "id": 978726,
+        "title": "МЕН-270601",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35221,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270602",
-        "course": 2,
         "id": 978727,
+        "title": "МЕН-270602",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35222,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-270603",
-        "course": 2,
         "id": 978739,
+        "title": "МЕН-270603",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35234,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-271101",
+        "id": 978715,
+        "title": "МЕН-270705",
+        "institute_id": 25714,
+        "actual": true,
         "course": 2,
+        "external_id": 35210,
+        "updated": false
+    },
+    {
+        "id": 978735,
+        "title": "МЕН-270809",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35230,
+        "updated": false
+    },
+    {
+        "id": 978737,
+        "title": "МЕН-270810",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35232,
+        "updated": false
+    },
+    {
+        "id": 978718,
+        "title": "МЕН-271015",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
+        "external_id": 35213,
+        "updated": false
+    },
+    {
         "id": 978721,
+        "title": "МЕН-271101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35216,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-271301",
-        "course": 2,
         "id": 978719,
+        "title": "МЕН-271301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35214,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-271401",
-        "course": 2,
         "id": 978702,
+        "title": "МЕН-271401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35197,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272101",
-        "course": 2,
         "id": 978720,
+        "title": "МЕН-272101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35215,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272201",
-        "course": 2,
         "id": 978738,
+        "title": "МЕН-272201",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35233,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272203",
-        "course": 2,
         "id": 978740,
+        "title": "МЕН-272203",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35235,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272701",
-        "course": 2,
         "id": 978724,
+        "title": "МЕН-272701",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35219,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272801",
-        "course": 2,
         "id": 978723,
+        "title": "МЕН-272801",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35218,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-272901",
-        "course": 2,
         "id": 978722,
+        "title": "МЕН-272901",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35217,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-273009",
-        "course": 2,
         "id": 978704,
+        "title": "МЕН-273009",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35199,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-273105",
-        "course": 2,
         "id": 978732,
-        "external_id": 35227,
+        "title": "МЕН-273105",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
-    },
-    {
-        "updated": false,
-        "title": "МЕН-273110",
         "course": 2,
+        "external_id": 35227,
+        "updated": false
+    },
+    {
         "id": 978736,
+        "title": "МЕН-273110",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 2,
         "external_id": 35231,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360301",
+        "id": 978767,
+        "title": "МЕН-360101",
+        "institute_id": 25714,
+        "actual": true,
         "course": 3,
+        "external_id": 35262,
+        "updated": false
+    },
+    {
+        "id": 978768,
+        "title": "МЕН-360102",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35263,
+        "updated": false
+    },
+    {
+        "id": 978774,
+        "title": "МЕН-360206",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35269,
+        "updated": false
+    },
+    {
+        "id": 978770,
+        "title": "МЕН-360207",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35265,
+        "updated": false
+    },
+    {
+        "id": 978771,
+        "title": "МЕН-360208",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35266,
+        "updated": false
+    },
+    {
         "id": 978794,
+        "title": "МЕН-360301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35289,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360302",
-        "course": 3,
         "id": 978795,
+        "title": "МЕН-360302",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35290,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360303",
-        "course": 3,
         "id": 978796,
+        "title": "МЕН-360303",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35291,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360409",
-        "course": 3,
         "id": 978697,
+        "title": "МЕН-360409",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35192,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360410",
-        "course": 3,
         "id": 978698,
+        "title": "МЕН-360410",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35193,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360411",
-        "course": 3,
         "id": 978699,
+        "title": "МЕН-360411",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35194,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360412",
-        "course": 3,
         "id": 978701,
+        "title": "МЕН-360412",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35196,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360504",
-        "course": 3,
         "id": 978806,
+        "title": "МЕН-360504",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35301,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360601",
-        "course": 3,
         "id": 978799,
+        "title": "МЕН-360601",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35294,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-360602",
-        "course": 3,
         "id": 978800,
+        "title": "МЕН-360602",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35295,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-361101",
+        "id": 978769,
+        "title": "МЕН-360705",
+        "institute_id": 25714,
+        "actual": true,
         "course": 3,
+        "external_id": 35264,
+        "updated": false
+    },
+    {
+        "id": 978775,
+        "title": "МЕН-360809",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35270,
+        "updated": false
+    },
+    {
+        "id": 978772,
+        "title": "МЕН-360814",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35267,
+        "updated": false
+    },
+    {
+        "id": 978789,
+        "title": "МЕН-360903",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35284,
+        "updated": false
+    },
+    {
+        "id": 978791,
+        "title": "МЕН-360911",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35286,
+        "updated": false
+    },
+    {
+        "id": 978797,
+        "title": "МЕН-360916",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35292,
+        "updated": false
+    },
+    {
+        "id": 978773,
+        "title": "МЕН-361015",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
+        "external_id": 35268,
+        "updated": false
+    },
+    {
         "id": 978805,
+        "title": "МЕН-361101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35300,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-361301",
-        "course": 3,
         "id": 978792,
+        "title": "МЕН-361301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35287,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-361401",
-        "course": 3,
         "id": 978700,
+        "title": "МЕН-361401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35195,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-362101",
-        "course": 3,
         "id": 978798,
+        "title": "МЕН-362101",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35293,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-362701",
-        "course": 3,
         "id": 978762,
+        "title": "МЕН-362701",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35257,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-362801",
-        "course": 3,
         "id": 978761,
+        "title": "МЕН-362801",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35256,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-362901",
-        "course": 3,
         "id": 978756,
+        "title": "МЕН-362901",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35251,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-363009",
-        "course": 3,
         "id": 978803,
+        "title": "МЕН-363009",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35298,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-363105",
-        "course": 3,
         "id": 978802,
-        "external_id": 35297,
+        "title": "МЕН-363105",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
-    },
-    {
-        "updated": false,
-        "title": "МЕН-363110",
         "course": 3,
+        "external_id": 35297,
+        "updated": false
+    },
+    {
         "id": 978804,
+        "title": "МЕН-363110",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 3,
         "external_id": 35299,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450309",
+        "id": 978763,
+        "title": "МЕН-450101",
+        "institute_id": 25714,
+        "actual": true,
         "course": 4,
+        "external_id": 35258,
+        "updated": false
+    },
+    {
+        "id": 978764,
+        "title": "МЕН-450102",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35259,
+        "updated": false
+    },
+    {
+        "id": 978765,
+        "title": "МЕН-450103",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35260,
+        "updated": false
+    },
+    {
+        "id": 978777,
+        "title": "МЕН-450207",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35272,
+        "updated": false
+    },
+    {
+        "id": 978778,
+        "title": "МЕН-450208",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35273,
+        "updated": false
+    },
+    {
         "id": 978757,
+        "title": "МЕН-450309",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35252,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450311",
-        "course": 4,
         "id": 978758,
+        "title": "МЕН-450311",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35253,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450312",
-        "course": 4,
         "id": 978759,
+        "title": "МЕН-450312",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35254,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450313",
-        "course": 4,
         "id": 978760,
+        "title": "МЕН-450313",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35255,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450401",
-        "course": 4,
         "id": 978691,
+        "title": "МЕН-450401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35186,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450403",
-        "course": 4,
         "id": 978692,
+        "title": "МЕН-450403",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35187,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450405",
-        "course": 4,
         "id": 978693,
+        "title": "МЕН-450405",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35188,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450407",
-        "course": 4,
         "id": 978694,
+        "title": "МЕН-450407",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35189,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450411",
-        "course": 4,
         "id": 978696,
+        "title": "МЕН-450411",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35191,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450504",
-        "course": 4,
         "id": 978786,
+        "title": "МЕН-450504",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35281,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450601",
-        "course": 4,
         "id": 978790,
+        "title": "МЕН-450601",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35285,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450602",
-        "course": 4,
         "id": 978793,
+        "title": "МЕН-450602",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35288,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-450603",
-        "course": 4,
         "id": 978801,
+        "title": "МЕН-450603",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35296,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-451103",
+        "id": 978766,
+        "title": "МЕН-450705",
+        "institute_id": 25714,
+        "actual": true,
         "course": 4,
+        "external_id": 35261,
+        "updated": false
+    },
+    {
+        "id": 978780,
+        "title": "МЕН-450814",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35275,
+        "updated": false
+    },
+    {
+        "id": 978779,
+        "title": "МЕН-450911",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35274,
+        "updated": false
+    },
+    {
+        "id": 978781,
+        "title": "МЕН-451015",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
+        "external_id": 35276,
+        "updated": false
+    },
+    {
         "id": 978784,
+        "title": "МЕН-451103",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35279,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-451301",
-        "course": 4,
         "id": 978782,
+        "title": "МЕН-451301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35277,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-451401",
-        "course": 4,
         "id": 978695,
+        "title": "МЕН-451401",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35190,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-451905",
-        "course": 4,
         "id": 978785,
+        "title": "МЕН-451905",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35280,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-452102",
-        "course": 4,
         "id": 978783,
+        "title": "МЕН-452102",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35278,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-452708",
-        "course": 4,
         "id": 978712,
+        "title": "МЕН-452708",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35207,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-452806",
-        "course": 4,
         "id": 978788,
+        "title": "МЕН-452806",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35283,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-452904",
-        "course": 4,
         "id": 978755,
-        "external_id": 35250,
+        "title": "МЕН-452904",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
-    },
-    {
-        "updated": false,
-        "title": "МЕН-453105",
         "course": 4,
+        "external_id": 35250,
+        "updated": false
+    },
+    {
         "id": 978810,
+        "title": "МЕН-453105",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 4,
         "external_id": 35305,
-        "actual": true,
-        "institute_id": 25714
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-540401",
-        "course": 5,
         "id": 978690,
-        "external_id": 35185,
+        "title": "МЕН-540401",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
-    },
-    {
-        "updated": false,
-        "title": "МЕН-541301",
         "course": 5,
-        "id": 978809,
-        "external_id": 35304,
-        "actual": true,
-        "institute_id": 25714
+        "external_id": 35185,
+        "updated": false
     },
     {
-        "updated": false,
-        "title": "МЕН-631310",
-        "course": 6,
-        "id": 978808,
-        "external_id": 35303,
+        "id": 978776,
+        "title": "МЕН-541015",
+        "institute_id": 25714,
         "actual": true,
-        "institute_id": 25714
+        "course": 5,
+        "external_id": 35271,
+        "updated": false
+    },
+    {
+        "id": 978809,
+        "title": "МЕН-541301",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 5,
+        "external_id": 35304,
+        "updated": false
+    },
+    {
+        "id": 978808,
+        "title": "МЕН-631310",
+        "institute_id": 25714,
+        "actual": true,
+        "course": 6,
+        "external_id": 35303,
+        "updated": false
     }
 ]
