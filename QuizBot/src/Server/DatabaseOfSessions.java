@@ -50,7 +50,9 @@ public class DatabaseOfSessions {
     public static User GetUserByUsername(String username)
     {
         var userDatabase = getDatabaseOfUsers();
-        return userDatabase.get(username);
+        if (userDatabase != null && userDatabase.containsKey(username))
+            return userDatabase.get(username);
+        return null;
     }
 
     public static boolean Contains(String username)

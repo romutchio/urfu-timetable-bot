@@ -19,4 +19,16 @@ public class Group {
         this.actual = false;
         this.institute_id = 0;
     }
+    public Group(boolean updated, String title,
+                 int course, int id, int external_id,
+                 boolean actual, int institute_id)
+    {
+        this.updated = updated;
+        this.title = title;
+        this.course = course;
+        this.id = id;
+        this.external_id = external_id;
+        this.actual = actual;
+        this.institute_id = institute_id;
+    }
 }

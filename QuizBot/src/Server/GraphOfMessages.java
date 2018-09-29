@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public final class GraphOfMessages {
+public class GraphOfMessages {
     public GraphOfMessages() {
         graphInit();
     }
@@ -154,12 +154,10 @@ public final class GraphOfMessages {
 
     private static boolean transitToAnyNodes(User user) {
         if (handleTimetableOnClass(user)) {
-            DatabaseOfSessions.UpdateUserInDatabase(user);
             return true;
         }
 
         if (handleTimetableOnDate(user)) {
-            DatabaseOfSessions.UpdateUserInDatabase(user);
             return true;
         }
 
@@ -169,7 +167,6 @@ public final class GraphOfMessages {
     private static void onGetTimetable(User user) {
         if (!transitToAnyNodes(user))
             user.nextMessage = repeatAnswer;
-        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
     private static void onGetInformationAboutClass(User user) {
@@ -179,13 +176,11 @@ public final class GraphOfMessages {
                 user.lastClassNumRequest++;
 
                 user.nextMessage.question = getInformationAboutClass(
-                        user.lastDayRequest + " " + user.lastClassNumRequest);
-
-                DatabaseOfSessions.UpdateUserInDatabase(user);
+                        user.lastDayRequest + " " + user.lastClassNumRequest) +
+                        "\n\nХотите узнать еще что-нибудь?";
                 return;
             }
         user.nextMessage = repeatAnswer;
-        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
     private static void onSessionInitialization(User user) {
@@ -195,14 +190,12 @@ public final class GraphOfMessages {
             if (!transitToAnyNodes(user))
                 user.nextMessage = sessionInitialization;
         }
-        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
     private static void onGroupAddition(User user) {
         user.group = AnswerValidator.RecognizeGroup(user.lastAnswer);
         if (!transitToAnyNodes(user))
             user.nextMessage = sessionInitialization;
-        DatabaseOfSessions.UpdateUserInDatabase(user);
     }
 
     public static Consumer<User> getTransitionFunction(User user) {
