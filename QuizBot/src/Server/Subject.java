@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collector;
 
 public class Subject {
-    String weekday;
-    String lessonName;
-    String lessonStartTime;
-    String lessonEndTime;
-    List teachers;
+    public String weekday;
+    public String lessonName;
+    public String lessonStartTime;
+    public String lessonEndTime;
+    public List teachers;
 
     public Subject(String weekday, String lessonName, String lessonStartTime, String lessonEndTime, List teachers)
     {
