@@ -9,6 +9,7 @@ import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.component.VEvent;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class TestTimetableParser {
 
     @Test
     public void testTimeTableParser() {
-        var calendar = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
+        System.out.println(new File(".").getAbsolutePath());
+        var calendar = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
         ComponentList wholeTimetable = calendar.getComponents(Component.VEVENT);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         var timetable = TimetableParsing.CreateTimeTableDataBase(calendar);
