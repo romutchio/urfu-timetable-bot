@@ -41,6 +41,10 @@ public class GraphOfMessages {
             "К сожалению такой группы не существует. Попрубуйте ввести группу еще раз.",
             "invalid group");
 
+    private static Message invalidClassIndex = new Message(
+            "У вас сегодня меньше пар, можете отдыхать!",
+            "invalid class index");
+
     private static void graphInit() {
         transitionDict = new HashMap<String, Consumer<User>>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
@@ -50,6 +54,7 @@ public class GraphOfMessages {
         transitionDict.put("get information about next class", GraphOfMessages::onGetInformationAboutClass);
         transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
+        transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
     }
 
     private static boolean transitToAnyNodes(User user) {
@@ -75,11 +80,16 @@ public class GraphOfMessages {
                 user.nextMessage = getInformationAboutNextClass;
                 user.lastClassNumRequest++;
 
-                user.nextMessage.question = getInformationAboutClass(
-                        user.lastDayRequest + " " + user.lastClassNumRequest) +
-                        "\n\nХотите узнать еще что-нибудь?";
+                var classInfo = getInformationAboutClass(
+                        user.lastDayRequest + " " + user.lastClassNumRequest);
+                if (classInfo == null) {
+                    user.nextMessage = invalidClassIndex;
+                    return;
+                }
+                user.nextMessage.question = classInfo + "\n\nХотите узнать еще что-нибудь?";
                 return;
             }
+
         user.nextMessage = repeatAnswer;
     }
 
@@ -111,11 +121,16 @@ public class GraphOfMessages {
         var day = timeDict[0];
         var classNumber = Integer.parseInt(timeDict[1]);
 
+
         var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var dayCal = cal.get(day);
+        if (dayCal.size() < classNumber)
+            return null;
+
         var subj = dayCal.get(classNumber - 1);
 //        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
+
         return String.format("%s\nНачало: %s\nКонец: %s\nПреподаватель: %s",
                 subj.lessonName,
                 subj.lessonStartTime,
@@ -194,9 +209,14 @@ public class GraphOfMessages {
         user.lastDayRequest = date;
         user.lastClassNumRequest = Integer.parseInt(classNum);
         user.nextMessage = getInformationAboutClass;
-        user.nextMessage.question = getInformationAboutClass(date + " " + classNum)
-                + "\n\nХотите узнать еще что-нибудь?";
 
+        var classInfo = getInformationAboutClass(date + " " + classNum);
+        if (classInfo == null) {
+            user.nextMessage = invalidClassIndex;
+            return true;
+        }
+
+        user.nextMessage.question = classInfo + "\n\nХотите узнать еще что-нибудь?";
         return true;
     }
 
