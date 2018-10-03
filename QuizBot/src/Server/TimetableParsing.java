@@ -34,7 +34,7 @@ public class TimetableParsing {
         }
         return calendar;
     }
-
+    @SuppressWarnings("fallthrough")
     public static HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(Calendar calendar) {
         var timetable = new HashMap<String, ArrayList<Subject>>();
         for (String day : WeekDays) {
