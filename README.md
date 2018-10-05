@@ -1,4 +1,5 @@
 # Бот-расписание 
+[![Build Status](https://travis-ci.com/bully434/urfu-timetable-bot.svg?branch=master)](https://travis-ci.com/bully434/urfu-timetable-bot)
 
 Бот для быстрого получения расписания
 
