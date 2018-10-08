@@ -33,10 +33,13 @@ public class TimetableBotClient extends TelegramLongPollingBot {
     }
 
     public synchronized void sendMsg(String chatId, String s) {
+
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
-        sendMessage.setText(s);
+//        if (s.equals("/start"))
+//            sendMessage.setText()
+        sendMessage.setText(AnswerHandler.handleAnswer("vaspahomov", s));
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
