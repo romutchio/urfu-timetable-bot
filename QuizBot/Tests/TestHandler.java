@@ -1,5 +1,4 @@
 import static org.junit.Assert.*;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import Server.*;
 

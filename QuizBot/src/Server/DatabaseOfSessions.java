@@ -15,7 +15,7 @@ public class DatabaseOfSessions {
     private static String ReadFile() {
         String content = null;
         try {
-            String fileName = "./QuizBot/DataBase/Sessions.json";
+            String fileName = "./DataBase/Sessions.json";
             content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
         } catch (Exception e) {
             System.out.println(e);
@@ -26,7 +26,7 @@ public class DatabaseOfSessions {
     private static void WriteFile(String textToWrite) {
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter("./QuizBot/DataBase/Sessions.json", "UTF-8");
+            writer = new PrintWriter("./DataBase/Sessions.json", "UTF-8");
             writer.println(textToWrite);
             writer.close();
         } catch (FileNotFoundException e) {

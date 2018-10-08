@@ -109,7 +109,7 @@ public class GraphOfMessages {
     }
 
     private static String getTimetableOnDate(String date) {
-        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
+        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         return cal.get(date).stream()
                 .map(subject -> subject.lessonStartTime + ": " + subject.lessonName)
@@ -122,7 +122,7 @@ public class GraphOfMessages {
         var classNumber = Integer.parseInt(timeDict[1]);
 
 
-        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
+        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var dayCal = cal.get(day);
         if (dayCal.size() < classNumber)
@@ -131,11 +131,13 @@ public class GraphOfMessages {
         var subj = dayCal.get(classNumber - 1);
 //        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
 
-        return String.format("%s\nНачало: %s\nКонец: %s\nПреподаватель: %s",
+        return String.format("%s\nНачало: %s\nКонец: %s\nАудитория: %s\nПреподаватель: %s",
                 subj.lessonName,
                 subj.lessonStartTime,
                 subj.lessonEndTime,
+                subj.rooms.stream().collect(Collectors.joining(", ")),
                 subj.teachers.stream().collect(Collectors.joining(", ")));
+
     }
 
     private static boolean handleTimetableOnDate(User user) {

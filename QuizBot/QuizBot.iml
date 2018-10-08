@@ -16,5 +16,6 @@
     <orderEntry type="library" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" name="org.mockito:mockito-all:1.9.5" level="project" />
     <orderEntry type="library" name="net.sf.flexjson:flexjson:2.0" level="project" />
+    <orderEntry type="library" name="org.telegram:telegrambots:4.1" level="project" />
   </component>
 </module>
