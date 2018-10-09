@@ -37,6 +37,10 @@ public class GraphOfMessages {
             "Я вас не понял, повторите пожалуйста.",
             "repeat answer");
 
+    private static Message successGroupAddition = new Message(
+            "Расписание было успешно загружено",
+            "group success");
+
     private static Message invalidGroup = new Message(
             "К сожалению такой группы не существует. Попрубуйте ввести группу еще раз.",
             "invalid group");
@@ -55,6 +59,7 @@ public class GraphOfMessages {
         transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
         transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("group success", GraphOfMessages::transitToAnyNodes);
     }
 
     private static boolean transitToAnyNodes(User user) {
@@ -103,9 +108,13 @@ public class GraphOfMessages {
     }
 
     private static void onGroupAddition(User user) {
-        user.group = AnswerValidator.RecognizeGroup(user.lastAnswer);
-        if (!transitToAnyNodes(user))
+        var group = AnswerValidator.RecognizeGroup(user.lastAnswer);
+        if (group == null)
             user.nextMessage = invalidGroup;
+        else {
+            user.group = group;
+            user.nextMessage = successGroupAddition;
+        }
     }
 
     private static String getTimetableOnDate(String date) {
