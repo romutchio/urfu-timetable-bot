@@ -22,15 +22,15 @@ public class GraphOfMessages {
             "group addition");
 
     private static Message getTimetableOnDate = new Message(
-            "",
+            " ",
             "get timetable");
 
     private static Message getInformationAboutClass = new Message(
-            "",
+            " ",
             "get information about class");
 
     private static Message getInformationAboutNextClass = new Message(
-            "",
+            " ",
             "get information about next class");
 
     private static Message repeatAnswer = new Message(
@@ -63,15 +63,7 @@ public class GraphOfMessages {
     }
 
     private static boolean transitToAnyNodes(User user) {
-        if (handleTimetableOnClass(user)) {
-            return true;
-        }
-
-        if (handleTimetableOnDate(user)) {
-            return true;
-        }
-
-        return false;
+        return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
     private static void onGetTimetable(User user) {
@@ -80,7 +72,7 @@ public class GraphOfMessages {
     }
 
     private static void onGetInformationAboutClass(User user) {
-        if (!transitToAnyNodes(user))
+        if (!transitToAnyNodes(user)) {
             if (user.lastAnswer.contains("следующая пара")) {
                 user.nextMessage = getInformationAboutNextClass;
                 user.lastClassNumRequest++;
@@ -92,10 +84,11 @@ public class GraphOfMessages {
                     return;
                 }
                 user.nextMessage.question = classInfo + "\n\nХотите узнать еще что-нибудь?";
-                return;
-            }
 
-        user.nextMessage = repeatAnswer;
+            } else {
+                user.nextMessage = repeatAnswer;
+            }
+        }
     }
 
     private static void onSessionInitialization(User user) {

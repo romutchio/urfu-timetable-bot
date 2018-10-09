@@ -1,4 +1,4 @@
-package Client;
+package Clients;
 
 import Server.*;
 import org.apache.commons.lang.NotImplementedException;
@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 
-public class TimetableBotClient extends TelegramLongPollingBot {
+public class TelegramClient extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
@@ -44,8 +44,7 @@ public class TimetableBotClient extends TelegramLongPollingBot {
             user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
-        }
-       else {
+        } else {
             new GraphOfMessages();
             user = DatabaseOfSessions.GetUserByUsername(chatId);
             user.lastAnswer = s;
@@ -64,30 +63,17 @@ public class TimetableBotClient extends TelegramLongPollingBot {
         }
     }
 
-//    public static void main(String[] args) {
-//        var username = AnswerHandler.initializeSession();
-//        var in = new Scanner(System.in);
-//
-//        while(true)
-//        {
-//            var answer = in.nextLine(); //при инициализации ждет ввод 2 раза
-//            var answ = AnswerHandler.handleAnswer(username, answer);
-//            System.out.println(answ);
-//        }
-//    }
-//
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(new TimetableBotClient());
+            telegramBotsApi.registerBot(new TelegramClient());
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
     }
 
-    private static Message GetResponse(String answer, Message lastMessage)
-    {
+    private static Message GetResponse(String answer, Message lastMessage) {
         throw new NotImplementedException();
     }
 }
