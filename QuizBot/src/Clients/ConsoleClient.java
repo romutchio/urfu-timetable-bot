@@ -1,13 +1,11 @@
-package Client;
+package Clients;
 
-import Server.AnswerHandler;
-import Server.Message;
-import org.apache.commons.lang.NotImplementedException;
+import Server.*;
 
 import java.util.Scanner;
 
-public class TimetableBotClient {
-    public static void main(String[] args) {
+public class ConsoleClient {
+        public static void main(String[] args) {
         var username = AnswerHandler.initializeSession();
         var in = new Scanner(System.in);
 
@@ -17,10 +15,5 @@ public class TimetableBotClient {
             var answ = AnswerHandler.handleAnswer(username, answer);
             System.out.println(answ);
         }
-    }
-
-    private static Message GetResponse(String answer, Message lastMessage)
-    {
-        throw new NotImplementedException();
     }
 }

@@ -22,20 +22,24 @@ public class GraphOfMessages {
             "group addition");
 
     private static Message getTimetableOnDate = new Message(
-            "",
+            " ",
             "get timetable");
 
     private static Message getInformationAboutClass = new Message(
-            "",
+            " ",
             "get information about class");
 
     private static Message getInformationAboutNextClass = new Message(
-            "",
+            " ",
             "get information about next class");
 
     private static Message repeatAnswer = new Message(
             "Я вас не понял, повторите пожалуйста.",
             "repeat answer");
+
+    private static Message successGroupAddition = new Message(
+            "Расписание было успешно загружено",
+            "group success");
 
     private static Message invalidGroup = new Message(
             "К сожалению такой группы не существует. Попрубуйте ввести группу еще раз.",
@@ -55,18 +59,11 @@ public class GraphOfMessages {
         transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
         transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("group success", GraphOfMessages::transitToAnyNodes);
     }
 
     private static boolean transitToAnyNodes(User user) {
-        if (handleTimetableOnClass(user)) {
-            return true;
-        }
-
-        if (handleTimetableOnDate(user)) {
-            return true;
-        }
-
-        return false;
+        return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
     private static void onGetTimetable(User user) {
@@ -75,7 +72,7 @@ public class GraphOfMessages {
     }
 
     private static void onGetInformationAboutClass(User user) {
-        if (!transitToAnyNodes(user))
+        if (!transitToAnyNodes(user)) {
             if (user.lastAnswer.contains("следующая пара")) {
                 user.nextMessage = getInformationAboutNextClass;
                 user.lastClassNumRequest++;
@@ -87,10 +84,11 @@ public class GraphOfMessages {
                     return;
                 }
                 user.nextMessage.question = classInfo + "\n\nХотите узнать еще что-нибудь?";
-                return;
-            }
 
-        user.nextMessage = repeatAnswer;
+            } else {
+                user.nextMessage = repeatAnswer;
+            }
+        }
     }
 
     private static void onSessionInitialization(User user) {
@@ -103,13 +101,17 @@ public class GraphOfMessages {
     }
 
     private static void onGroupAddition(User user) {
-        user.group = AnswerValidator.RecognizeGroup(user.lastAnswer);
-        if (!transitToAnyNodes(user))
+        var group = AnswerValidator.RecognizeGroup(user.lastAnswer);
+        if (group == null)
             user.nextMessage = invalidGroup;
+        else {
+            user.group = group;
+            user.nextMessage = successGroupAddition;
+        }
     }
 
     private static String getTimetableOnDate(String date) {
-        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
+        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         return cal.get(date).stream()
                 .map(subject -> subject.lessonStartTime + ": " + subject.lessonName)
@@ -122,7 +124,7 @@ public class GraphOfMessages {
         var classNumber = Integer.parseInt(timeDict[1]);
 
 
-        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
+        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var dayCal = cal.get(day);
         if (dayCal.size() < classNumber)
@@ -131,11 +133,13 @@ public class GraphOfMessages {
         var subj = dayCal.get(classNumber - 1);
 //        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
 
-        return String.format("%s\nНачало: %s\nКонец: %s\nПреподаватель: %s",
+        return String.format("%s\nНачало: %s\nКонец: %s\nАудитория: %s\nПреподаватель: %s",
                 subj.lessonName,
                 subj.lessonStartTime,
                 subj.lessonEndTime,
+                subj.rooms.stream().collect(Collectors.joining(", ")),
                 subj.teachers.stream().collect(Collectors.joining(", ")));
+
     }
 
     private static boolean handleTimetableOnDate(User user) {

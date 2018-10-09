@@ -5,7 +5,6 @@ import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.filter.Filter;
 import net.fortuna.ical4j.filter.PeriodRule;
 import net.fortuna.ical4j.model.*;
-import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
 
 import java.io.FileInputStream;
@@ -16,9 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class TimetableParsing {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
@@ -58,16 +54,20 @@ public class TimetableParsing {
             var dateEndTime = timeFormat.format(dateEnd);
             var weekday = DetermineDay(dateStart);
             String teacher = null;
+            String classRoom = null;
             try {
                 teacher = event.getDescription().getValue();
+                classRoom = event.getLocation().getValue();
                 if (teacher != null){
                     teacher = teacher.substring(15);
                 }
             } catch (Exception ignored) {
             }
             var teachers = new ArrayList<String>();
+            var rooms = new ArrayList<String>();
             teachers.add(teacher);
-            var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers);
+            rooms.add(classRoom);
+            var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers, rooms);
             var day = timetable.get(weekday);
             var addNewSubject = true;
             for (var subj: day){
@@ -75,6 +75,7 @@ public class TimetableParsing {
                     && subj.lessonStartTime.equals(currentSubject.lessonStartTime))
                 {
                     subj.teachers.add(teacher);
+                    subj.rooms.add(classRoom);
                     addNewSubject = false;
                 }
             }
