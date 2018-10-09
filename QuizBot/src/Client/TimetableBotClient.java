@@ -1,7 +1,6 @@
 package Client;
 
-import Server.AnswerHandler;
-import Server.Message;
+import Server.*;
 import org.apache.commons.lang.NotImplementedException;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -11,8 +10,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-import java.util.Scanner;
-import java.util.logging.Level;
 
 public class TimetableBotClient extends TelegramLongPollingBot {
 
@@ -22,14 +19,14 @@ public class TimetableBotClient extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update) {
-        String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
+    public String getBotUsername() {
+        return "UrFUTimetableBot";
     }
 
     @Override
-    public String getBotUsername() {
-        return "UrFUTimetableBot";
+    public void onUpdateReceived(Update update) {
+        String message = update.getMessage().getText();
+        sendMsg(update.getMessage().getChatId().toString(), message);
     }
 
     public synchronized void sendMsg(String chatId, String s) {
@@ -37,9 +34,29 @@ public class TimetableBotClient extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
-//        if (s.equals("/start"))
-//            sendMessage.setText()
-        sendMessage.setText(AnswerHandler.handleAnswer("vaspahomov", s));
+        User user;
+        if (!DatabaseOfSessions.Contains(chatId)) {
+            new GraphOfMessages();
+            Message mes = GraphOfMessages.getInitMessage();
+            sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
+            var operationId = mes.operationIdentifier;
+            var transit = GraphOfMessages.getTransit(operationId);
+            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
+            DatabaseOfSessions.AddNewUserInDatabase(user);
+            transit.accept(user);
+        }
+       else {
+            new GraphOfMessages();
+            user = DatabaseOfSessions.GetUserByUsername(chatId);
+            user.lastAnswer = s;
+            GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
+            var message = user.nextMessage;
+            DatabaseOfSessions.UpdateUserInDatabase(user);
+            sendMessage.setText(message.question);
+        }
+
+        System.out.println(chatId);
+        System.out.println(s);
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -47,27 +64,27 @@ public class TimetableBotClient extends TelegramLongPollingBot {
         }
     }
 
-    public static void main(String[] args) {
-        var username = AnswerHandler.initializeSession();
-        var in = new Scanner(System.in);
-
-        while(true)
-        {
-            var answer = in.nextLine(); //при инициализации ждет ввод 2 раза
-            var answ = AnswerHandler.handleAnswer(username, answer);
-            System.out.println(answ);
-        }
-    }
-//
 //    public static void main(String[] args) {
-//        ApiContextInitializer.init();
-//        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-//        try {
-//            telegramBotsApi.registerBot(new TimetableBotClient());
-//        } catch (TelegramApiRequestException e) {
-//            e.printStackTrace();
+//        var username = AnswerHandler.initializeSession();
+//        var in = new Scanner(System.in);
+//
+//        while(true)
+//        {
+//            var answer = in.nextLine(); //при инициализации ждет ввод 2 раза
+//            var answ = AnswerHandler.handleAnswer(username, answer);
+//            System.out.println(answ);
 //        }
 //    }
+//
+    public static void main(String[] args) {
+        ApiContextInitializer.init();
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+        try {
+            telegramBotsApi.registerBot(new TimetableBotClient());
+        } catch (TelegramApiRequestException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static Message GetResponse(String answer, Message lastMessage)
     {

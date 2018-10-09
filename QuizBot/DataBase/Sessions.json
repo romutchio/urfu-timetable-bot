@@ -1,1 +1,46 @@
-{"test":{"class":"Server.User","handle":"test","group":{"class":"Server.Group","updated":false,"title":"МЕН-180101","course":1,"id":978680,"external_id":35175,"actual":true,"institute_id":25714},"nextMessage":{"class":"Server.Message","question":"К сожалению такой группы не существует","operationIdentifier":"invalid group"},"lastAnswer":"МЕН-180101","lastDayRequest":null,"lastClassNumRequest":0},"vaspahomov":{"class":"Server.User","handle":"vaspahomov","group":{"class":"Server.Group","updated":false,"title":"МЕН-270810","course":2,"id":978737,"external_id":35232,"actual":true,"institute_id":25714},"nextMessage":{"class":"Server.Message","question":"Я вас не понял, повторите пожалуйста.","operationIdentifier":"repeat answer"},"lastAnswer":"рAСПИСАНИЕ НА ПОНЕДЕЛЬНИК","lastDayRequest":"Понедельник","lastClassNumRequest":2}}
+{
+  "349845203": {
+    "class": "Server.User",
+    "handle": "349845203",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "МЕН-270810",
+      "course": 2,
+      "id": 978737,
+      "external_id": 35232,
+      "actual": true,
+      "institute_id": 25714
+    },
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "К сожалению такой группы не существует. Попрубуйте ввести группу еще раз.",
+      "operationIdentifier": "invalid group"
+    },
+    "lastAnswer": "МЕН-270810",
+    "lastDayRequest": null,
+    "lastClassNumRequest": 0
+  },
+  "vaspahomov": {
+    "class": "Server.User",
+    "handle": "vaspahomov",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "МЕН-270810",
+      "course": 2,
+      "id": 978737,
+      "external_id": 35232,
+      "actual": true,
+      "institute_id": 25714
+    },
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "14:30: Прикладная физическая культура\n\nХотите узнать еще что-нибудь?",
+      "operationIdentifier": "get timetable"
+    },
+    "lastAnswer": "расписание на среда",
+    "lastDayRequest": "Понедельник",
+    "lastClassNumRequest": 2
+  }
+}

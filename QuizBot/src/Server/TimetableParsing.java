@@ -61,7 +61,7 @@ public class TimetableParsing {
             String classRoom = null;
             try {
                 teacher = event.getDescription().getValue();
-                classRoom = event.getSummary().getValue();
+                classRoom = event.getLocation().getValue();
                 if (teacher != null){
                     teacher = teacher.substring(15);
                 }
