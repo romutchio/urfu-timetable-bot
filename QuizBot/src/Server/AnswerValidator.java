@@ -12,7 +12,7 @@ public class AnswerValidator {
     private static String ReadFile() {
         String content = null;
         try {
-            String fileName = "./QuizBot/DataBase/Groups.txt";
+            String fileName = "./DataBase/Groups.txt";
             content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
         } catch (Exception e) {
             System.out.println(e);

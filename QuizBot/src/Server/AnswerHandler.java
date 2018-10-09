@@ -3,7 +3,6 @@ package Server;
 import java.util.Scanner;
 
 
-
 public class AnswerHandler {
     public static String initializeSession()
     {
@@ -36,6 +35,7 @@ public class AnswerHandler {
 
     public static String handleAnswer(String username, String answer)
     {
+
         var user = DatabaseOfSessions.GetUserByUsername(username);
         user.lastAnswer = answer;
 

@@ -1,8 +1,6 @@
 package Server;
 
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collector;
 
 public class Subject {
     public String weekday;
