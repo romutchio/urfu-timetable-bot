@@ -10,7 +10,16 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 public class TelegramAPI extends TelegramLongPollingBot {
 
-    public TelegramAPI() {
+//    public TelegramAPI() {
+//        ApiContextInitializer.init();
+//        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+//        try {
+//            telegramBotsApi.registerBot(new TelegramAPI());
+//        } catch (TelegramApiRequestException e) {
+//            e.printStackTrace();
+//        }
+//    }
+    public void InitBot(){
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {

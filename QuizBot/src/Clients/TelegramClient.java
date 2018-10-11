@@ -36,5 +36,6 @@ public class TelegramClient {
 
         new GraphOfMessages();
         var api = new TelegramAPI();
+        api.InitBot();
     }
 }
