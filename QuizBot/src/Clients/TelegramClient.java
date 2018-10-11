@@ -1,79 +1,40 @@
 package Clients;
 
 import Server.*;
-import org.apache.commons.lang.NotImplementedException;
-import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
+public class TelegramClient {
 
-public class TelegramClient extends TelegramLongPollingBot {
-
-    @Override
-    public String getBotToken() {
-        return "632792999:AAFr07dPw_iNZ6vNdg3dPXRqO7aeYpPe57E";
+    public static void initNewUser(String chatId, TelegramAPI api){
+        Message mes = GraphOfMessages.getInitMessage();
+//        sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
+        var operationId = mes.operationIdentifier;
+        var transit = GraphOfMessages.getTransit(operationId);
+        var user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
+        DatabaseOfSessions.AddNewUserInDatabase(user);
+        transit.accept(user);
+        api.sendMessage(chatId, mes.question);
     }
-
-    @Override
-    public String getBotUsername() {
-        return "UrFUTimetableBot";
-    }
-
-    @Override
-    public void onUpdateReceived(Update update) {
-        String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
-    }
-
-    public synchronized void sendMsg(String chatId, String s) {
-
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(chatId);
+    public static void handleRequest(String chatId, String s, TelegramAPI api) {
         User user;
         if (!DatabaseOfSessions.Contains(chatId)) {
-            new GraphOfMessages();
-            Message mes = GraphOfMessages.getInitMessage();
-            sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
-            var operationId = mes.operationIdentifier;
-            var transit = GraphOfMessages.getTransit(operationId);
-            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
-            DatabaseOfSessions.AddNewUserInDatabase(user);
-            transit.accept(user);
+            initNewUser(chatId, api);
         } else {
             new GraphOfMessages();
-            user = DatabaseOfSessions.GetUserByUsername(chatId);
+            user = DatabaseOfSessions.GetUserByToken(chatId);
             user.lastAnswer = s;
             GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
             var message = user.nextMessage;
             DatabaseOfSessions.UpdateUserInDatabase(user);
-            sendMessage.setText(message.question);
+            api.sendMessage(chatId, message.question);
         }
 
         System.out.println(chatId);
         System.out.println(s);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void main(String[] args) {
-        ApiContextInitializer.init();
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-        try {
-            telegramBotsApi.registerBot(new TelegramClient());
-        } catch (TelegramApiRequestException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private static Message GetResponse(String answer, Message lastMessage) {
-        throw new NotImplementedException();
+        new GraphOfMessages();
+        var api = new TelegramAPI();
     }
 }
