@@ -18,7 +18,7 @@ public class GraphOfMessages {
     private static Messages messageManager = new Messages();
 
     private static void graphInit() {
-        transitionDict = new HashMap<String, Consumer<User>>();
+        transitionDict = new HashMap<>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
         transitionDict.put("group addition", GraphOfMessages::onGroupAddition);
         transitionDict.put("get timetable", GraphOfMessages::onGetTimetable);
@@ -28,9 +28,29 @@ public class GraphOfMessages {
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
         transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
+        transitionDict.put("change notification advance time", GraphOfMessages::onChangeNotificationAdvanceTime);
+        transitionDict.put("notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+    }
+
+    private static void onNotificationAdvanceTimeInput(User user) {
+        try {
+            user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
+            transitToAnyNodes(user);// не работает переход
+        } catch (Exception e) {
+            user.nextMessage = messageManager.invalidNotificationAdvanceTimeInput;
+        }
+    }
+
+    private static void onChangeNotificationAdvanceTime(User user) {
+        user.nextMessage = messageManager.notificationAdvanceTimeInput;
     }
 
     private static boolean transitToAnyNodes(User user) {
+//        if (checkContain("поменять оповещение", user.lastAnswer))
+        if (checkContain("оповещение", user.lastAnswer))
+
+            user.nextMessage = messageManager.changeNotificationAdvanceTime;
         return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
@@ -40,8 +60,8 @@ public class GraphOfMessages {
     }
 
     private static void onGetInformationAboutClass(User user) {
+        var answer = user.lastAnswer;
         if (!transitToAnyNodes(user)) {
-            var answer = user.lastAnswer;
             if (checkContain("следующая", answer)) {
                 user.nextMessage = messageManager.getInformationAboutNextClass;
                 user.lastClassNumRequest++;
@@ -111,16 +131,16 @@ public class GraphOfMessages {
 
     }
 
-    private static String recognizeWeekDay(String input){
+    private static String recognizeWeekDay(String input) {
         String date = "";
         String[] words = {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
                 "Пятница", "Суббота"};
         int shortest = Integer.MAX_VALUE;
         var userInput = input.split(" ");
-        for (var word :userInput){
-            for (var day:words){
+        for (var word : userInput) {
+            for (var day : words) {
                 var dist = levensteinDist(day, word);
-                if (dist < shortest){
+                if (dist < shortest) {
                     shortest = dist;
                     date = day;
                 }
@@ -129,12 +149,12 @@ public class GraphOfMessages {
         return date;
     }
 
-    private static boolean checkContain(String expected, String input){
+    private static boolean checkContain(String expected, String input) {
         var words = input.split(" ");
         int shortestDist = Integer.MAX_VALUE;
-        for (var word: words){
+        for (var word : words) {
             var dist = levensteinDist(expected, word);
-            if (dist < shortestDist){
+            if (dist < shortestDist) {
                 shortestDist = dist;
             }
         }
@@ -145,7 +165,7 @@ public class GraphOfMessages {
         var userInput = user.lastAnswer.toLowerCase();
         var date = recognizeWeekDay(userInput);
         if (!checkContain("расписание", userInput))
-           return false;
+            return false;
 
         if (date.equals(""))
             return false;
@@ -158,7 +178,8 @@ public class GraphOfMessages {
 
     private static boolean handleTimetableOnClass(User user) {
         var userInput = user.lastAnswer.toLowerCase();
-        var classNum = userInput.replaceAll("\\D+","");;
+        var classNum = userInput.replaceAll("\\D+", "");
+        ;
         var date = recognizeWeekDay(userInput);
 
 

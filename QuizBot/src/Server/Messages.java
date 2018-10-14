@@ -1,7 +1,7 @@
 package Server;
 
 public class Messages {
-    public Messages(){
+    public Messages() {
 
     }
 
@@ -19,7 +19,7 @@ public class Messages {
             " ",
             "get timetable");
 
-    public  Message getInformationAboutClass = new Message(
+    public Message getInformationAboutClass = new Message(
             " ",
             "get information about class");
 
@@ -42,4 +42,16 @@ public class Messages {
     public Message invalidClassIndex = new Message(
             "У вас сегодня меньше пар, можете отдыхать!",
             "invalid class index");
+
+    public Message changeNotificationAdvanceTime = new Message(
+            "За сколько минут до занятия вы хотите получать оповещение?",
+            "change notification advance time");
+
+    public Message notificationAdvanceTimeInput = new Message(
+            "С этого момента оповещения о начале заняитий будут приходить за {} минут",
+            "notification advance time input");
+
+    public Message invalidNotificationAdvanceTimeInput = new Message(
+            "Я вас не понял, попробуйте ввести время еще раз.",
+            "invalid notification advance time input");
 }

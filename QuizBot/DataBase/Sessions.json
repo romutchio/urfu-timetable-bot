@@ -22,5 +22,29 @@
     "lastAnswer": "розпизание среду",
     "lastDayRequest": null,
     "lastClassNumRequest": 0
+  },
+  "144260906": {
+    "class": "Server.User",
+    "handle": "144260906",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "МЕН-270810",
+      "course": 2,
+      "id": 978737,
+      "external_id": 35232,
+      "actual": true,
+      "institute_id": 25714
+    },
+    "notificationAdvanceTime": 1,
+    "lastNotified": null,
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "Я вас не понял, попробуйте ввести время еще раз.",
+      "operationIdentifier": "invalid notification advance time input"
+    },
+    "lastAnswer": "Расписание 1 пара",
+    "lastDayRequest": "Среда",
+    "lastClassNumRequest": 1
   }
 }
