@@ -1,5 +1,10 @@
 package Server;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -10,44 +15,7 @@ public class GraphOfMessages {
     }
 
     private static HashMap<String, Consumer<User>> transitionDict;
-
-    private static Message sessionInitialization = new Message(
-            "Доброго времени суток!\n" +
-                    "Я чат-бот, который поможет тебе не пропустить пары\n" +
-                    "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
-            "initialization");
-
-    private static Message addGroupToUser = new Message(
-            "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-            "group addition");
-
-    private static Message getTimetableOnDate = new Message(
-            " ",
-            "get timetable");
-
-    private static Message getInformationAboutClass = new Message(
-            " ",
-            "get information about class");
-
-    private static Message getInformationAboutNextClass = new Message(
-            " ",
-            "get information about next class");
-
-    private static Message repeatAnswer = new Message(
-            "Я вас не понял, повторите пожалуйста.",
-            "repeat answer");
-
-    private static Message successGroupAddition = new Message(
-            "Расписание было успешно загружено",
-            "group success");
-
-    private static Message invalidGroup = new Message(
-            "К сожалению такой группы не существует. Попрубуйте ввести группу еще раз.",
-            "invalid group");
-
-    private static Message invalidClassIndex = new Message(
-            "У вас сегодня меньше пар, можете отдыхать!",
-            "invalid class index");
+    private static Messages messageManager = new Messages();
 
     private static void graphInit() {
         transitionDict = new HashMap<String, Consumer<User>>();
@@ -59,7 +27,7 @@ public class GraphOfMessages {
         transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
         transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
-        transitionDict.put("group success", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("group success", GraphOfMessages::onGetTimetable);
     }
 
     private static boolean transitToAnyNodes(User user) {
@@ -68,45 +36,46 @@ public class GraphOfMessages {
 
     private static void onGetTimetable(User user) {
         if (!transitToAnyNodes(user))
-            user.nextMessage = repeatAnswer;
+            user.nextMessage = messageManager.repeatAnswer;
     }
 
     private static void onGetInformationAboutClass(User user) {
         if (!transitToAnyNodes(user)) {
-            if (user.lastAnswer.contains("следующая пара")) {
-                user.nextMessage = getInformationAboutNextClass;
+            var answer = user.lastAnswer;
+            if (checkContain("следующая", answer)) {
+                user.nextMessage = messageManager.getInformationAboutNextClass;
                 user.lastClassNumRequest++;
 
                 var classInfo = getInformationAboutClass(
                         user.lastDayRequest + " " + user.lastClassNumRequest);
                 if (classInfo == null) {
-                    user.nextMessage = invalidClassIndex;
+                    user.nextMessage = messageManager.invalidClassIndex;
                     return;
                 }
                 user.nextMessage.question = classInfo + "\n\nХотите узнать еще что-нибудь?";
 
             } else {
-                user.nextMessage = repeatAnswer;
+                user.nextMessage = messageManager.repeatAnswer;
             }
         }
     }
 
     private static void onSessionInitialization(User user) {
         if (user.group == null)
-            user.nextMessage = addGroupToUser;
+            user.nextMessage = messageManager.addGroupToUser;
         else {
             if (!transitToAnyNodes(user))
-                user.nextMessage = sessionInitialization;
+                user.nextMessage = messageManager.sessionInitialization;
         }
     }
 
     private static void onGroupAddition(User user) {
         var group = AnswerValidator.RecognizeGroup(user.lastAnswer);
         if (group == null)
-            user.nextMessage = invalidGroup;
+            user.nextMessage = messageManager.invalidGroup;
         else {
             user.group = group;
-            user.nextMessage = successGroupAddition;
+            user.nextMessage = messageManager.successGroupAddition;
         }
     }
 
@@ -142,81 +111,67 @@ public class GraphOfMessages {
 
     }
 
+    private static String recognizeWeekDay(String input){
+        String date = "";
+        String[] words = {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
+                "Пятница", "Суббота"};
+        int shortest = Integer.MAX_VALUE;
+        var userInput = input.split(" ");
+        for (var word :userInput){
+            for (var day:words){
+                var dist = levensteinDist(day, word);
+                if (dist < shortest){
+                    shortest = dist;
+                    date = day;
+                }
+            }
+        }
+        return date;
+    }
+
+    private static boolean checkContain(String expected, String input){
+        var words = input.split(" ");
+        int shortestDist = Integer.MAX_VALUE;
+        for (var word: words){
+            var dist = levensteinDist(expected, word);
+            if (dist < shortestDist){
+                shortestDist = dist;
+            }
+        }
+        return (shortestDist < 4);
+    }
+
     private static boolean handleTimetableOnDate(User user) {
-        if (!user.lastAnswer.toLowerCase().contains("расписание"))
-            return false;
-
-        var date = "";
-
-        if (user.lastAnswer.toLowerCase().contains("понедельник"))
-            date = "Понедельник";
-        if (user.lastAnswer.toLowerCase().contains("вторник"))
-            date = "Вторник";
-        if (user.lastAnswer.toLowerCase().contains("среда"))
-            date = "Среда";
-        if (user.lastAnswer.toLowerCase().contains("четверг"))
-            date = "Четверг";
-        if (user.lastAnswer.toLowerCase().contains("пятница"))
-            date = "Пятница";
-        if (user.lastAnswer.toLowerCase().contains("суббота"))
-            date = "Суббота";
-        if (user.lastAnswer.toLowerCase().contains("воскресение"))
-            date = "Воскресение";
+        var userInput = user.lastAnswer.toLowerCase();
+        var date = recognizeWeekDay(userInput);
+        if (!checkContain("расписание", userInput))
+           return false;
 
         if (date.equals(""))
             return false;
 
-        user.nextMessage = getTimetableOnDate;
+        user.nextMessage = messageManager.getTimetableOnDate;
         user.nextMessage.question = getTimetableOnDate(date) + "\n\nХотите узнать еще что-нибудь?";
 
         return true;
     }
 
     private static boolean handleTimetableOnClass(User user) {
-        if (!user.lastAnswer.toLowerCase().contains("пара"))
-            return false;
+        var userInput = user.lastAnswer.toLowerCase();
+        var classNum = userInput.replaceAll("\\D+","");;
+        var date = recognizeWeekDay(userInput);
 
-        var date = "";
-        var classNum = "";
-
-        if (user.lastAnswer.toLowerCase().contains("понедельник"))
-            date = "Понедельник";
-        if (user.lastAnswer.toLowerCase().contains("вторник"))
-            date = "Вторник";
-        if (user.lastAnswer.toLowerCase().contains("среда"))
-            date = "Среда";
-        if (user.lastAnswer.toLowerCase().contains("четверг"))
-            date = "Четверг";
-        if (user.lastAnswer.toLowerCase().contains("пятница"))
-            date = "Пятница";
-        if (user.lastAnswer.toLowerCase().contains("суббота"))
-            date = "Суббота";
-        if (user.lastAnswer.toLowerCase().contains("воскресение"))
-            date = "Воскресение";
-
-        if (user.lastAnswer.toLowerCase().contains("1"))
-            classNum = "1";
-        if (user.lastAnswer.toLowerCase().contains("2"))
-            classNum = "2";
-        if (user.lastAnswer.toLowerCase().contains("3"))
-            classNum = "3";
-        if (user.lastAnswer.toLowerCase().contains("4"))
-            classNum = "4";
-        if (user.lastAnswer.toLowerCase().contains("5"))
-            classNum = "5";
-        if (user.lastAnswer.toLowerCase().contains("6"))
-            classNum = "6";
 
         if (date.equals("") || classNum.equals(""))
             return false;
 
         user.lastDayRequest = date;
         user.lastClassNumRequest = Integer.parseInt(classNum);
-        user.nextMessage = getInformationAboutClass;
+        user.nextMessage = messageManager.getInformationAboutClass;
 
         var classInfo = getInformationAboutClass(date + " " + classNum);
         if (classInfo == null) {
-            user.nextMessage = invalidClassIndex;
+            user.nextMessage = messageManager.invalidClassIndex;
             return true;
         }
 
@@ -262,7 +217,7 @@ public class GraphOfMessages {
     }
 
     public static Message getInitMessage() {
-        return sessionInitialization;
+        return messageManager.sessionInitialization;
     }
 
     public static Consumer<User> getTransit(String key) {
