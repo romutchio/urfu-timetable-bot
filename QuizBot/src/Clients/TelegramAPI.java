@@ -19,7 +19,7 @@ public class TelegramAPI extends TelegramLongPollingBot {
 //            e.printStackTrace();
 //        }
 //    }
-    public void InitBot(){
+    public static void InitBot(){
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
