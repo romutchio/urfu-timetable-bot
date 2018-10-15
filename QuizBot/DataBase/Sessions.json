@@ -36,15 +36,15 @@
       "actual": true,
       "institute_id": 25714
     },
-    "notificationAdvanceTime": 1,
+    "notificationAdvanceTime": 12,
     "lastNotified": null,
     "nextMessage": {
       "class": "Server.Message",
-      "question": "Я вас не понял, попробуйте ввести время еще раз.",
-      "operationIdentifier": "invalid notification advance time input"
+      "question": "С этого момента оповещения о начале заняитий будут приходить за {} минут",
+      "operationIdentifier": "success notification advance time input"
     },
-    "lastAnswer": "Расписание 1 пара",
-    "lastDayRequest": "Среда",
-    "lastClassNumRequest": 1
+    "lastAnswer": "12",
+    "lastDayRequest": null,
+    "lastClassNumRequest": 0
   }
 }

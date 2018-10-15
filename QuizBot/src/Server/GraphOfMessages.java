@@ -1,10 +1,5 @@
 package Server;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -24,34 +19,43 @@ public class GraphOfMessages {
         transitionDict.put("get timetable", GraphOfMessages::onGetTimetable);
         transitionDict.put("get information about class", GraphOfMessages::onGetInformationAboutClass);
         transitionDict.put("get information about next class", GraphOfMessages::onGetInformationAboutClass);
-        transitionDict.put("repeat answer", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("repeat answer", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
-        transitionDict.put("invalid class index", GraphOfMessages::transitToAnyNodes);
+        transitionDict.put("invalid class index", GraphOfMessages::onGetTimetable);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
-        transitionDict.put("change notification advance time", GraphOfMessages::onChangeNotificationAdvanceTime);
-        transitionDict.put("notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("change notification advance time", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("success change notification advance time", GraphOfMessages::onGetTimetable);
+//        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
     }
 
     private static void onNotificationAdvanceTimeInput(User user) {
         try {
             user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
-            transitToAnyNodes(user);// не работает переход
+            user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
         } catch (Exception e) {
             user.nextMessage = messageManager.invalidNotificationAdvanceTimeInput;
         }
     }
 
     private static void onChangeNotificationAdvanceTime(User user) {
-        user.nextMessage = messageManager.notificationAdvanceTimeInput;
+        user.nextMessage = messageManager.changeNotificationAdvanceTime;
     }
 
     private static boolean transitToAnyNodes(User user) {
 //        if (checkContain("поменять оповещение", user.lastAnswer))
         if (checkContain("оповещение", user.lastAnswer))
-
+        {
             user.nextMessage = messageManager.changeNotificationAdvanceTime;
-        return handleTimetableOnClass(user) || handleTimetableOnDate(user);
+            return true;
+        }
+        else if (checkContain("группа", user.lastAnswer) && checkContain("сменить", user.lastAnswer))
+        {
+            user.nextMessage = messageManager.addGroupToUser;
+            return true;
+        }
+        else
+            return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
     private static void onGetTimetable(User user) {

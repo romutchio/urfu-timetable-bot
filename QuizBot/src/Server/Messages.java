@@ -47,11 +47,12 @@ public class Messages {
             "За сколько минут до занятия вы хотите получать оповещение?",
             "change notification advance time");
 
-    public Message notificationAdvanceTimeInput = new Message(
+    public Message successNotificationAdvanceTimeInput = new Message(
             "С этого момента оповещения о начале заняитий будут приходить за {} минут",
-            "notification advance time input");
+            "success notification advance time input");
 
     public Message invalidNotificationAdvanceTimeInput = new Message(
             "Я вас не понял, попробуйте ввести время еще раз.",
             "invalid notification advance time input");
+
 }
