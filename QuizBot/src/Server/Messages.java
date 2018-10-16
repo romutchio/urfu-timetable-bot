@@ -48,7 +48,7 @@ public class Messages {
             "change notification advance time");
 
     public Message successNotificationAdvanceTimeInput = new Message(
-            "С этого момента оповещения о начале заняитий будут приходить за {} минут",
+            "С этого момента оповещения о начале заняитий будут приходить за %s минут",
             "success notification advance time input");
 
     public Message invalidNotificationAdvanceTimeInput = new Message(

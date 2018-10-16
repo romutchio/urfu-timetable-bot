@@ -24,7 +24,7 @@ public class GraphOfMessages {
         transitionDict.put("invalid class index", GraphOfMessages::onGetTimetable);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
         transitionDict.put("change notification advance time", GraphOfMessages::onNotificationAdvanceTimeInput);
-        transitionDict.put("success change notification advance time", GraphOfMessages::onGetTimetable);
+        transitionDict.put("success notification advance time input", GraphOfMessages::onSessionInitialization);
 //        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
     }
@@ -33,6 +33,7 @@ public class GraphOfMessages {
         try {
             user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
             user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
+            user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
         } catch (Exception e) {
             user.nextMessage = messageManager.invalidNotificationAdvanceTimeInput;
         }
