@@ -26,16 +26,19 @@ public class TelegramClient extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         String message = update.getMessage().getText();
-        sendMsg(update.getMessage().getChatId().toString(), message);
+        sendMsg(update.getMessage().getChatId().toString(), message, false);
     }
 
-    public synchronized void sendMsg(String chatId, String s) {
+    public synchronized void sendMsg(String chatId, String s, boolean notification) {
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
         User user;
-        if (!DatabaseOfSessions.Contains(chatId)) {
+        if (notification) {
+            sendMessage.setText(s);
+        }
+        else if (!DatabaseOfSessions.Contains(chatId)) {
             new GraphOfMessages();
             Message mes = GraphOfMessages.getInitMessage();
             sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
@@ -65,6 +68,9 @@ public class TelegramClient extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
+        var notificator = new Notificator();
+        var thread = new Thread(notificator);
+        thread.start();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new TelegramClient());

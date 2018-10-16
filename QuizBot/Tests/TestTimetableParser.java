@@ -23,9 +23,9 @@ public class TestTimetableParser {
     @Test
     public void testTimeTableParser() {
         System.out.println(new File(".").getAbsolutePath());
-        var calendar = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar_fiit_202.ics");
+        var calendar = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         ComponentList wholeTimetable = calendar.getComponents(Component.VEVENT);
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         var timetable = TimetableParsing.CreateTimeTableDataBase(calendar);
         var monday = timetable.get("Понедельник");
         var subj = monday.get(0);
@@ -38,9 +38,9 @@ public class TestTimetableParser {
         var dateEndTime = timeFormat.format(dateEnd);
         var weekday = TimetableParsing.DetermineDay(dateStart);
 
-        assertEquals(subj.lessonName, subject);
-        assertEquals(subj.lessonStartTime, dateStartTime);
-        assertEquals(subj.lessonEndTime, dateEndTime);
-        assertEquals(subj.weekday, weekday);
+        assertEquals(subject, subj.lessonName);
+        assertEquals(dateStartTime, subj.lessonStartTime);
+        assertEquals(dateEndTime, subj.lessonEndTime);
+        assertEquals(weekday, subj.weekday);
     }
 }

@@ -46,7 +46,7 @@ public class TimetableParsing {
 
         for (Object elem : timetableParsed) {
             VEvent event = (VEvent) elem;
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             var subject = event.getSummary().getValue();
             var dateStart = event.getStartDate().getDate();
             var dateEnd = event.getEndDate().getDate();
@@ -61,12 +61,15 @@ public class TimetableParsing {
                 if (teacher != null){
                     teacher = teacher.substring(15);
                 }
+
             } catch (Exception ignored) {
             }
             var teachers = new ArrayList<String>();
             var rooms = new ArrayList<String>();
-            teachers.add(teacher);
-            rooms.add(classRoom);
+            if (teacher != null)
+                teachers.add(teacher);
+            if (classRoom != null)
+                rooms.add(classRoom);
             var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers, rooms);
             var day = timetable.get(weekday);
             var addNewSubject = true;
