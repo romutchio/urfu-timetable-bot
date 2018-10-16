@@ -61,12 +61,15 @@ public class TimetableParsing {
                 if (teacher != null){
                     teacher = teacher.substring(15);
                 }
+
             } catch (Exception ignored) {
             }
             var teachers = new ArrayList<String>();
             var rooms = new ArrayList<String>();
-            teachers.add(teacher);
-            rooms.add(classRoom);
+            if (teacher != null)
+                teachers.add(teacher);
+            if (classRoom != null)
+                rooms.add(classRoom);
             var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers, rooms);
             var day = timetable.get(weekday);
             var addNewSubject = true;
