@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class GraphOfMessages {
-    public GraphOfMessages() {
-        graphInit();
+public final class GraphOfMessages {
+    private GraphOfMessages(){
     }
 
-    private static HashMap<String, Consumer<User>> transitionDict;
-    private static Messages messageManager = new Messages();
+    private final static HashMap<String, Consumer<User>> transitionDict;
+    private final static Messages messageManager = new Messages();
 
-    private static void graphInit() {
+    static {
         transitionDict = new HashMap<>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
         transitionDict.put("group addition", GraphOfMessages::onGroupAddition);

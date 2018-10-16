@@ -39,7 +39,6 @@ public class TelegramClient extends TelegramLongPollingBot {
             sendMessage.setText(s);
         }
         else if (!DatabaseOfSessions.Contains(chatId)) {
-            new GraphOfMessages();
             Message mes = GraphOfMessages.getInitMessage();
             sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
             var operationId = mes.operationIdentifier;
@@ -48,7 +47,6 @@ public class TelegramClient extends TelegramLongPollingBot {
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
         } else {
-            new GraphOfMessages();
             user = DatabaseOfSessions.GetUserByUsername(chatId);
             user.lastAnswer = s;
             GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
