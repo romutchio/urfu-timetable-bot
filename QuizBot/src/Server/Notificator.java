@@ -14,6 +14,8 @@ public class Notificator implements Runnable{
             "Пятница", "Суббота"};
     private static SimpleDateFormat TimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static SimpleDateFormat DateFormatter  = new SimpleDateFormat("yyyy-MM-dd");
+
+
     
     public void run(){
         while (true){
@@ -25,6 +27,12 @@ public class Notificator implements Runnable{
                 var currentTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
                 if (currentTimetable.get(currentDayWeek).size() == 0)
                     return;
+                var userNotifications = user.notifications.Days;
+                var currentDay = userNotifications.get(currentDayWeek);
+                var advanceTime= currentDay.AdvanceTime;
+                var notificationsForLessons = currentDay.Lessons;
+                var repetitions = currentDay.Repetitions;
+
                 var firstLesson = currentTimetable.get(currentDayWeek).get(0);
                 var firstLessonStart = firstLesson.lessonStartTime;
                 Date lessonStartDate = null;

@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class TestHandler {
     public void initGraphOfMessages(Message nextMessage) {
-        new GraphOfMessages();
         var user = new User("testHandleAnswer",
                 new Group(false,
                         "МЕН-180101",
@@ -18,7 +17,8 @@ public class TestHandler {
                         true,
                         25714),
                 nextMessage,
-                "");
+                "",
+                new NotificationManager());
 
         user.lastDayRequest = "Вторник";
         user.lastClassNumRequest = 1;

@@ -1,7 +1,7 @@
 {
-  "349845203": {
+  "bu": {
     "class": "Server.User",
-    "handle": "349845203",
+    "handle": "bu",
     "group": {
       "class": "Server.Group",
       "updated": false,
@@ -12,14 +12,75 @@
       "actual": true,
       "institute_id": 25714
     },
+    "notifications": {
+      "class": "Server.NotificationManager",
+      "Days": {
+        "Суббота": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Четверг": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Воскресенье": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Пятница": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Понедельник": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Вторник": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        },
+        "Среда": {
+          "class": "Server.Notification",
+          "Repetitions": 0,
+          "AdvanceTime": 15,
+          "Lessons": [
+            1
+          ]
+        }
+      }
+    },
     "notificationAdvanceTime": 15,
-    "lastNotified": "2018-10-16",
+    "lastNotified": null,
     "nextMessage": {
       "class": "Server.Message",
-      "question": "2018-10-16 10:40:00: Объектно-ориентированное программирование\n2018-10-16 12:50:00: Компьютерные сети\n2018-10-16 14:30:00: Кратные интегралы и ряды\n2018-10-16 16:10:00: Иностранный язык\n2018-10-16 17:50:00: Архитектура ЭВМ\n\nХотите узнать еще что-нибудь?",
-      "operationIdentifier": "get timetable"
+      "question": "Расписание было успешно загружено",
+      "operationIdentifier": "group success"
     },
-    "lastAnswer": "Расписание вторник",
+    "lastAnswer": "МЕН-270810",
     "lastDayRequest": null,
     "lastClassNumRequest": 0
   }
