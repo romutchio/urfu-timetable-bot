@@ -9,16 +9,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 public class TelegramAPI extends TelegramLongPollingBot {
-
-//    public TelegramAPI() {
-//        ApiContextInitializer.init();
-//        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-//        try {
-//            telegramBotsApi.registerBot(new TelegramAPI());
-//        } catch (TelegramApiRequestException e) {
-//            e.printStackTrace();
-//        }
-//    }
     public static void InitBot(){
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -58,6 +48,15 @@ public class TelegramAPI extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String[] args) {
+        ApiContextInitializer.init();
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+        try {
+            telegramBotsApi.registerBot(new TelegramAPI());
+        } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
     }
