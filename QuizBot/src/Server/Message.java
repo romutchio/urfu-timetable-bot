@@ -8,8 +8,4 @@ public class Message {
         this.question = question;
         this.operationIdentifier = operationIdentifier;
     }
-//    public Message() {
-//        this.question = null;
-//        this.answerValidator = null;
-//    }
 }

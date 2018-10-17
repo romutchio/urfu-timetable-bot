@@ -38,6 +38,9 @@ public class TelegramClient {
     public static void main(String[] args) {
         new GraphOfMessages();
         ApiContextInitializer.init();
+        var notificator = new Notificator();
+        var thread = new Thread(notificator);
+        thread.start();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(new TelegramAPI());

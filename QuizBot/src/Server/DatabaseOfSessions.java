@@ -36,7 +36,7 @@ public class DatabaseOfSessions {
         }
     }
 
-    private static HashMap<String, User> getDatabaseOfUsers()
+    public static HashMap<String, User> getDatabaseOfUsers()
     {
         var rawJson = ReadFile();
         var gson = new Gson();

@@ -1,9 +1,13 @@
 package Server;
 
+import java.util.Date;
+
 public class User {
     public String token;
     public String handle;
     public Group group;
+    public int notificationAdvanceTime;
+    public String lastNotified;
     public Message nextMessage;
     public String lastAnswer;
     public String lastDayRequest;
@@ -23,21 +27,8 @@ public class User {
         this.group = group;
         this.nextMessage = nextMessage;
         this.lastAnswer = lastAnswer;
+        this.notificationAdvanceTime = 15;
+        this.lastNotified = null;
     }
 
-//    public User(String handle, Group group, Message nextMessage)
-//    {
-//        this.handle = handle;
-//        this.group = group;
-//        this.nextMessage = nextMessage;
-//        this.lastAnswer = null;
-//    }
-
-//    public User(String handle)
-//    {
-//        this.handle = handle;
-//        this.group = new Group();
-//        this.nextMessage = new Message();
-//        this.lastAnswer = null;
-//    }
 }
