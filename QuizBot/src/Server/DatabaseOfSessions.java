@@ -47,42 +47,46 @@ public class DatabaseOfSessions {
 //        return der.deserialize(rawJson);
         return gson.fromJson(rawJson, type);
     }
+<<<<<<< HEAD
 
     public static User GetUserByUsername(String username)
+=======
+    public static User GetUserByToken(String token)
+>>>>>>> tg-client-refactoring
     {
         var userDatabase = getDatabaseOfUsers();
-        if (userDatabase != null && userDatabase.containsKey(username))
-            return userDatabase.get(username);
+        if (userDatabase != null && userDatabase.containsKey(token))
+            return userDatabase.get(token);
         return null;
     }
 
-    public static boolean Contains(String username)
+    public static boolean Contains(String token)
     {
         var userDatabase = getDatabaseOfUsers();
-        return userDatabase.containsKey(username);
+        return userDatabase.containsKey(token);
     }
 
     public static void AddNewUserInDatabase(User user) {
 //        var gson = new Gson();
         var ser = new JSONSerializer();
         var userDatabase = getDatabaseOfUsers();
-        userDatabase.put(user.handle, user);
+        userDatabase.put(user.token, user);
         WriteFile(ser.deepSerialize(userDatabase));
     }
     public static void UpdateUserInDatabase(User user) {
 //        var gson = new Gson();
         var userDatabase = getDatabaseOfUsers();
         var ser = new JSONSerializer();
-        userDatabase.remove(user.handle);
-        userDatabase.put(user.handle, user);
+        userDatabase.remove(user.token);
+        userDatabase.put(user.token, user);
         WriteFile(ser.deepSerialize(userDatabase));
     }
 
-    public static void RemoveUserFromDatabase(String userHandle) {
+    public static void RemoveUserFromDatabase(String token) {
         var ser = new JSONSerializer();
 //        Gson gson = new Gson();
         HashMap<String, User> userDatabase = getDatabaseOfUsers();
-        userDatabase.remove(userHandle);
+        userDatabase.remove(token);
         WriteFile(ser.deepSerialize(userDatabase));
     }
 }
