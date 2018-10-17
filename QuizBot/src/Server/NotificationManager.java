@@ -21,7 +21,7 @@ public class NotificationManager {
     }
 
     public void changeDayLessonsNotifications(String username, String day, ArrayList<Integer> lessons){
-        var user = DatabaseOfSessions.GetUserByUsername(username);
+        var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
         currentDay.Lessons = lessons;
@@ -29,7 +29,7 @@ public class NotificationManager {
     }
 
     public void changeDayRepetitionsNotifications(String username, String day, Integer repetitions){
-        var user = DatabaseOfSessions.GetUserByUsername(username);
+        var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
         currentDay.Repetitions = repetitions;
@@ -37,7 +37,7 @@ public class NotificationManager {
     }
 
     public void changeDayAdvanceTimeNotifications(String username, String day, Integer time){
-        var user = DatabaseOfSessions.GetUserByUsername(username);
+        var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
         currentDay.AdvanceTime = time;
@@ -45,7 +45,7 @@ public class NotificationManager {
     }
 
     public void loadUsersNotifications(String username ){
-        var currentDataBase = DatabaseOfSessions.GetUserByUsername(username);
+        var currentDataBase = DatabaseOfSessions.GetUserByToken(username);
 
     }
 

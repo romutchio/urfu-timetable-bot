@@ -18,8 +18,9 @@ public class User {
         this.group = group;
         this.nextMessage = nextMessage;
         this.lastAnswer = lastAnswer;
+        this.notifications = notifications;
     }
-    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer)
+    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications)
     {
         this.token = token;
         this.handle = handle;

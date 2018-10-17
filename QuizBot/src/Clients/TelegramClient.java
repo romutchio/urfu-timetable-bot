@@ -12,7 +12,7 @@ public class TelegramClient {
 //        sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
         var operationId = mes.operationIdentifier;
         var transit = GraphOfMessages.getTransit(operationId);
-        var user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
+        var user = new User(chatId, null, GraphOfMessages.getInitMessage(), null, new NotificationManager());
         DatabaseOfSessions.AddNewUserInDatabase(user);
         transit.accept(user);
         api.sendMessage(chatId, mes.question);
@@ -24,7 +24,7 @@ public class TelegramClient {
             api.sendMessage(chatId, mes.question);//только для консольного клиента, в tg будем получать token
             var operationId = mes.operationIdentifier;
             var transit = GraphOfMessages.getTransit(operationId);
-            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null, null);
+            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null, new NotificationManager());
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
         } else {

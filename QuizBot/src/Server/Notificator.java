@@ -5,6 +5,7 @@ import Clients.TelegramClient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -25,17 +26,27 @@ public class Notificator implements Runnable{
             for (var user: currentDataBase){
                 var currentDayWeek = DetermineWeekDay(currentTime);
                 var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
-                var currentTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
-                if (currentTimetable.get(currentDayWeek).size() == 0)
+                var weekTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
+                var currentTimetable = weekTimetable.get(currentDayWeek);
+
+                if (currentTimetable.size() == 0)
                     return;
                 var userNotifications = user.notifications.Days;
                 var currentDay = userNotifications.get(currentDayWeek);
                 var advanceTime= currentDay.AdvanceTime;
                 var notificationsForLessons = currentDay.Lessons;
                 var repetitions = currentDay.Repetitions;
-
-                var firstLesson = currentTimetable.get(currentDayWeek).get(0);
-                var firstLessonStart = firstLesson.lessonStartTime;
+                var lessonsStartTime = new ArrayList<String>();
+                for (var lessonNumber: notificationsForLessons){
+                    if(lessonNumber-1 >= currentTimetable.size()){
+                        //index not exists
+                    }else{
+                        var firstLesson = currentTimetable.get(lessonNumber-1);
+                        lessonsStartTime.add(firstLesson.lessonStartTime);
+                    }
+                }
+                var firstLesson = currentTimetable.get(0);
+                var firstLessonStart = lessonsStartTime.get(0);
                 Date lessonStartDate = null;
                 try {
                     lessonStartDate = TimeFormatter.parse(firstLessonStart);
