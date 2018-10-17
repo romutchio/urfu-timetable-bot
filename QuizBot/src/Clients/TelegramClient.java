@@ -20,7 +20,13 @@ public class TelegramClient {
     public static void handleRequest(String chatId, String s, TelegramAPI api) {
         User user;
         if (!DatabaseOfSessions.Contains(chatId)) {
-            initNewUser(chatId, api);
+            Message mes = GraphOfMessages.getInitMessage();
+            api.sendMessage(chatId, mes.question);//только для консольного клиента, в tg будем получать token
+            var operationId = mes.operationIdentifier;
+            var transit = GraphOfMessages.getTransit(operationId);
+            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
+            DatabaseOfSessions.AddNewUserInDatabase(user);
+            transit.accept(user);
         } else {
             user = DatabaseOfSessions.GetUserByToken(chatId);
             user.lastAnswer = s;
@@ -29,9 +35,6 @@ public class TelegramClient {
             DatabaseOfSessions.UpdateUserInDatabase(user);
             api.sendMessage(chatId, message.question);
         }
-
-        System.out.println(chatId);
-        System.out.println(s);
     }
 
     public static void main(String[] args) {

@@ -47,12 +47,7 @@ public class DatabaseOfSessions {
 //        return der.deserialize(rawJson);
         return gson.fromJson(rawJson, type);
     }
-<<<<<<< HEAD
-
-    public static User GetUserByUsername(String username)
-=======
     public static User GetUserByToken(String token)
->>>>>>> tg-client-refactoring
     {
         var userDatabase = getDatabaseOfUsers();
         if (userDatabase != null && userDatabase.containsKey(token))

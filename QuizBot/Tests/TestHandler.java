@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class TestHandler {
     public void initGraphOfMessages(Message nextMessage) {
-        new GraphOfMessages();
         var user = new User("testHandleAnswer",
                 new Group(false,
                         "МЕН-180101",

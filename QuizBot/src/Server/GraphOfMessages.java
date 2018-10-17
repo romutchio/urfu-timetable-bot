@@ -85,14 +85,14 @@ public final class GraphOfMessages {
     }
 
     private static void onSessionInitialization(User user) {
-        user.handle = user.lastAnswer;
+//        user.handle = user.lastAnswer;
         if (user.group == null)
             user.nextMessage = messageManager.addGroupToUser;
         else {
             if (!transitToAnyNodes(user))
                 user.nextMessage = messageManager.sessionInitialization;
         }
-//        user.handle = user.lastAnswer;
+        user.handle = user.lastAnswer;
     }
 
     private static void onGroupAddition(User user) {

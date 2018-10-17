@@ -1,7 +1,8 @@
 {
-  "349845203": {
+  "144260906": {
     "class": "Server.User",
-    "handle": "349845203",
+    "token": "144260906",
+    "handle": "vaspahomov",
     "group": {
       "class": "Server.Group",
       "updated": false,
@@ -12,15 +13,15 @@
       "actual": true,
       "institute_id": 25714
     },
-    "notificationAdvanceTime": 15,
-    "lastNotified": "2018-10-16",
+    "notificationAdvanceTime": 0,
+    "lastNotified": null,
     "nextMessage": {
       "class": "Server.Message",
-      "question": "2018-10-16 10:40:00: Объектно-ориентированное программирование\n2018-10-16 12:50:00: Компьютерные сети\n2018-10-16 14:30:00: Кратные интегралы и ряды\n2018-10-16 16:10:00: Иностранный язык\n2018-10-16 17:50:00: Архитектура ЭВМ\n\nХотите узнать еще что-нибудь?",
-      "operationIdentifier": "get timetable"
+      "question": "Кратные интегралы и ряды\nНачало: 2018-10-17 10:40:00\nКонец: 2018-10-17 12:10:00\nАудитория: 532\nПреподаватель: Макаров Александр Викторович\n\nХотите узнать еще что-нибудь?",
+      "operationIdentifier": "get information about class"
     },
-    "lastAnswer": "Расписание вторник",
-    "lastDayRequest": null,
-    "lastClassNumRequest": 0
+    "lastAnswer": "1 пара среда",
+    "lastDayRequest": "Среда",
+    "lastClassNumRequest": 1
   }
 }

@@ -1,5 +1,6 @@
 package Server;
 
+import Clients.TelegramAPI;
 import Clients.TelegramClient;
 
 import java.text.ParseException;
@@ -59,7 +60,7 @@ public class Notificator implements Runnable{
     
     private static void SendTelegramNotification(User user, Subject firstLesson, String currentDate){
         var notificationMessage = "Через " + user.notificationAdvanceTime + " минут начинается " + firstLesson.lessonName;
-        new TelegramClient().sendMsg(user.handle, notificationMessage, true);
+        new TelegramAPI().sendMessage(user.handle, notificationMessage);
         user.lastNotified =  currentDate;
         DatabaseOfSessions.UpdateUserInDatabase(user);
     }
