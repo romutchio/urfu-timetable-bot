@@ -20,7 +20,7 @@ public class AnswerHandler {
 
         if (DatabaseOfSessions.Contains(username)) {
             System.out.println("Можете спросить у меня что-нибудь про расписание");
-            user = DatabaseOfSessions.GetUserByUsername(username);
+            user = DatabaseOfSessions.GetUserByToken(username);
         }
         else
         {
@@ -36,7 +36,7 @@ public class AnswerHandler {
     public static String handleAnswer(String username, String answer)
     {
 
-        var user = DatabaseOfSessions.GetUserByUsername(username);
+        var user = DatabaseOfSessions.GetUserByToken(username);
         user.lastAnswer = answer;
 
         GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
