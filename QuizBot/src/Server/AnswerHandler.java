@@ -23,7 +23,7 @@ public class AnswerHandler {
         }
         else
         {
-            user = new User(username, null, GraphOfMessages.getInitMessage(), null);
+            user = new User(username, null, GraphOfMessages.getInitMessage(), null, new NotificationManager());
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
         }

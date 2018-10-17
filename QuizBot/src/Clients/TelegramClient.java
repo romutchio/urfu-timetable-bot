@@ -24,7 +24,7 @@ public class TelegramClient {
             api.sendMessage(chatId, mes.question);//только для консольного клиента, в tg будем получать token
             var operationId = mes.operationIdentifier;
             var transit = GraphOfMessages.getTransit(operationId);
-            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null);
+            user = new User(chatId, null, GraphOfMessages.getInitMessage(), null, null);
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
         } else {

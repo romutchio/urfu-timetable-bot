@@ -17,7 +17,8 @@ public class TestNewLesson
                         true,
                         25714),
                 nextMessage,
-                "");
+                "",
+                new NotificationManager());
 
         user.lastDayRequest = "Вторник";
         user.lastClassNumRequest = 1;
