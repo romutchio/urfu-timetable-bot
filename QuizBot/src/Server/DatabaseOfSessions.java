@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class DatabaseOfSessions {
+    private static String SessionsDataBase = "./DataBase/Sessions.json";
+    
     private static String ReadFile() {
         String content = null;
         try {
@@ -23,10 +25,11 @@ public class DatabaseOfSessions {
         return content;
     }
 
-    private static void WriteFile(String textToWrite) {
+    private static void WriteFile(String filename, String textToWrite) {
         PrintWriter writer = null;
+        
         try {
-            writer = new PrintWriter("./DataBase/Sessions.json", "UTF-8");
+            writer = new PrintWriter(filename, "UTF-8");
             writer.println(textToWrite);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -47,6 +50,7 @@ public class DatabaseOfSessions {
 //        return der.deserialize(rawJson);
         return gson.fromJson(rawJson, type);
     }
+
     public static User GetUserByToken(String token)
     {
         var userDatabase = getDatabaseOfUsers();
@@ -66,15 +70,17 @@ public class DatabaseOfSessions {
         var ser = new JSONSerializer();
         var userDatabase = getDatabaseOfUsers();
         userDatabase.put(user.token, user);
-        WriteFile(ser.deepSerialize(userDatabase));
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
+
+
     public static void UpdateUserInDatabase(User user) {
 //        var gson = new Gson();
         var userDatabase = getDatabaseOfUsers();
         var ser = new JSONSerializer();
         userDatabase.remove(user.token);
         userDatabase.put(user.token, user);
-        WriteFile(ser.deepSerialize(userDatabase));
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
 
     public static void RemoveUserFromDatabase(String token) {
@@ -82,6 +88,6 @@ public class DatabaseOfSessions {
 //        Gson gson = new Gson();
         HashMap<String, User> userDatabase = getDatabaseOfUsers();
         userDatabase.remove(token);
-        WriteFile(ser.deepSerialize(userDatabase));
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
 }
