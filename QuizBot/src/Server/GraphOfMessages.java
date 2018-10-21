@@ -27,9 +27,13 @@ public final class GraphOfMessages {
 //        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
         transitionDict.put("add notification", GraphOfMessages::onNotificationAddition);
-        transitionDict.put("delete notification", GraphOfMessages::onNotificationDelition);
+        transitionDict.put("delete notification", GraphOfMessages::onNotificationDeletion);
         transitionDict.put("success notification addition", GraphOfMessages::onGetTimetable);
         transitionDict.put("success notification deletion", GraphOfMessages::onGetTimetable);
+        transitionDict.put("invalid notification addition", GraphOfMessages::onNotificationAddition);
+        transitionDict.put("invalid notification deletion", GraphOfMessages::onNotificationDeletion);
+        transitionDict.put("delete all notification", GraphOfMessages::onAllNotificationDeletion);
+        transitionDict.put("success all notification deletion", GraphOfMessages::onGetTimetable);
     }
 
     private static void onNotificationAdvanceTimeInput(User user) {
@@ -48,24 +52,55 @@ public final class GraphOfMessages {
         try {
             classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
         } catch (Exception e) {
+            user.nextMessage = messageManager.invalidNotificationAddition;
+            return;
         }
         var day = recognizeWeekDay(user.lastAnswer);
-        Notificator.addNewNotificationAboutLesson(user, day, classNum);
+        if (day.equals("")) {
+            user.nextMessage = messageManager.invalidNotificationAddition;
+            return;
+        }
+        try {
+            Notificator.addNewNotificationAboutLesson(user, day, classNum);
+        } catch (Exception e) {
+        }
         user.nextMessage = messageManager.successNotificationAddition;
         user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
     }
 
-    private static void onNotificationDelition(User user) {
+    private static void onNotificationDeletion(User user) {
         var classNum = 1;
         try {
             classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
         } catch (Exception e) {
+            user.nextMessage = messageManager.invalidNotificationDeletion;
+            return;
         }
-        var day = recognizeWeekDay(user.lastAnswer);
-        Notificator.deleteNotificationAboutLesson(user, day, classNum);
-        user.nextMessage = messageManager.successNotificationDelition;
-        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
 
+        var day = recognizeWeekDay(user.lastAnswer);
+        if (day.equals("")) {
+            user.nextMessage = messageManager.invalidNotificationDeletion;
+            return;
+        }
+        try {
+            Notificator.deleteNotificationAboutLesson(user, day, classNum);
+        } catch (Exception e) {
+        }
+        user.nextMessage = messageManager.successNotificationDeletion;
+        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
+    }
+
+    private static void onAllNotificationDeletion(User user) {
+        if (user.lastAnswer.equals("да")) {
+            try {
+                Notificator.cancelAllNotification(user.token);
+            } catch (Exception e) {
+            }
+            user.nextMessage = messageManager.successAllNotificationDeletion;
+        } else {
+            user.nextMessage = messageManager.successAllNotificationDeletion;
+            user.nextMessage.question = "Оповещения не были удалены.";
+        }
     }
 
     private static boolean transitToAnyNodes(User user) {
@@ -74,22 +109,16 @@ public final class GraphOfMessages {
                 checkContain("оповещение", user.lastAnswer)) {
             user.nextMessage = messageManager.addNotification;
             return true;
-        }
-
-        else if (checkContain("удалить", user.lastAnswer) &&
+        } else if (checkContain("удалить", user.lastAnswer) &&
+                checkContain("все", user.lastAnswer) &&
+                checkContain("оповещения", user.lastAnswer)) {
+            user.nextMessage = messageManager.deleteAllNotification;
+            return true;
+        } else if (checkContain("удалить", user.lastAnswer) &&
                 checkContain("оповещение", user.lastAnswer)) {
             user.nextMessage = messageManager.deleteNotification;
             return true;
-        }
-
-        else if (checkContain("удалить", user.lastAnswer) &&
-                checkContain("все", user.lastAnswer) &&
-                checkContain("оповещения", user.lastAnswer)) {
-            user.nextMessage = messageManager.deleteNotification;
-            return true;
-        }
-
-        else if (checkContain("поменять", user.lastAnswer) &&
+        } else if (checkContain("поменять", user.lastAnswer) &&
                 checkContain("время", user.lastAnswer) &&
                 checkContain("оповещения", user.lastAnswer)) {
             user.nextMessage = messageManager.changeNotificationAdvanceTime;
