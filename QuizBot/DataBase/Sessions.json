@@ -13,15 +13,18 @@
       "actual": true,
       "institute_id": 25714
     },
-    "notificationAdvanceTime": 0,
+    "notifications": {
+      "class": "Server.NotificationManager"
+    },
+    "notificationAdvanceTime": 12,
     "lastNotified": null,
     "nextMessage": {
       "class": "Server.Message",
-      "question": "Кратные интегралы и ряды\nНачало: 2018-10-17 10:40:00\nКонец: 2018-10-17 12:10:00\nАудитория: 532\nПреподаватель: Макаров Александр Викторович\n\nХотите узнать еще что-нибудь?",
-      "operationIdentifier": "get information about class"
+      "question": "С этого момента вы будете получать оповещения перед 1 парой",
+      "operationIdentifier": "success notification addition"
     },
-    "lastAnswer": "1 пара среда",
-    "lastDayRequest": "Среда",
-    "lastClassNumRequest": 1
+    "lastAnswer": "1",
+    "lastDayRequest": "Вторник",
+    "lastClassNumRequest": 4
   }
 }
