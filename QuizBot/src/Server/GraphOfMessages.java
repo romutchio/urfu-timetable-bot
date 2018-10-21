@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public final class GraphOfMessages {
-    private GraphOfMessages(){
+    private GraphOfMessages() {
     }
 
     private final static HashMap<String, Consumer<User>> transitionDict;
@@ -23,14 +23,19 @@ public final class GraphOfMessages {
         transitionDict.put("invalid class index", GraphOfMessages::onGetTimetable);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
         transitionDict.put("change notification advance time", GraphOfMessages::onNotificationAdvanceTimeInput);
-        transitionDict.put("success notification advance time input", GraphOfMessages::onSessionInitialization);
+        transitionDict.put("success notification advance time input", GraphOfMessages::onGetTimetable);
 //        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("add notification", GraphOfMessages::onNotificationAddition);
+        transitionDict.put("delete notification", GraphOfMessages::onNotificationDelition);
+        transitionDict.put("success notification addition", GraphOfMessages::onGetTimetable);
+        transitionDict.put("success notification deletion", GraphOfMessages::onGetTimetable);
     }
 
     private static void onNotificationAdvanceTimeInput(User user) {
         try {
             user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
+//            changeDayAdvanceTimeNotifications
             user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
             user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
         } catch (Exception e) {
@@ -38,23 +43,63 @@ public final class GraphOfMessages {
         }
     }
 
-    private static void onChangeNotificationAdvanceTime(User user) {
-        user.nextMessage = messageManager.changeNotificationAdvanceTime;
+    private static void onNotificationAddition(User user) {
+        var classNum = 1;
+        try {
+            classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
+        } catch (Exception e) {
+        }
+        var day = recognizeWeekDay(user.lastAnswer);
+        Notificator.addNewNotificationAboutLesson(user, day, classNum);
+        user.nextMessage = messageManager.successNotificationAddition;
+        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
+    }
+
+    private static void onNotificationDelition(User user) {
+        var classNum = 1;
+        try {
+            classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
+        } catch (Exception e) {
+        }
+        var day = recognizeWeekDay(user.lastAnswer);
+        Notificator.deleteNotificationAboutLesson(user, day, classNum);
+        user.nextMessage = messageManager.successNotificationDelition;
+        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
+
     }
 
     private static boolean transitToAnyNodes(User user) {
 //        if (checkContain("поменять оповещение", user.lastAnswer))
-        if (checkContain("оповещение", user.lastAnswer))
-        {
+        if (checkContain("добавить", user.lastAnswer) &&
+                checkContain("оповещение", user.lastAnswer)) {
+            user.nextMessage = messageManager.addNotification;
+            return true;
+        }
+
+        else if (checkContain("удалить", user.lastAnswer) &&
+                checkContain("оповещение", user.lastAnswer)) {
+            user.nextMessage = messageManager.deleteNotification;
+            return true;
+        }
+
+        else if (checkContain("удалить", user.lastAnswer) &&
+                checkContain("все", user.lastAnswer) &&
+                checkContain("оповещения", user.lastAnswer)) {
+            user.nextMessage = messageManager.deleteNotification;
+            return true;
+        }
+
+        else if (checkContain("поменять", user.lastAnswer) &&
+                checkContain("время", user.lastAnswer) &&
+                checkContain("оповещения", user.lastAnswer)) {
             user.nextMessage = messageManager.changeNotificationAdvanceTime;
             return true;
-        }
-        else if (checkContain("группа", user.lastAnswer) && checkContain("сменить", user.lastAnswer))
-        {
+
+        } else if (checkContain("группа", user.lastAnswer) && checkContain("сменить", user.lastAnswer)) {
             user.nextMessage = messageManager.addGroupToUser;
             return true;
-        }
-        else
+
+        } else
             return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
@@ -185,7 +230,7 @@ public final class GraphOfMessages {
     private static boolean handleTimetableOnClass(User user) {
         var userInput = user.lastAnswer.toLowerCase();
         var classNum = userInput.replaceAll("\\D+", "");
-        ;
+
         var date = recognizeWeekDay(userInput);
 
 

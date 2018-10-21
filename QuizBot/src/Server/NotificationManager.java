@@ -8,7 +8,7 @@ import java.util.List;
 public class NotificationManager {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
-    public HashMap<String, Notification> Days = new HashMap<>();
+    public static HashMap<String, Notification> Days = new HashMap<>();
     public NotificationManager(){
         addInfoAboutLessonsNotifications();
     }
@@ -20,7 +20,7 @@ public class NotificationManager {
         }
     }
 
-    public void changeDayLessonsNotifications(String username, String day, ArrayList<Integer> lessons){
+    public static void changeDayLessonsNotifications(String username, String day, ArrayList<Integer> lessons){
         var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
@@ -28,7 +28,7 @@ public class NotificationManager {
         Days.replace(day, currentDay);
     }
 
-    public void changeDayRepetitionsNotifications(String username, String day, Integer repetitions){
+    public static  void changeDayRepetitionsNotifications(String username, String day, Integer repetitions){
         var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
@@ -36,7 +36,7 @@ public class NotificationManager {
         Days.replace(day, currentDay);
     }
 
-    public void changeDayAdvanceTimeNotifications(String username, String day, Integer time){
+    public static void changeDayAdvanceTimeNotifications(String username, String day, Integer time){
         var user = DatabaseOfSessions.GetUserByToken(username);
         var userDays = user.notifications.Days;
         var currentDay = userDays.get(day);
