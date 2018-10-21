@@ -1,6 +1,7 @@
 package Server;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
@@ -40,7 +41,26 @@ public final class GraphOfMessages {
 
     private static void onNotificationAdvanceTimeInput(User user) {
         try {
-            user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
+            user.defaultNotificationAdvanceTime = Integer.parseInt(user.lastAnswer);
+            user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
+            user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
+        } catch (Exception e) {
+            user.nextMessage = messageManager.invalidNotificationAdvanceTimeInput;
+        }
+    }
+
+    private static void onChangeNotificationForSelectedDayAndLesson(User user){
+        try {
+            //TODO: Здесь ты должен извлечь из диалога с пользователем день(dayToChange - "Вторник")
+            // TODO: и номер пары (Integer lessonNumber)
+
+            var userNotifications = user.notifications.Days;
+            var currentDayNotifications = userNotifications.get(dayToChange);
+            var lessonToChange = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber-1);
+            if (lessonToChange == null)
+                throw new Exception("Lesson hasn't been found in DB");
+            lessonToChange.advanceTime = Integer.parseInt(user.lastAnswer);
+            user.defaultNotificationAdvanceTime = Integer.parseInt(user.lastAnswer);
             user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
             user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
         } catch (Exception e) {

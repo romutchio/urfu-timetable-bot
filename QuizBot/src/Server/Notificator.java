@@ -36,19 +36,13 @@ public class Notificator implements Runnable {
 
             var userNotifications = user.notifications.Days;
             var currentDayNotifications = userNotifications.get(currentDayWeek);
-            var advanceTime = currentDayNotifications.AdvanceTime;
             var lessonsToNotify = currentDayNotifications.Lessons;
 
-            var lessonsStartTime = new HashMap<String, String>();
-            for (var lessonNumber : lessonsToNotify) {
-                if (lessonNumber - 1 < currentTimetable.size()) {
-                    var firstLesson = currentTimetable.get(lessonNumber - 1);
-                    lessonsStartTime.put(firstLesson.lessonStartTime, firstLesson.lessonName);
+            for (var lesson : lessonsToNotify) {
+                if (lesson.lessonNumber - 1 < currentTimetable.size()) {
+                    var firstLesson = currentTimetable.get(lesson.lessonNumber - 1);
+                    createNewNotification(user, firstLesson.lessonStartTime, firstLesson.lessonName, lesson.advanceTime);
                 }
-            }
-            for (var lessonStart : lessonsStartTime.keySet()) {
-                var lessonName = lessonsStartTime.get(lessonStart);
-                createNewNotification(user, lessonStart, lessonName, advanceTime);
             }
         }
 //        addNewNotificationAboutLesson(DatabaseOfSessions.GetUserByToken("349845203"), "Пятница", 2);
@@ -87,13 +81,15 @@ public class Notificator implements Runnable {
         if (currentTimetable.size() < lessonNumber - 1)
             return;
         if (!notifyOnce) {
-            currentDayNotifications.Lessons.add(lessonNumber);
+            //TODO: УБРАТЬ ЗАКОСТЫЛИРОВАННОЕ ЗНАЧЕНИЕ ADVANCESUKATIME
+            currentDayNotifications.Lessons.add(new Lesson(lessonNumber, 15));
             DatabaseOfSessions.UpdateUserInDatabase(user);
         }
 
         if (lessonNumber - 1 < currentTimetable.size()) {
             var firstLesson = currentTimetable.get(lessonNumber - 1);
-            createNewNotification(user, firstLesson.lessonStartTime, firstLesson.lessonName, currentDayNotifications.AdvanceTime);
+            var lesson = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber -1);
+            createNewNotification(user, firstLesson.lessonStartTime, firstLesson.lessonName, lesson.advanceTime);
         }
 
     }
@@ -108,8 +104,9 @@ public class Notificator implements Runnable {
         var currentTimetable = getDataBase(day);
         if (currentTimetable.size() < lessonNumber - 1)
             return;
-        if (!deleteJustToday && currentDayNotifications.Lessons.contains(lessonNumber)) {
-            currentDayNotifications.Lessons.remove(lessonNumber);
+        var lessonToRemove = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber-1);
+        if (!deleteJustToday && lessonToRemove != null) {
+            currentDayNotifications.Lessons.remove(lessonToRemove);
             DatabaseOfSessions.UpdateUserInDatabase(user);
         }
         if (lessonNumber - 1 < currentTimetable.size()) {
@@ -120,7 +117,8 @@ public class Notificator implements Runnable {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Date notificationTime = new Date(lessonStartDate.getTime() - TimeUnit.MINUTES.toMillis(currentDayNotifications.AdvanceTime));
+            var lesson = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber -1);
+            Date notificationTime = new Date(lessonStartDate.getTime() - TimeUnit.MINUTES.toMillis(lesson.advanceTime));
             if (NotificationSchedule.get(user.token).containsKey(notificationTime)) {
                 NotificationSchedule.get(user.token).get(notificationTime).shutdownNow();
                 NotificationSchedule.get(user.token).remove(notificationTime);
@@ -131,7 +129,6 @@ public class Notificator implements Runnable {
     public static void cancelAllNotification(String token) {
         for (var notification : NotificationSchedule.get(token).values()) {
             notification.shutdownNow();
-
         }
         NotificationSchedule.get(token).clear();
     }
@@ -144,7 +141,7 @@ public class Notificator implements Runnable {
         return currentTimetable;
     }
 
-    private static String DetermineWeekDay(Date currentTime) {
+    public static String DetermineWeekDay(Date currentTime) {
         var calendar = Calendar.getInstance();
         calendar.setTime(currentTime);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
