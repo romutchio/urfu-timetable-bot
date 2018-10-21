@@ -1,6 +1,8 @@
 package Server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -39,7 +41,6 @@ public final class GraphOfMessages {
     private static void onNotificationAdvanceTimeInput(User user) {
         try {
             user.notificationAdvanceTime = Integer.parseInt(user.lastAnswer);
-//            changeDayAdvanceTimeNotifications
             user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
             user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
         } catch (Exception e) {
@@ -47,25 +48,63 @@ public final class GraphOfMessages {
         }
     }
 
+    private static void onNotificationOnLessonAddition(User user, int lesson) {
+        String[] days = {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
+                "Пятница", "Суббота"};
+        for (var day: days) {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+            } catch (Exception e) {
+            }
+        }
+        user.nextMessage = messageManager.successNotificationAddition;
+        user.nextMessage.question =
+                String.format(
+                        "С этого момента вы будете получать оповещения перед %s парой",
+                        lesson);
+    }
+
+    private static void onNotificationOnDayAddition(User user, String day) {
+        for (var lesson = 1; lesson <= 6; lesson++) {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+            } catch (Exception e) {
+            }
+        }
+        user.nextMessage = messageManager.successNotificationAddition;
+        user.nextMessage.question =
+                String.format("С этого момента вы будете получать оповещения в %s",
+                        day.toLowerCase());
+    }
+
     private static void onNotificationAddition(User user) {
-        var classNum = 1;
+        var classNum = 0;
         try {
             classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
         } catch (Exception e) {
-            user.nextMessage = messageManager.invalidNotificationAddition;
-            return;
         }
         var day = recognizeWeekDay(user.lastAnswer);
-        if (day.equals("")) {
+        System.out.println(day);
+        if (day.equals("") && classNum == 0) {
             user.nextMessage = messageManager.invalidNotificationAddition;
-            return;
         }
-        try {
-            Notificator.addNewNotificationAboutLesson(user, day, classNum);
-        } catch (Exception e) {
+        else if (day.equals("")) {
+            onNotificationOnLessonAddition(user, classNum);
         }
-        user.nextMessage = messageManager.successNotificationAddition;
-        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
+        else if (classNum == 0) {
+            onNotificationOnDayAddition(user, day);
+        } else {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, classNum);
+            } catch (Exception e) {
+            }
+            user.nextMessage = messageManager.successNotificationAddition;
+            user.nextMessage.question =
+                    String.format(
+                            "С этого момента вы будете получать оповещения во %s перед %s парой",
+                            day.toLowerCase(),
+                            String.valueOf(classNum));
+        }
     }
 
     private static void onNotificationDeletion(User user) {
@@ -226,6 +265,8 @@ public final class GraphOfMessages {
                 }
             }
         }
+        if (shortest >= 5)
+            return "";
         return date;
     }
 

@@ -60,7 +60,7 @@ public class Messages {
             "add notification");
 
     public Message successNotificationAddition = new Message(
-            "С этого момента вы будете получать оповещения во %s перед %s парой",
+                "С этого момента вы будете получать оповещения во %s перед %s парой",
             "success notification addition");
 
     public Message invalidNotificationAddition = new Message(
@@ -72,7 +72,7 @@ public class Messages {
             "delete notification");
 
     public Message successNotificationDeletion = new Message(
-            "С этого момента вы не будете получать оповещения во %s перед %s парой",
+            "С этого момента вы не будете получать оповещения в %s перед %s парой",
             "success notification deletion");
 
     public Message invalidNotificationDeletion = new Message(
