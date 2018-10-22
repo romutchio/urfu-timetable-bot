@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class NotificationManager {
-    private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
+    private String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
-    public static HashMap<String, Notification> Days = new HashMap<>();
+    public HashMap<String, Notification> Days = new HashMap<>();
     public NotificationManager(){
         addInfoAboutLessonsNotifications();
     }

@@ -1,8 +1,8 @@
 {
-  "144260906": {
+  "349845203": {
     "class": "Server.User",
-    "token": "144260906",
-    "handle": "vaspahomov",
+    "token": "349845203",
+    "handle": "Роман",
     "group": {
       "class": "Server.Group",
       "updated": false,
@@ -14,17 +14,46 @@
       "institute_id": 25714
     },
     "notifications": {
-      "class": "Server.NotificationManager"
+      "class": "Server.NotificationManager",
+      "Days": {
+        "Суббота": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Четверг": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Воскресенье": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Пятница": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Понедельник": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Вторник": {
+          "class": "Server.Notification",
+          "Lessons": []
+        },
+        "Среда": {
+          "class": "Server.Notification",
+          "Lessons": []
+        }
+      }
     },
-    "notificationAdvanceTime": 12,
-    "lastNotified": null,
+    "defaultNotificationAdvanceTime": 15,
     "nextMessage": {
       "class": "Server.Message",
-      "question": "С этого момента вы будете получать оповещения перед 1 парой",
-      "operationIdentifier": "success notification addition"
+      "question": "Расписание было успешно загружено",
+      "operationIdentifier": "group success"
     },
-    "lastAnswer": "1",
-    "lastDayRequest": "Вторник",
-    "lastClassNumRequest": 4
+    "lastAnswer": "МЕН-270810",
+    "lastDayRequest": null,
+    "lastClassNumRequest": 0
   }
 }
