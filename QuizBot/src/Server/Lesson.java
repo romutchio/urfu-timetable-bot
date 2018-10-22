@@ -14,7 +14,7 @@ public class Lesson {
     }
 
     public static Lesson findLesson(Collection<Lesson> lessons, Integer lessonNumber) {
-        return lessons.stream().filter(lesson -> lessonNumber.equals(lesson.lessonNumber)).findFirst().orElse(null);
+        return lessons.stream().filter(lesson -> lessonNumber == lesson.lessonNumber).findFirst().orElse(null);
     }
 
 }
