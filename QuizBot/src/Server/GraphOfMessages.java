@@ -25,7 +25,7 @@ public final class GraphOfMessages {
         transitionDict.put("invalid group", GraphOfMessages::onGroupAddition);
         transitionDict.put("invalid class index", GraphOfMessages::onGetTimetable);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
-        transitionDict.put("change notification advance time", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("change notification advance time", GraphOfMessages::onChangeNotificationForSelectedDayAndLesson);
         transitionDict.put("success notification advance time input", GraphOfMessages::onGetTimetable);
 //        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
@@ -51,8 +51,15 @@ public final class GraphOfMessages {
 
     private static void onChangeNotificationForSelectedDayAndLesson(User user){
         try {
-            //TODO: Здесь ты должен извлечь из диалога с пользователем день(dayToChange - "Вторник")
-            // TODO: и номер пары (Integer lessonNumber)
+            //TODO: добавить распознование времени на смену оповещения
+            var lessonNumber = 0;
+            try {
+                lessonNumber = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
+            } catch (Exception e) {
+            }
+            var dayToChange = recognizeWeekDay(user.lastAnswer);
+            if (dayToChange == "")
+                throw new Exception("Day hasn't been recognized");
 
             var userNotifications = user.notifications.Days;
             var currentDayNotifications = userNotifications.get(dayToChange);
@@ -104,7 +111,7 @@ public final class GraphOfMessages {
         } catch (Exception e) {
         }
         var day = recognizeWeekDay(user.lastAnswer);
-        System.out.println(day);
+
         if (day.equals("") && classNum == 0) {
             user.nextMessage = messageManager.invalidNotificationAddition;
         }
