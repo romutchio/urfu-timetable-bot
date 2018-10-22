@@ -46,9 +46,10 @@ public class DatabaseOfSessions {
 //        var der = new JSONDeserializer<HashMap<String, User>>();
         var type = new TypeToken<HashMap<String, User>>() {
         }.getType();
-//        System.out.println(der.deserialize(rawJson).values());
+//        System.out.println(rawJson);
 //        return der.deserialize(rawJson);
-        return gson.fromJson(rawJson, type);
+        HashMap<String, User> dataBase = gson.fromJson(rawJson, type);
+        return dataBase;
     }
 
     public static User GetUserByToken(String token)

@@ -1,1 +1,131 @@
-{"349845203":{"class":"Server.User","token":"349845203","handle":"Роман","group":{"class":"Server.Group","updated":false,"title":"МЕН-270810","course":2,"id":978737,"external_id":35232,"actual":true,"institute_id":25714},"notifications":{"class":"Server.NotificationManager","Days":{"Суббота":{"class":"Server.Notification","Lessons":[]},"Четверг":{"class":"Server.Notification","Lessons":[]},"Воскресенье":{"class":"Server.Notification","Lessons":[]},"Пятница":{"class":"Server.Notification","Lessons":[]},"Понедельник":{"class":"Server.Notification","Lessons":[]},"Вторник":{"class":"Server.Notification","Lessons":[]},"Среда":{"class":"Server.Notification","Lessons":[]}}},"defaultNotificationAdvanceTime":15,"nextMessage":{"class":"Server.Message","question":"Расписание было успешно загружено","operationIdentifier":"group success"},"lastAnswer":"МЕН-270810","lastDayRequest":null,"lastClassNumRequest":0},"144260906":{"class":"Server.User","token":"144260906","handle":"vaspahomov","group":{"class":"Server.Group","updated":false,"title":"МЕН-270810","course":2,"id":978737,"external_id":35232,"actual":true,"institute_id":25714},"notifications":{"class":"Server.NotificationManager","Days":{"Суббота":{"class":"Server.Notification","Lessons":[]},"Четверг":{"class":"Server.Notification","Lessons":[]},"Воскресенье":{"class":"Server.Notification","Lessons":[]},"Пятница":{"class":"Server.Notification","Lessons":[]},"Понедельник":{"class":"Server.Notification","Lessons":[]},"Вторник":{"class":"Server.Notification","Lessons":[]},"Среда":{"class":"Server.Notification","Lessons":[]}}},"defaultNotificationAdvanceTime":15,"nextMessage":{"class":"Server.Message","question":"Я вас не понял, попробуйте ввести время еще раз.","operationIdentifier":"invalid notification advance time input"},"lastAnswer":"1 вторник","lastDayRequest":null,"lastClassNumRequest":0}}
+{
+  "144260906": {
+    "class": "Server.User",
+    "token": "144260906",
+    "handle": "vaspahomov",
+    "group": {
+      "class": "Server.Group",
+      "updated": false,
+      "title": "МЕН-270810",
+      "course": 2,
+      "id": 978737,
+      "external_id": 35232,
+      "actual": true,
+      "institute_id": 25714
+    },
+    "notifications": {
+      "class": "Server.NotificationManager",
+      "Days": {
+        "Суббота": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        },
+        "Четверг": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        },
+        "Воскресенье": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        },
+        "Пятница": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        },
+        "Понедельник": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        },
+        "Вторник": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 12,
+              "lessonNumber": 1
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 2
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 3
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 4
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 5
+            },
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 6
+            }
+          ]
+        },
+        "Среда": {
+          "class": "Server.Notification",
+          "Lessons": [
+            {
+              "class": "Server.Lesson",
+              "advanceTime": 15,
+              "lessonNumber": 1
+            }
+          ]
+        }
+      }
+    },
+    "defaultNotificationAdvanceTime": 12,
+    "nextMessage": {
+      "class": "Server.Message",
+      "question": "С этого момента оповещения о начале заняитий будут приходить за 1 пара вторник на 12 минут",
+      "operationIdentifier": "success notification advance time input"
+    },
+    "lastAnswer": "1 пара вторник на 12",
+    "lastDayRequest": "Вторник",
+    "lastClassNumRequest": 112
+  }
+}

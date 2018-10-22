@@ -26,9 +26,9 @@ public class Notificator implements Runnable {
     }
 
     private static void createSchedule() {
-        var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers().values();
+        var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers();
         var currentTime = new Date();
-        for (var user : currentDataBase) {
+        for (var user : currentDataBase.values()) {
             var currentDayWeek = DetermineWeekDay(currentTime);
             var currentTimetable = getDataBase(currentDayWeek);
             if (currentTimetable.size() == 0)

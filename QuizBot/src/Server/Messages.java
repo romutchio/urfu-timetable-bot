@@ -44,7 +44,7 @@ public class Messages {
             "invalid class index");
 
     public Message changeNotificationAdvanceTime = new Message(
-            "За сколько минут до занятия вы хотите получать оповещение?",
+            "В какой день, перед каким занятием и на какое время вы хотите поменять оповещения?",
             "change notification advance time");
 
     public Message successNotificationAdvanceTimeInput = new Message(
@@ -52,7 +52,7 @@ public class Messages {
             "success notification advance time input");
 
     public Message invalidNotificationAdvanceTimeInput = new Message(
-            "Я вас не понял, попробуйте ввести время еще раз.",
+            "Я вас не понял, время не было изменено",
             "invalid notification advance time input");
 
     public Message addNotification = new Message(
