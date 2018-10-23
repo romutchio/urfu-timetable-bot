@@ -52,6 +52,7 @@ $ следующая пара
 Конец: 12:10
 Преподаватель: Баландина Марина Сергеевна
 ```
+![Alt text](./FSM_Dialogue.png "Final State Machine Dialogue System")
 
 ## Авторы
 | [<img src="https://avatars3.githubusercontent.com/u/19955305?s=460&v=4" width="100px;"/><br /><sub><b>Roman Budlyanskiy </b></sub>](https://github.com/bully434)<br /> |
