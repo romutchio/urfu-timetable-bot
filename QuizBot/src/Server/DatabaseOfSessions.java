@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class DatabaseOfSessions {
     private static String SessionsDataBase = "./DataBase/Sessions.json";
-    
+
     private static String ReadFile() {
         String content = null;
         try {
@@ -27,7 +27,7 @@ public class DatabaseOfSessions {
 
     private static void WriteFile(String filename, String textToWrite) {
         PrintWriter writer = null;
-        
+
         try {
             writer = new PrintWriter(filename, "UTF-8");
             writer.println(textToWrite);
@@ -39,8 +39,7 @@ public class DatabaseOfSessions {
         }
     }
 
-    public static HashMap<String, User> getDatabaseOfUsers()
-    {
+    public static HashMap<String, User> getDatabaseOfUsers() {
         var rawJson = ReadFile();
         var gson = new Gson();
 //        var der = new JSONDeserializer<HashMap<String, User>>();
@@ -52,16 +51,14 @@ public class DatabaseOfSessions {
         return dataBase;
     }
 
-    public static User GetUserByToken(String token)
-    {
+    public static User GetUserByToken(String token) {
         var userDatabase = getDatabaseOfUsers();
         if (userDatabase != null && userDatabase.containsKey(token))
             return userDatabase.get(token);
         return null;
     }
 
-    public static boolean Contains(String token)
-    {
+    public static boolean Contains(String token) {
         var userDatabase = getDatabaseOfUsers();
         return userDatabase.containsKey(token);
     }

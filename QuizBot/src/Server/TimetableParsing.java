@@ -30,6 +30,7 @@ public class TimetableParsing {
         }
         return calendar;
     }
+
     @SuppressWarnings("fallthrough")
     public static HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(Calendar calendar) {
         var timetable = new HashMap<String, ArrayList<Subject>>();
@@ -58,7 +59,7 @@ public class TimetableParsing {
             try {
                 teacher = event.getDescription().getValue();
                 classRoom = event.getLocation().getValue();
-                if (teacher != null){
+                if (teacher != null) {
                     teacher = teacher.substring(15);
                 }
 
@@ -73,10 +74,9 @@ public class TimetableParsing {
             var currentSubject = new Subject(weekday, subject, dateStartTime, dateEndTime, teachers, rooms);
             var day = timetable.get(weekday);
             var addNewSubject = true;
-            for (var subj: day){
-                if(subj.lessonName.equals(currentSubject.lessonName)
-                    && subj.lessonStartTime.equals(currentSubject.lessonStartTime))
-                {
+            for (var subj : day) {
+                if (subj.lessonName.equals(currentSubject.lessonName)
+                        && subj.lessonStartTime.equals(currentSubject.lessonStartTime)) {
                     subj.teachers.add(teacher);
                     subj.rooms.add(classRoom);
                     addNewSubject = false;

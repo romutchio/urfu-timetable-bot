@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 
 public class AnswerHandler {
-    public static String initializeSession()
-    {
+    public static String initializeSession() {
         Message mes = GraphOfMessages.getInitMessage();
         System.out.println(mes.question);//только для консольного клиента, в tg будем получать token
         var operationId = mes.operationIdentifier;
@@ -22,9 +21,7 @@ public class AnswerHandler {
         if (DatabaseOfSessions.Contains(username)) {
             System.out.println("Можете спросить у меня что-нибудь про расписание");
             user = DatabaseOfSessions.GetUserByToken(username);
-        }
-        else
-        {
+        } else {
             user = new User(username, null, GraphOfMessages.getInitMessage(), null, new NotificationManager());
             DatabaseOfSessions.AddNewUserInDatabase(user);
             transit.accept(user);
@@ -34,8 +31,7 @@ public class AnswerHandler {
         return username;
     }
 
-    public static String handleAnswer(String username, String answer)
-    {
+    public static String handleAnswer(String username, String answer) {
 
         var user = DatabaseOfSessions.GetUserByToken(username);
         user.lastAnswer = answer;

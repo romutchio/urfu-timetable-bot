@@ -9,8 +9,7 @@ public class Group {
     public boolean actual;
     public int institute_id;
 
-    public Group()
-    {
+    public Group() {
         this.updated = false;
         this.title = null;
         this.course = 0;
@@ -19,10 +18,10 @@ public class Group {
         this.actual = false;
         this.institute_id = 0;
     }
+
     public Group(boolean updated, String title,
                  int course, int id, int external_id,
-                 boolean actual, int institute_id)
-    {
+                 boolean actual, int institute_id) {
         this.updated = updated;
         this.title = title;
         this.course = course;

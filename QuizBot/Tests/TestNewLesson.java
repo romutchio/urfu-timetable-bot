@@ -6,8 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
-public class TestNewLesson
-{
+public class TestNewLesson {
     public void initGraphOfMessages(Message nextMessage) {
         var user = new User("testHandleAnswer",
                 new Group(false,
