@@ -1,6 +1,7 @@
 package Server;
 
 import Server.Notificator.Notificator;
+import net.fortuna.ical4j.model.Calendar;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -121,7 +122,8 @@ public final class GraphOfMessages {
     }
 
     private static void onNotificationOnDayAddition(User user, String day) {
-        for (var lesson = 1; lesson <= 6; lesson++) {
+        var timeTable = Notificator.getDataBase(day);
+        for (var lesson = 1; lesson <= timeTable.size(); lesson++) {
             try {
                 Notificator.addNewNotificationAboutLesson(user, day, lesson);
             } catch (Exception e) {
@@ -270,8 +272,10 @@ public final class GraphOfMessages {
         }
     }
 
-    private static String getTimetableOnDate(String date) {
-        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
+    private static String getTimetableOnDate(String date, User user) {
+//        Calendar calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
+
+        var calendarStr = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         return cal.get(date).stream()
                 .map(subject -> subject.lessonStartTime + ": " + subject.lessonName)
@@ -284,7 +288,7 @@ public final class GraphOfMessages {
         var classNumber = Integer.parseInt(timeDict[1]);
 
 
-        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
+        Calendar calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var dayCal = cal.get(day);
         if (dayCal.size() < classNumber)
@@ -343,7 +347,7 @@ public final class GraphOfMessages {
             return false;
 
         user.nextMessage = messageManager.getTimetableOnDate;
-        user.nextMessage.question = getTimetableOnDate(date) + "\n\nХотите узнать еще что-нибудь?";
+        user.nextMessage.question = getTimetableOnDate(date, user) + "\n\nХотите узнать еще что-нибудь?";
 
         return true;
     }

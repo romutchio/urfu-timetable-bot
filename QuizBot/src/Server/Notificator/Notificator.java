@@ -1,7 +1,6 @@
 package Server.Notificator;
 
 import Clients.TelegramAPI;
-import Clients.TelegramClient;
 import Server.*;
 import Server.DatabaseOfSessions;
 import Server.Subject;
@@ -153,8 +152,8 @@ public class Notificator implements Runnable {
         }
     }
 
-    private static ArrayList<Subject> getDataBase(String currentDayWeek) {
-        var calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
+    public static ArrayList<Subject> getDataBase(String currentDayWeek) {
+        net.fortuna.ical4j.model.Calendar calendarStr = TimetableParsing.ReadFile("./DataBase/calendar_fiit_202.ics");
         var weekTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var currentTimetable = weekTimetable.get(currentDayWeek);
 
