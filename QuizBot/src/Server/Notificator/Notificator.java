@@ -1,7 +1,8 @@
-package Server;
+package Server.Notificator;
 
 import Clients.TelegramAPI;
 import Clients.TelegramClient;
+import Server.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +20,7 @@ public class Notificator implements Runnable {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
     private static SimpleDateFormat TimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static HashMap<String, HashMap<Date, ScheduledExecutorService>> NotificationSchedule = new HashMap<>();
+    public static ConcurrentHashMap<String, HashMap<Date, ScheduledExecutorService>> NotificationSchedule = new ConcurrentHashMap<>();
 
 
     public void run() {
@@ -42,7 +44,6 @@ public class Notificator implements Runnable {
             var currentTimetable = getDataBase(currentDayWeek);
             if (currentTimetable.size() == 0)
                 return;
-
             var userNotifications = user.notifications.Days;
             var currentDayNotifications = userNotifications.get(currentDayWeek);
             var lessonsToNotify = currentDayNotifications.Lessons;
@@ -57,6 +58,7 @@ public class Notificator implements Runnable {
     }
 
     private static void createNewNotification(User user, String lessonStart, String lessonName, Integer advanceTime) {
+        System.out.println(lessonStart);
         Date lessonStartDate = null;
         try {
             lessonStartDate = TimeFormatter.parse(lessonStart);
@@ -88,7 +90,6 @@ public class Notificator implements Runnable {
         if (currentTimetable.size() < lessonNumber - 1)
             return;
         if (!notifyOnce) {
-            //TODO: УБРАТЬ ЗАКОСТЫЛИРОВАННОЕ ЗНАЧЕНИЕ ADVANCESUKATIME
             currentDayNotifications.Lessons.add(new Lesson(lessonNumber, 15));
             DatabaseOfSessions.UpdateUserInDatabase(user);
         }
