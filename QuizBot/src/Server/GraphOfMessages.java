@@ -121,7 +121,8 @@ public final class GraphOfMessages {
     }
 
     private static void onNotificationOnDayAddition(User user, String day) {
-        for (var lesson = 1; lesson <= 6; lesson++) {
+        var timeTable = Notificator.getDataBase(day);
+        for (var lesson = 1; lesson <= timeTable.size(); lesson++) {
             try {
                 Notificator.addNewNotificationAboutLesson(user, day, lesson);
             } catch (Exception e) {
