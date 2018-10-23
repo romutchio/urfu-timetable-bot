@@ -1,18 +1,20 @@
 package Server;
 
 import com.google.gson.Gson;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.filter.Filter;
 import net.fortuna.ical4j.filter.PeriodRule;
 import net.fortuna.ical4j.model.*;
 import net.fortuna.ical4j.model.component.VEvent;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -20,8 +22,8 @@ public class TimetableParsing {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
 
-    public static Calendar ReadFile(String filename) {
-        Calendar calendar = null;
+    public static net.fortuna.ical4j.model.Calendar ReadFile(String filename) {
+        net.fortuna.ical4j.model.Calendar calendar = null;
         try {
             var fileStream = new FileInputStream(filename);
             var builder = new CalendarBuilder();
@@ -32,7 +34,7 @@ public class TimetableParsing {
     }
 
     @SuppressWarnings("fallthrough")
-    public static HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(Calendar calendar) {
+    public static HashMap<String, ArrayList<Subject>> CreateTimeTableDataBase(net.fortuna.ical4j.model.Calendar calendar) {
         var timetable = new HashMap<String, ArrayList<Subject>>();
         for (String day : WeekDays) {
             timetable.put(day, new ArrayList<>());
@@ -125,9 +127,35 @@ public class TimetableParsing {
         }
     }
 
+    public static net.fortuna.ical4j.model.Calendar getTimetableFromUrfuApi(Integer id){
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        var date = dateFormat.format(c.getTime());
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(String.format("https://urfu.ru/api/schedule/groups/calendar/%d/%s/", id, date))
+                .get()
+                .build();
+        net.fortuna.ical4j.model.Calendar calendar = null;
+        try {
+            Response response = client.newCall(request).execute();
+            var body = response.body();
+            var builder = new CalendarBuilder();
+            calendar = builder.build(new StringReader(body.string()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParserException e) {
+            e.printStackTrace();
+        }
+        return calendar;
+    }
+
     public static void AddCalendarToDatabase(String pathToCalendar) {
         var parser = new TimetableParsing();
-        var calendar = ReadFile(pathToCalendar);
+        net.fortuna.ical4j.model.Calendar calendar = ReadFile(pathToCalendar);
         var timetable = parser.CreateTimeTableDataBase(calendar);
 
         var gson = new Gson();
