@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import Server.*;
 
 
+import Server.Notificator.NotificationManager;
 import org.junit.Test;
 
 

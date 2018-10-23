@@ -1,4 +1,4 @@
-package Server;
+package Server.Notificator;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package Server;
+package Server.Notificator;
 
 public class NotificationSender implements Runnable
 {

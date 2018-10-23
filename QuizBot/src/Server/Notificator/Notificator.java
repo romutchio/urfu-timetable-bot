@@ -1,7 +1,11 @@
-package Server;
+package Server.Notificator;
 
 import Clients.TelegramAPI;
 import Clients.TelegramClient;
+import Server.DatabaseOfSessions;
+import Server.Subject;
+import Server.TimetableParsing;
+import Server.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

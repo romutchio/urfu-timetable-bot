@@ -1,9 +1,9 @@
-package Server;
+package Server.Notificator;
+
+import Server.DatabaseOfSessions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class NotificationManager {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
