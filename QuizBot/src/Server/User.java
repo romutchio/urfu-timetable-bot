@@ -1,5 +1,7 @@
 package Server;
 
+import Server.Notificator.NotificationManager;
+
 public class User {
     public String token;
     public String handle;

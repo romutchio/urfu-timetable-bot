@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 public class TelegramAPI extends TelegramLongPollingBot {
-
+    public TelegramClient client = new TelegramClient();
     @Override
     public String getBotToken() {
         return "632792999:AAFr07dPw_iNZ6vNdg3dPXRqO7aeYpPe57E";
@@ -23,7 +23,7 @@ public class TelegramAPI extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         String request = update.getMessage().getText();
-        TelegramClient.handleRequest(update.getMessage().getChatId().toString(), request, this);
+        client.handleRequest(update.getMessage().getChatId().toString(), request, this);
     }
 
 

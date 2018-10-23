@@ -1,7 +1,5 @@
 package Server.Notificator;
 
-import Server.Lesson;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

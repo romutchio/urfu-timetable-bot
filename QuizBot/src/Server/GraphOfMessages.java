@@ -26,8 +26,7 @@ public final class GraphOfMessages {
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
         transitionDict.put("change notification advance time", GraphOfMessages::onChangeNotificationForSelectedDayAndLesson);
         transitionDict.put("success notification advance time input", GraphOfMessages::onGetTimetable);
-//        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
-        transitionDict.put("invalid notification advance time input", GraphOfMessages::onGetTimetable);
+        transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
         transitionDict.put("add notification", GraphOfMessages::onNotificationAddition);
         transitionDict.put("delete notification", GraphOfMessages::onNotificationDeletion);
         transitionDict.put("success notification addition", GraphOfMessages::onGetTimetable);
@@ -200,7 +199,6 @@ public final class GraphOfMessages {
     }
 
     private static boolean transitToAnyNodes(User user) {
-//        if (checkContain("поменять оповещение", user.lastAnswer))
         if (checkContain("добавить", user.lastAnswer) &&
                 checkContain("оповещение", user.lastAnswer)) {
             user.nextMessage = messageManager.addNotification;
@@ -255,7 +253,6 @@ public final class GraphOfMessages {
     }
 
     private static void onSessionInitialization(User user) {
-//        user.handle = user.lastAnswer;
         if (user.group == null)
             user.nextMessage = messageManager.addGroupToUser;
         else {
@@ -296,7 +293,6 @@ public final class GraphOfMessages {
             return null;
 
         var subj = dayCal.get(classNumber - 1);
-//        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
 
         return String.format("%s\nНачало: %s\nКонец: %s\nАудитория: %s\nПреподаватель: %s",
                 subj.lessonName,

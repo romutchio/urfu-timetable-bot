@@ -1,12 +1,13 @@
 package Clients;
 
 import Server.*;
+import Server.Notificator.NotificationManager;
 import Server.Notificator.Notificator;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-public class TelegramClient {
+public class TelegramClient implements IClient {
 
     public static void initNewUser(String chatId, TelegramAPI api){
         Message mes = GraphOfMessages.getInitMessage();
@@ -18,7 +19,7 @@ public class TelegramClient {
         transit.accept(user);
         api.sendMessage(chatId, mes.question);
     }
-    public static void handleRequest(String chatId, String s, TelegramAPI api) {
+    public void handleRequest(String chatId, String s, TelegramAPI api) {
         User user;
         if (!DatabaseOfSessions.Contains(chatId)) {
             Message mes = GraphOfMessages.getInitMessage();
