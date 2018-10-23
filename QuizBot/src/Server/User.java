@@ -7,8 +7,7 @@ public class User {
     public String handle;
     public Group group;
     public NotificationManager notifications;
-    public int notificationAdvanceTime;
-    public String lastNotified;
+    public int defaultNotificationAdvanceTime;
     public Message nextMessage;
     public String lastAnswer;
     public String lastDayRequest;
@@ -21,17 +20,16 @@ public class User {
         this.nextMessage = nextMessage;
         this.lastAnswer = lastAnswer;
         this.notifications = notifications;
+        this.defaultNotificationAdvanceTime = 15;
     }
-    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications)
-    {
-        this.token = token;
-        this.handle = handle;
-        this.group = group;
-        this.nextMessage = nextMessage;
-        this.lastAnswer = lastAnswer;
-        this.notificationAdvanceTime = 15;
-        this.lastNotified = null;
-        this.notifications = notifications;
-    }
+//    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications)
+//    {
+//        this.token = token;
+//        this.handle = handle;
+//        this.group = group;
+//        this.nextMessage = nextMessage;
+//        this.lastAnswer = lastAnswer;
+//        this.notifications = notifications;
+//    }
 
 }

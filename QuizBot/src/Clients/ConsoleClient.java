@@ -1,6 +1,6 @@
 package Clients;
 
-import Server.*;
+import Server.AnswerHandler;
 
 import java.util.Scanner;
 
