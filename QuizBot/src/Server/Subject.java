@@ -10,8 +10,7 @@ public class Subject {
     public List teachers;
     public List rooms;
 
-    public Subject(String weekday, String lessonName, String lessonStartTime, String lessonEndTime, List teachers, List rooms)
-    {
+    public Subject(String weekday, String lessonName, String lessonStartTime, String lessonEndTime, List teachers, List rooms) {
         this.weekday = weekday;
         this.lessonName = lessonName;
         this.lessonStartTime = lessonStartTime;

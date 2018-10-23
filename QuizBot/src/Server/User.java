@@ -13,8 +13,8 @@ public class User {
     public String lastAnswer;
     public String lastDayRequest;
     public int lastClassNumRequest;
-    public User(String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications)
-    {
+
+    public User(String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications) {
         this.token = handle;
         this.handle = handle;
         this.group = group;
@@ -22,8 +22,8 @@ public class User {
         this.lastAnswer = lastAnswer;
         this.notifications = notifications;
     }
-    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications)
-    {
+
+    public User(String token, String handle, Group group, Message nextMessage, String lastAnswer, NotificationManager notifications) {
         this.token = token;
         this.handle = handle;
         this.group = group;

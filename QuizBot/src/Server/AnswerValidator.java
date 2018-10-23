@@ -23,7 +23,8 @@ public class AnswerValidator {
     public static Group RecognizeGroup(String groupName) {
         String rawJson = ReadFile();
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Group>>() {}.getType();
+        Type type = new TypeToken<List<Group>>() {
+        }.getType();
         List<Group> listItemsDes = gson.fromJson(rawJson, type);
         return listItemsDes.stream()
                 .filter(item -> groupName.equals(item.title))

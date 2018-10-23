@@ -12,21 +12,19 @@ public class TestGraph {
     public void testInitMessage() {
         var initMessage = GraphOfMessages.getInitMessage();
         assertEquals("Доброго времени суток!\n" +
-                "Я чат-бот, который поможет тебе не пропустить пары\n" +
-                "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
+                        "Я чат-бот, который поможет тебе не пропустить пары\n" +
+                        "и всегда иметь быстрый доступ к расписанию. Как твое имя?",
                 initMessage.question);
     }
 
     @Test
-    public void testTransitGetting()
-    {
+    public void testTransitGetting() {
         try {
             var init = GraphOfMessages.getTransit("initialization");
             var repeat = GraphOfMessages.getTransit("repeat answer");
             assertNotNull(init);
             assertNotNull(repeat);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             fail();
         }
     }

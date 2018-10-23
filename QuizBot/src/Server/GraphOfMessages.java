@@ -50,7 +50,7 @@ public final class GraphOfMessages {
     private static void onNotificationOnLessonAddition(User user, int lesson) {
         String[] days = {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
                 "Пятница", "Суббота"};
-        for (var day: days) {
+        for (var day : days) {
             try {
                 Notificator.addNewNotificationAboutLesson(user, day, lesson);
             } catch (Exception e) {
@@ -86,11 +86,9 @@ public final class GraphOfMessages {
         System.out.println(day);
         if (day.equals("") && classNum == 0) {
             user.nextMessage = messageManager.invalidNotificationAddition;
-        }
-        else if (day.equals("")) {
+        } else if (day.equals("")) {
             onNotificationOnLessonAddition(user, classNum);
-        }
-        else if (classNum == 0) {
+        } else if (classNum == 0) {
             onNotificationOnDayAddition(user, day);
         } else {
             try {
