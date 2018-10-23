@@ -22,7 +22,16 @@ public class Notificator implements Runnable {
 
 
     public void run() {
-        createSchedule();
+        while (true){
+            createSchedule();
+            try {
+                TimeUnit.HOURS.sleep(24);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            cancelAllNotifications();
+            NotificationSchedule.clear();
+        }
     }
 
     private static void createSchedule() {
@@ -45,8 +54,6 @@ public class Notificator implements Runnable {
                 }
             }
         }
-//        addNewNotificationAboutLesson(DatabaseOfSessions.GetUserByToken("349845203"), "Пятница", 2);
-//        deleteNotificationAboutLesson(DatabaseOfSessions.GetUserByToken("349845203"), "Пятница", 1, false);
     }
 
     private static void createNewNotification(User user, String lessonStart, String lessonName, Integer advanceTime) {
@@ -126,11 +133,19 @@ public class Notificator implements Runnable {
         }
     }
 
-    public static void cancelAllNotification(String token) {
+    public static void cancelAllUserNotification(String token) {
         for (var notification : NotificationSchedule.get(token).values()) {
             notification.shutdownNow();
         }
         NotificationSchedule.get(token).clear();
+    }
+
+    private static void cancelAllNotifications(){
+        for (var user: NotificationSchedule.values()){
+            for (var notification: user.values()){
+                notification.shutdownNow();
+            }
+        }
     }
 
     private static ArrayList<Subject> getDataBase(String currentDayWeek) {

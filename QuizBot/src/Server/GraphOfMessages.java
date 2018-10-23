@@ -190,7 +190,7 @@ public final class GraphOfMessages {
     private static void onAllNotificationDeletion(User user) {
         if (user.lastAnswer.equals("да")) {
             try {
-                Notificator.cancelAllNotification(user.token);
+                Notificator.cancelAllUserNotification(user.token);
             } catch (Exception e) {
             }
             user.nextMessage = messageManager.successAllNotificationDeletion;
