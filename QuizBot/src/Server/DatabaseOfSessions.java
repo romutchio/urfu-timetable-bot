@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class DatabaseOfSessions {
+    private static String SessionsDataBase = "./DataBase/Sessions.json";
+    
     private static String ReadFile() {
         String content = null;
         try {
@@ -23,10 +25,11 @@ public class DatabaseOfSessions {
         return content;
     }
 
-    private static void WriteFile(String textToWrite) {
+    private static void WriteFile(String filename, String textToWrite) {
         PrintWriter writer = null;
+        
         try {
-            writer = new PrintWriter("./DataBase/Sessions.json", "UTF-8");
+            writer = new PrintWriter(filename, "UTF-8");
             writer.println(textToWrite);
             writer.close();
         } catch (FileNotFoundException e) {
@@ -48,41 +51,43 @@ public class DatabaseOfSessions {
         return gson.fromJson(rawJson, type);
     }
 
-    public static User GetUserByUsername(String username)
+    public static User GetUserByToken(String token)
     {
         var userDatabase = getDatabaseOfUsers();
-        if (userDatabase != null && userDatabase.containsKey(username))
-            return userDatabase.get(username);
+        if (userDatabase != null && userDatabase.containsKey(token))
+            return userDatabase.get(token);
         return null;
     }
 
-    public static boolean Contains(String username)
+    public static boolean Contains(String token)
     {
         var userDatabase = getDatabaseOfUsers();
-        return userDatabase.containsKey(username);
+        return userDatabase.containsKey(token);
     }
 
     public static void AddNewUserInDatabase(User user) {
 //        var gson = new Gson();
         var ser = new JSONSerializer();
         var userDatabase = getDatabaseOfUsers();
-        userDatabase.put(user.handle, user);
-        WriteFile(ser.deepSerialize(userDatabase));
+        userDatabase.put(user.token, user);
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
+
+
     public static void UpdateUserInDatabase(User user) {
 //        var gson = new Gson();
         var userDatabase = getDatabaseOfUsers();
         var ser = new JSONSerializer();
-        userDatabase.remove(user.handle);
-        userDatabase.put(user.handle, user);
-        WriteFile(ser.deepSerialize(userDatabase));
+        userDatabase.remove(user.token);
+        userDatabase.put(user.token, user);
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
 
-    public static void RemoveUserFromDatabase(String userHandle) {
+    public static void RemoveUserFromDatabase(String token) {
         var ser = new JSONSerializer();
 //        Gson gson = new Gson();
         HashMap<String, User> userDatabase = getDatabaseOfUsers();
-        userDatabase.remove(userHandle);
-        WriteFile(ser.deepSerialize(userDatabase));
+        userDatabase.remove(token);
+        WriteFile(SessionsDataBase, ser.deepSerialize(userDatabase));
     }
 }

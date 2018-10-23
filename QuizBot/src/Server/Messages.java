@@ -55,4 +55,36 @@ public class Messages {
             "Я вас не понял, попробуйте ввести время еще раз.",
             "invalid notification advance time input");
 
+    public Message addNotification = new Message(
+            "Перед какой парой и в какой день хотите получать оповещение?",
+            "add notification");
+
+    public Message successNotificationAddition = new Message(
+                "С этого момента вы будете получать оповещения во %s перед %s парой",
+            "success notification addition");
+
+    public Message invalidNotificationAddition = new Message(
+            "Попробуйте ввести день и номер пары еще раз.",
+            "invalid notification addition");
+
+    public Message deleteNotification = new Message(
+            "Перед какой парой и в какой день хотите удалить оповещение?",
+            "delete notification");
+
+    public Message successNotificationDeletion = new Message(
+            "С этого момента вы не будете получать оповещения в %s перед %s парой",
+            "success notification deletion");
+
+    public Message invalidNotificationDeletion = new Message(
+            "Попробуйте ввести день и номер пары еще раз.",
+            "invalid notification deletion");
+
+    public Message deleteAllNotification = new Message(
+            "Напишите \"да\" если хотите удалить все оповещения",
+            "delete all notification");
+
+    public Message successAllNotificationDeletion = new Message(
+            "Все оповещения были удалены",
+            "success all notification deletion");
+
 }

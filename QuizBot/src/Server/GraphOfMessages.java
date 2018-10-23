@@ -1,18 +1,19 @@
 package Server;
 
+import Server.Notificator.Notificator;
+
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-public class GraphOfMessages {
-    public GraphOfMessages() {
-        graphInit();
+public final class GraphOfMessages {
+    private GraphOfMessages() {
     }
 
-    private static HashMap<String, Consumer<User>> transitionDict;
-    private static Messages messageManager = new Messages();
+    private final static HashMap<String, Consumer<User>> transitionDict;
+    private final static Messages messageManager = new Messages();
 
-    private static void graphInit() {
+    static {
         transitionDict = new HashMap<>();
         transitionDict.put("initialization", GraphOfMessages::onSessionInitialization);
         transitionDict.put("group addition", GraphOfMessages::onGroupAddition);
@@ -24,9 +25,16 @@ public class GraphOfMessages {
         transitionDict.put("invalid class index", GraphOfMessages::onGetTimetable);
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
         transitionDict.put("change notification advance time", GraphOfMessages::onNotificationAdvanceTimeInput);
-        transitionDict.put("success notification advance time input", GraphOfMessages::onSessionInitialization);
-//        transitionDict.put("notification advance time input", GraphOfMessages::onGetTimetable);
+        transitionDict.put("success notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("add notification", GraphOfMessages::onNotificationAddition);
+        transitionDict.put("delete notification", GraphOfMessages::onNotificationDeletion);
+        transitionDict.put("success notification addition", GraphOfMessages::onGetTimetable);
+        transitionDict.put("success notification deletion", GraphOfMessages::onGetTimetable);
+        transitionDict.put("invalid notification addition", GraphOfMessages::onNotificationAddition);
+        transitionDict.put("invalid notification deletion", GraphOfMessages::onNotificationDeletion);
+        transitionDict.put("delete all notification", GraphOfMessages::onAllNotificationDeletion);
+        transitionDict.put("success all notification deletion", GraphOfMessages::onGetTimetable);
     }
 
     private static void onNotificationAdvanceTimeInput(User user) {
@@ -39,23 +47,125 @@ public class GraphOfMessages {
         }
     }
 
-    private static void onChangeNotificationAdvanceTime(User user) {
-        user.nextMessage = messageManager.changeNotificationAdvanceTime;
+    private static void onNotificationOnLessonAddition(User user, int lesson) {
+        String[] days = {"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
+                "Пятница", "Суббота"};
+        for (var day: days) {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+            } catch (Exception e) {
+            }
+        }
+        user.nextMessage = messageManager.successNotificationAddition;
+        user.nextMessage.question =
+                String.format(
+                        "С этого момента вы будете получать оповещения перед %s парой",
+                        lesson);
+    }
+
+    private static void onNotificationOnDayAddition(User user, String day) {
+        for (var lesson = 1; lesson <= 6; lesson++) {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+            } catch (Exception e) {
+            }
+        }
+        user.nextMessage = messageManager.successNotificationAddition;
+        user.nextMessage.question =
+                String.format("С этого момента вы будете получать оповещения в %s",
+                        day.toLowerCase());
+    }
+
+    private static void onNotificationAddition(User user) {
+        var classNum = 0;
+        try {
+            classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
+        } catch (Exception e) {
+        }
+        var day = recognizeWeekDay(user.lastAnswer);
+        System.out.println(day);
+        if (day.equals("") && classNum == 0) {
+            user.nextMessage = messageManager.invalidNotificationAddition;
+        }
+        else if (day.equals("")) {
+            onNotificationOnLessonAddition(user, classNum);
+        }
+        else if (classNum == 0) {
+            onNotificationOnDayAddition(user, day);
+        } else {
+            try {
+                Notificator.addNewNotificationAboutLesson(user, day, classNum);
+            } catch (Exception e) {
+            }
+            user.nextMessage = messageManager.successNotificationAddition;
+            user.nextMessage.question =
+                    String.format(
+                            "С этого момента вы будете получать оповещения во %s перед %s парой",
+                            day.toLowerCase(),
+                            String.valueOf(classNum));
+        }
+    }
+
+    private static void onNotificationDeletion(User user) {
+        var classNum = 1;
+        try {
+            classNum = Integer.parseInt(user.lastAnswer.replaceAll("\\D+", ""));
+        } catch (Exception e) {
+            user.nextMessage = messageManager.invalidNotificationDeletion;
+            return;
+        }
+
+        var day = recognizeWeekDay(user.lastAnswer);
+        if (day.equals("")) {
+            user.nextMessage = messageManager.invalidNotificationDeletion;
+            return;
+        }
+        try {
+            Notificator.deleteNotificationAboutLesson(user, day, classNum);
+        } catch (Exception e) {
+        }
+        user.nextMessage = messageManager.successNotificationDeletion;
+        user.nextMessage.question = String.format(user.nextMessage.question, day, String.valueOf(classNum));
+    }
+
+    private static void onAllNotificationDeletion(User user) {
+        if (user.lastAnswer.equals("да")) {
+            try {
+                Notificator.cancelAllNotification(user.token);
+            } catch (Exception e) {
+            }
+            user.nextMessage = messageManager.successAllNotificationDeletion;
+        } else {
+            user.nextMessage = messageManager.successAllNotificationDeletion;
+            user.nextMessage.question = "Оповещения не были удалены.";
+        }
     }
 
     private static boolean transitToAnyNodes(User user) {
-//        if (checkContain("поменять оповещение", user.lastAnswer))
-        if (checkContain("оповещение", user.lastAnswer))
-        {
+        if (checkContain("добавить", user.lastAnswer) &&
+                checkContain("оповещение", user.lastAnswer)) {
+            user.nextMessage = messageManager.addNotification;
+            return true;
+        } else if (checkContain("удалить", user.lastAnswer) &&
+                checkContain("все", user.lastAnswer) &&
+                checkContain("оповещения", user.lastAnswer)) {
+            user.nextMessage = messageManager.deleteAllNotification;
+            return true;
+        } else if (checkContain("удалить", user.lastAnswer) &&
+                checkContain("оповещение", user.lastAnswer)) {
+            user.nextMessage = messageManager.deleteNotification;
+            return true;
+        } else if (checkContain("поменять", user.lastAnswer) &&
+                checkContain("время", user.lastAnswer) &&
+                checkContain("оповещения", user.lastAnswer)) {
             user.nextMessage = messageManager.changeNotificationAdvanceTime;
             return true;
-        }
-        else if (checkContain("группа", user.lastAnswer) && checkContain("сменить", user.lastAnswer))
-        {
+
+        } else if (checkContain("группа", user.lastAnswer) && checkContain("сменить", user.lastAnswer)) {
             user.nextMessage = messageManager.addGroupToUser;
             return true;
-        }
-        else
+
+        } else
             return handleTimetableOnClass(user) || handleTimetableOnDate(user);
     }
 
@@ -92,6 +202,7 @@ public class GraphOfMessages {
             if (!transitToAnyNodes(user))
                 user.nextMessage = messageManager.sessionInitialization;
         }
+        user.handle = user.lastAnswer;
     }
 
     private static void onGroupAddition(User user) {
@@ -125,7 +236,6 @@ public class GraphOfMessages {
             return null;
 
         var subj = dayCal.get(classNumber - 1);
-//        return subj.lessonName + "\nНачало: " + subj.lessonStartTime;
 
         return String.format("%s\nНачало: %s\nКонец: %s\nАудитория: %s\nПреподаватель: %s",
                 subj.lessonName,
@@ -151,6 +261,8 @@ public class GraphOfMessages {
                 }
             }
         }
+        if (shortest >= 5)
+            return "";
         return date;
     }
 
@@ -184,7 +296,7 @@ public class GraphOfMessages {
     private static boolean handleTimetableOnClass(User user) {
         var userInput = user.lastAnswer.toLowerCase();
         var classNum = userInput.replaceAll("\\D+", "");
-        ;
+
         var date = recognizeWeekDay(userInput);
 
 
