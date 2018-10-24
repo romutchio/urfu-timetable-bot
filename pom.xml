@@ -17,7 +17,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>TelegramClient</mainClass>
+                            <mainClass>com.clients.TelegramClient</mainClass>
                             <name>tgBot</name>
                         </program>
                     </programs>
