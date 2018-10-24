@@ -107,7 +107,7 @@ public class TimetableParsing {
 //            );
 //
 //        }
-        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
+//        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
 //        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
 //        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
 //        var calOnDate = cal.get("Четверг").stream()
@@ -152,14 +152,15 @@ public class TimetableParsing {
         }
         return calendar;
     }
-
-    public static void AddCalendarToDatabase(String pathToCalendar) {
-        var parser = new TimetableParsing();
-        net.fortuna.ical4j.model.Calendar calendar = ReadFile(pathToCalendar);
-        var timetable = parser.CreateTimeTableDataBase(calendar);
-
-        var gson = new Gson();
-        var jsonToWrite = gson.toJson(timetable);
-        WriteFile(jsonToWrite);
-    }
+//
+//    public static void AddCalendarToDatabase(String pathToCalendar) {
+//        var parser = new TimetableParsing();
+////        net.fortuna.ical4j.model.Calendar calendar = ReadFile(pathToCalendar);
+//        var calendar = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
+//        var timetable = parser.CreateTimeTableDataBase(calendar);
+//
+//        var gson = new Gson();
+//        var jsonToWrite = gson.toJson(timetable);
+//        WriteFile(jsonToWrite);
+//    }
 }

@@ -122,7 +122,7 @@ public final class GraphOfMessages {
     }
 
     private static void onNotificationOnDayAddition(User user, String day) {
-        var timeTable = Notificator.getDataBase(day);
+        var timeTable = Notificator.getDataBase(day, user);
         for (var lesson = 1; lesson <= timeTable.size(); lesson++) {
             try {
                 Notificator.addNewNotificationAboutLesson(user, day, lesson);
@@ -239,7 +239,7 @@ public final class GraphOfMessages {
                 user.lastClassNumRequest++;
 
                 var classInfo = getInformationAboutClass(
-                        user.lastDayRequest + " " + user.lastClassNumRequest);
+                        user.lastDayRequest + " " + user.lastClassNumRequest, user);
                 if (classInfo == null) {
                     user.nextMessage = messageManager.invalidClassIndex;
                     return;
@@ -282,13 +282,13 @@ public final class GraphOfMessages {
                 .collect(Collectors.joining("\n"));
     }
 
-    private static String getInformationAboutClass(String time) {
+    private static String getInformationAboutClass(String time, User user) {
         var timeDict = time.split(" ");
         var day = timeDict[0];
         var classNumber = Integer.parseInt(timeDict[1]);
 
-
-        Calendar calendarStr = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
+        var calendarStr = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
+//        Calendar calendarStr = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var dayCal = cal.get(day);
         if (dayCal.size() < classNumber)
@@ -366,7 +366,7 @@ public final class GraphOfMessages {
         user.lastClassNumRequest = Integer.parseInt(classNum);
         user.nextMessage = messageManager.getInformationAboutClass;
 
-        var classInfo = getInformationAboutClass(date + " " + classNum);
+        var classInfo = getInformationAboutClass(date + " " + classNum, user);
         if (classInfo == null) {
             user.nextMessage = messageManager.invalidClassIndex;
             return true;

@@ -40,7 +40,7 @@ public class Notificator implements Runnable {
         var currentTime = new Date();
         for (var user : currentDataBase.values()) {
             var currentDayWeek = DetermineWeekDay(currentTime);
-            var currentTimetable = getDataBase(currentDayWeek);
+            var currentTimetable = getDataBase(currentDayWeek, user);
             if (currentTimetable.size() == 0)
                 return;
             var userNotifications = user.notifications.Days;
@@ -85,7 +85,7 @@ public class Notificator implements Runnable {
     public static void addNewNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean notifyOnce) {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get(day);
-        var currentTimetable = getDataBase(day);
+        var currentTimetable = getDataBase(day, user);
         if (currentTimetable.size() < lessonNumber - 1)
             return;
         if (!notifyOnce) {
@@ -108,7 +108,7 @@ public class Notificator implements Runnable {
     public static void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean deleteJustToday) {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get(day);
-        var currentTimetable = getDataBase(day);
+        var currentTimetable = getDataBase(day, user);
         if (currentTimetable.size() < lessonNumber - 1)
             return;
         var lessonToRemove = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber-1);
@@ -148,8 +148,9 @@ public class Notificator implements Runnable {
         }
     }
 
-    public static ArrayList<Subject> getDataBase(String currentDayWeek) {
-        net.fortuna.ical4j.model.Calendar calendarStr = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
+    public static ArrayList<Subject> getDataBase(String currentDayWeek, User user) {
+        var calendarStr = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
+//        net.fortuna.ical4j.model.Calendar calendarStr = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
         var weekTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var currentTimetable = weekTimetable.get(currentDayWeek);
 
