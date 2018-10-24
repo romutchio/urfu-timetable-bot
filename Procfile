@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* Clients.TelegramClient
+worker: sh target/bin/tgBot
