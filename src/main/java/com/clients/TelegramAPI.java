@@ -1,5 +1,6 @@
 package com.clients;
 
+import com.server.DatabaseOfSessions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -19,8 +20,30 @@ public class TelegramAPI extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String request = update.getMessage().getText();
-        client.handleRequest(update.getMessage().getChatId().toString(), request, this);
+        var request = update.getMessage().getText();
+        var token = update.getMessage().getChatId().toString();
+        if (request.charAt(0) == '\\')
+        {
+            switch (request) {
+                case "\\help":
+                    sendMessage(token, "\\");
+                    break;
+                case "\\start":
+                    if (DatabaseOfSessions.Contains(token))
+                        DatabaseOfSessions.RemoveUserFromDatabase(token);
+                    client.initSession(token, this);
+                    break;
+                case "\\settings":
+                    sendMessage(token, "\\");
+                    break;
+                default:
+                    sendMessage(token, "\\");
+                    break;
+            }
+
+        }
+        else
+            client.handleRequest(update.getMessage().getChatId().toString(), request, this);
     }
 
 
