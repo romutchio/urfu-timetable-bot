@@ -2,6 +2,7 @@ package com.server.notificator;
 
 import com.clients.TelegramAPI;
 import com.server.*;
+import net.fortuna.ical4j.model.TimeZone;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,7 @@ public class Notificator implements Runnable {
 
 
     public void run() {
+        TimeFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
         while (true){
             createSchedule();
             try {
@@ -150,7 +152,6 @@ public class Notificator implements Runnable {
 
     public static ArrayList<Subject> getDataBase(String currentDayWeek, User user) {
         var calendarStr = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
-//        net.fortuna.ical4j.model.Calendar calendarStr = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
         var weekTimetable = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         var currentTimetable = weekTimetable.get(currentDayWeek);
 

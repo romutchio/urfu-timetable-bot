@@ -2,6 +2,7 @@ package com.server;
 
 import com.server.notificator.NotificationManager;
 
+import javax.xml.crypto.Data;
 import java.util.Scanner;
 
 
@@ -32,7 +33,6 @@ public class AnswerHandler {
     }
 
     public static String handleAnswer(String username, String answer) {
-
         var user = DatabaseOfSessions.GetUserByToken(username);
         user.lastAnswer = answer;
 

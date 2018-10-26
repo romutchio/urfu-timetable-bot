@@ -12,12 +12,12 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class DatabaseOfSessions {
-    private static String SessionsDataBase = "DataBase/Sessions.json";
+    public static String SessionsDataBase = "DataBase/Sessions.json";
 
     private static String ReadFile() {
         String content = null;
         try {
-            String fileName = "DataBase/Sessions.json";
+            String fileName = DatabaseOfSessions.SessionsDataBase;
             content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
         } catch (Exception e) {
             System.out.println(e);

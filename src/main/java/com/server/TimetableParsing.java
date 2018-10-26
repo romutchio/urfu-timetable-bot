@@ -1,6 +1,5 @@
 package com.server;
 
-import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -50,6 +49,7 @@ public class TimetableParsing {
         for (Object elem : timetableParsed) {
             VEvent event = (VEvent) elem;
             SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            timeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
             var subject = event.getSummary().getValue();
             var dateStart = event.getStartDate().getDate();
             var dateEnd = event.getEndDate().getDate();
@@ -96,36 +96,6 @@ public class TimetableParsing {
         return WeekDays[dateParser.get(java.util.Calendar.DAY_OF_WEEK) - 1];
     }
 
-    public static void main(String[] args) {
-//        var parser = new TimetableParsing();
-//        var calendar = ReadFile("./QuizBot/DataBase/calendar.ics");
-//        var timetable = parser.CreateTimeTableDataBase(calendar);
-//        for (var lesson:timetable.get("Вторник")
-//             ) {
-//            System.out.println(lesson.lessonName
-//                    +" " +lesson.teachers + " " + lesson.lessonStartTime+"-" + lesson.lessonEndTime
-//            );
-//
-//        }
-//        AddCalendarToDatabase("./QuizBot/DataBase/calendar.ics");
-//        var calendarStr = TimetableParsing.ReadFile("./QuizBot/DataBase/calendar.ics");
-//        var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
-//        var calOnDate = cal.get("Четверг").stream()
-//                .map(subject -> subject.lessonName)
-//                .collect(toList());
-//        System.out.println(calOnDate);
-    }
-
-    private static void WriteFile(String textToWrite) {
-        PrintWriter writer = null;
-        try {
-            writer = new PrintWriter("./QuizBot/DataBase/Calendar.json", "UTF-8");
-            writer.println(textToWrite);
-            writer.close();
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static net.fortuna.ical4j.model.Calendar getTimetableFromUrfuApi(Integer id){
         Calendar c = Calendar.getInstance();
@@ -152,15 +122,4 @@ public class TimetableParsing {
         }
         return calendar;
     }
-//
-//    public static void AddCalendarToDatabase(String pathToCalendar) {
-//        var parser = new TimetableParsing();
-////        net.fortuna.ical4j.model.Calendar calendar = ReadFile(pathToCalendar);
-//        var calendar = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
-//        var timetable = parser.CreateTimeTableDataBase(calendar);
-//
-//        var gson = new Gson();
-//        var jsonToWrite = gson.toJson(timetable);
-//        WriteFile(jsonToWrite);
-//    }
 }
