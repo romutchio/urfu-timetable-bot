@@ -37,7 +37,7 @@ public class TelegramAPI extends TelegramLongPollingBot {
                     sendMessage(token, "Здесь будут настройки");
                     break;
                 default:
-                    sendMessage(token, "request");
+                    sendMessage(token, request);
                     break;
             }
 
