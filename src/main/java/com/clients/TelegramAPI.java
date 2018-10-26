@@ -22,22 +22,22 @@ public class TelegramAPI extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         var request = update.getMessage().getText();
         var token = update.getMessage().getChatId().toString();
-        if (request.charAt(0) == '\\')
+        if (request.charAt(0) == '/')
         {
             switch (request) {
-                case "\\help":
-                    sendMessage(token, "\\");
+                case "/help":
+                    sendMessage(token, "Здесь будет help");
                     break;
-                case "\\start":
+                case "/start":
                     if (DatabaseOfSessions.Contains(token))
                         DatabaseOfSessions.RemoveUserFromDatabase(token);
                     client.initSession(token, this);
                     break;
-                case "\\settings":
-                    sendMessage(token, "\\");
+                case "/settings":
+                    sendMessage(token, "Здесь будут настройки");
                     break;
                 default:
-                    sendMessage(token, "\\");
+                    sendMessage(token, "request");
                     break;
             }
 
