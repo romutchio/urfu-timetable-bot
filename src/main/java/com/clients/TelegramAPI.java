@@ -34,7 +34,22 @@ public class TelegramAPI extends TelegramLongPollingBot {
                     client.initSession(token, this);
                     break;
                 case "/settings":
-                    sendMessage(token, "Здесь будут настройки");
+                    if (DatabaseOfSessions.Contains(token))
+                    {
+                        var user = DatabaseOfSessions.GetUserByToken(token);
+                        sendMessage(token, "token: " + user.token);
+                        sendMessage(token, "handle: " + user.handle);
+                        sendMessage(token, "lastAnswer: " + user.lastAnswer);
+                        sendMessage(token, "nextMessage.question: " + user.nextMessage.question);
+                        sendMessage(token, "nextMessage.operationIdentifier: " + user.nextMessage.operationIdentifier);
+                        sendMessage(token, "group.title: " + user.group.title);
+                        sendMessage(token, "group.id: " + String.valueOf(user.group.id));
+                        sendMessage(token, "group.actual: " + String.valueOf(user.group.actual));
+                        sendMessage(token, "group.course: " + String.valueOf(user.group.course));
+                        sendMessage(token, "lastDayRequest: " + user.lastDayRequest);
+                        sendMessage(token, "notifications: " + user.notifications.toString());
+                    }
+                        sendMessage(token, "Здесь будут настройки");
                     break;
                 default:
                     sendMessage(token, request);
