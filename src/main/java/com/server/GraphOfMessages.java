@@ -27,42 +27,16 @@ public final class GraphOfMessages {
         transitionDict.put("group success", GraphOfMessages::onGetTimetable);
         transitionDict.put("change notification advance time", GraphOfMessages::onChangeNotificationForSelectedDayAndLesson);
         transitionDict.put("success notification advance time input", GraphOfMessages::onGetTimetable);
-        transitionDict.put("invalid notification advance time input", GraphOfMessages::onNotificationAdvanceTimeInput);
+        transitionDict.put("invalid notification advance time input", GraphOfMessages::onGetTimetable);
         transitionDict.put("add notification", GraphOfMessages::onNotificationAddition);
         transitionDict.put("delete notification", GraphOfMessages::onNotificationDeletion);
         transitionDict.put("success notification addition", GraphOfMessages::onGetTimetable);
         transitionDict.put("success notification deletion", GraphOfMessages::onGetTimetable);
-        transitionDict.put("invalid notification addition", GraphOfMessages::onNotificationAddition);
-        transitionDict.put("invalid notification deletion", GraphOfMessages::onNotificationDeletion);
+        transitionDict.put("invalid notification addition", GraphOfMessages::onGetTimetable);
+        transitionDict.put("invalid notification deletion", GraphOfMessages::onGetTimetable);
         transitionDict.put("delete all notification", GraphOfMessages::onAllNotificationDeletion);
         transitionDict.put("success all notification deletion", GraphOfMessages::onGetTimetable);
     }
-
-    private static void onNotificationAdvanceTimeInput(User user) {
-        try {
-            user.defaultNotificationAdvanceTime = Integer.parseInt(user.lastAnswer);
-            user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
-            user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
-        } catch (Exception e) {
-            user.nextMessage = messageManager.invalidNotificationAdvanceTimeInput;
-        }
-    }
-//
-//    private static void onTimeSelectForNotification(User user){
-//        try {
-//            var userNotifications = user.notifications.Days;
-//            var currentDayNotifications = userNotifications.get(dayToChange);
-//            var lessonToChange = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber-1);
-//            if (lessonToChange == null)
-//                throw new Exception("Lesson hasn't been found in DB");
-//            lessonToChange.advanceTime = Integer.parseInt(user.lastAnswer);
-//            user.defaultNotificationAdvanceTime = Integer.parseInt(user.lastAnswer);
-//            user.nextMessage = messageManager.successNotificationAdvanceTimeInput;
-//            user.nextMessage.question = String.format(user.nextMessage.question, user.lastAnswer);
-//        } catch (Exception e) {
-//            user.nextMessage = messageManager.invalidNotific"invalid notification advance time input"ationAdvanceTimeInput;
-//        }
-//    }
 
     private static void onChangeNotificationForSelectedDayAndLesson(User user){
         try {
