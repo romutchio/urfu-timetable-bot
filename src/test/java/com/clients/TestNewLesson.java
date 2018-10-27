@@ -39,7 +39,7 @@ public class TestNewLesson {
                 "testHandleAnswer",
                 "вторник 1 пара");
 
-        assertEquals(197,
+        assertEquals(169,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");

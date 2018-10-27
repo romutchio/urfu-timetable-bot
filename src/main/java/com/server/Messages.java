@@ -1,5 +1,7 @@
 package com.server;
 
+import java.util.ArrayList;
+
 public class Messages {
     public Messages() {
 
@@ -12,8 +14,12 @@ public class Messages {
             "initialization");
 
     public Message addGroupToUser = new Message(
-            "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-            "group addition");
+            "Напиши свою группу в такой нотации -> 'МЕН-270810'",
+            "group addition",
+            new ArrayList<String>() {{
+                add("МЕН-270810");
+                add("МЕН-180810");
+            }});
 
     public Message getTimetableOnDate = new Message(
             " ",
@@ -21,11 +27,17 @@ public class Messages {
 
     public Message getInformationAboutClass = new Message(
             " ",
-            "get information about class");
+            "get information about class",
+            new ArrayList<String>() {{
+                add("Следующая пара");
+            }});
 
     public Message getInformationAboutNextClass = new Message(
             " ",
-            "get information about next class");
+            "get information about next class",
+            new ArrayList<String>() {{
+                add("Следующая пара");
+            }});
 
     public Message repeatAnswer = new Message(
             "Я вас не понял, повторите пожалуйста.",
@@ -33,7 +45,15 @@ public class Messages {
 
     public Message successGroupAddition = new Message(
             "Расписание было успешно загружено",
-            "group success");
+            "group success",
+            new ArrayList<String>() {{
+                add("Расписание на понедельник");
+                add("Расписание на вторник");
+                add("Расписание на среду");
+                add("Расписание на четверг");
+                add("Расписание на пятницу");
+                add("Расписание на субботу");
+            }});
 
     public Message invalidGroup = new Message(
             "К сожалению такой группы не существует. Попробуйте ввести группу еще раз.",
@@ -60,7 +80,7 @@ public class Messages {
             "add notification");
 
     public Message successNotificationAddition = new Message(
-                "С этого момента вы будете получать оповещения во %s перед %s парой",
+            "С этого момента вы будете получать оповещения во %s перед %s парой",
             "success notification addition");
 
     public Message invalidNotificationAddition = new Message(

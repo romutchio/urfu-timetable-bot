@@ -8,10 +8,14 @@ import com.server.notificator.Notificator;
 import com.server.User;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-public class TelegramClient implements IClient {
+import java.util.ArrayList;
+import java.util.List;
 
+public class TelegramClient implements IClient {
     public static void initNewUser(String chatId, TelegramAPI api) {
         Message mes = GraphOfMessages.getInitMessage();
 //        sendMessage.setText(mes.question);//только для консольного клиента, в tg будем получать token
@@ -41,8 +45,9 @@ public class TelegramClient implements IClient {
             user.lastAnswer = s;
             GraphOfMessages.getTransit(user.nextMessage.operationIdentifier).accept(user);
             var message = user.nextMessage;
+
             DatabaseOfSessions.UpdateUserInDatabase(user);
-            api.sendMessage(chatId, message.question);
+            api.sendMessage(chatId, message);
         }
     }
 

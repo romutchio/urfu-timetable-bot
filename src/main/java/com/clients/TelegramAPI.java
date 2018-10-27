@@ -1,13 +1,37 @@
 package com.clients;
 
 import com.server.DatabaseOfSessions;
+import com.server.Message;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelegramAPI extends TelegramLongPollingBot {
     public TelegramClient client = new TelegramClient();
+
+    private ReplyKeyboardMarkup getReplyKeynoard(Message message) {
+        var replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+
+        // Создаем список строк клавиатуры
+        List<KeyboardRow> keyboard = new ArrayList<>();
+
+        for (var buttonText : message.textsToButtons) {
+            var keyboardRow = new KeyboardRow();
+            keyboardRow.add(buttonText);
+            keyboard.add(keyboardRow);
+        }
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
 
     @Override
     public String getBotToken() {
@@ -69,16 +93,20 @@ public class TelegramAPI extends TelegramLongPollingBot {
             client.handleRequest(update.getMessage().getChatId().toString(), request, this);
     }
 
-
     public synchronized void sendMessage(String chatId, String answer) {
+        sendMessage(chatId, new Message(answer, null));
+    }
+
+    public synchronized void sendMessage(String chatId, Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
-        sendMessage.setText(answer);
+        sendMessage.setText(message.question);
 
         System.out.println(chatId);
-        System.out.println(answer);
-
+        System.out.println(message.question);
+        if (message.textsToButtons != null && message.textsToButtons.size() != 0)
+            sendMessage.setReplyMarkup(getReplyKeynoard(message));
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {

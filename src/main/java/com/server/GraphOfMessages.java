@@ -3,6 +3,8 @@ package com.server;
 import com.server.notificator.Notificator;
 import net.fortuna.ical4j.model.Calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -252,7 +254,7 @@ public final class GraphOfMessages {
         var calendarStr = TimetableParsing.getTimetableFromUrfuApi(user.group.id);
         var cal = TimetableParsing.CreateTimeTableDataBase(calendarStr);
         return cal.get(date).stream()
-                .map(subject -> subject.lessonStartTime + ": " + subject.lessonName)
+                .map(subject -> reformatTime(subject.lessonStartTime) + ": " + subject.lessonName)
                 .collect(Collectors.joining("\n"));
     }
 
@@ -272,11 +274,24 @@ public final class GraphOfMessages {
 
         return String.format("%s\nНачало: %s\nКонец: %s\nАудитория: %s\nПреподаватель: %s",
                 subj.lessonName,
-                subj.lessonStartTime,
-                subj.lessonEndTime,
+                reformatTime(subj.lessonStartTime),
+                reformatTime(subj.lessonEndTime),
                 subj.rooms.stream().collect(Collectors.joining(", ")),
                 subj.teachers.stream().collect(Collectors.joining(", ")));
 
+    }
+
+    private static String reformatTime(String time){
+        SimpleDateFormat inputTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat outputTimeFormat = new SimpleDateFormat("HH:mm");
+        String result = "";
+        try {
+            var inputTime = inputTimeFormat.parse(time);
+            result = outputTimeFormat.format(inputTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private static String recognizeWeekDay(String input) {
