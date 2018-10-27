@@ -1,5 +1,7 @@
 package com.server;
 
+import java.util.ArrayList;
+
 public class Messages {
     public Messages() {
 
@@ -12,8 +14,12 @@ public class Messages {
             "initialization");
 
     public Message addGroupToUser = new Message(
-            "Напиши свою группу в такой нотации -> 'МЕН-170810'",
-            "group addition");
+            "Напиши свою группу в такой нотации -> 'МЕН-270810'",
+            "group addition",
+            new ArrayList<String>() {{
+                add("МЕН-270810");
+                add("МЕН-180810");
+            }});
 
     public Message getTimetableOnDate = new Message(
             " ",
@@ -60,7 +66,7 @@ public class Messages {
             "add notification");
 
     public Message successNotificationAddition = new Message(
-                "С этого момента вы будете получать оповещения во %s перед %s парой",
+            "С этого момента вы будете получать оповещения во %s перед %s парой",
             "success notification addition");
 
     public Message invalidNotificationAddition = new Message(
