@@ -48,7 +48,7 @@ public class TimetableParsing {
 
         for (Object elem : timetableParsed) {
             VEvent event = (VEvent) elem;
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             timeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
             var subject = event.getSummary().getValue();
             var dateStart = event.getStartDate().getDate();

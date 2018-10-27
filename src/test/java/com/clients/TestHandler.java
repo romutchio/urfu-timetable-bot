@@ -40,7 +40,7 @@ public class TestHandler {
         var answ = AnswerHandler.handleAnswer(
                 "testHandleAnswer",
                 "расписание на понедельник");
-        assertEquals(221,
+        assertEquals(165,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
@@ -59,7 +59,7 @@ public class TestHandler {
                 "testHandleAnswer",
                 "1 пара вторник");
 
-        assertEquals(183,
+        assertEquals(155,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
@@ -77,7 +77,7 @@ public class TestHandler {
                 "testHandleAnswer",
                 "следующая пара");
 
-        assertEquals(160,
+        assertEquals(132,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
