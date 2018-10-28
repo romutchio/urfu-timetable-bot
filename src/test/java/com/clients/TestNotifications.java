@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -30,7 +31,7 @@ public class TestNotifications {
     }
 
     @Test
-    public void test_notification_add(){
+    public void test_notification_add() {
         var message = new Message(
                 "",
                 "add notification");
@@ -45,6 +46,31 @@ public class TestNotifications {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get("Вторник");
         assertEquals(timeTable.size(), currentDayNotifications.Lessons.size());
+    }
+
+    @Test
+    public void test_cancel_all_notification() {
+        var message = new Message(
+                "",
+                "get timetable");
+        initGraphOfMessages(message);
+
+        var answ = AnswerHandler.handleAnswer(
+                "test",
+                "удалить все оповещения");
+
+        var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers();
+        var user = currentDataBase.get("test");
+        var timetables = new ArrayList<ArrayList<Subject>>();
+        timetables.add(Notificator.getDataBase("Понедельник", user));
+        timetables.add(Notificator.getDataBase("Вторник", user));
+        timetables.add(Notificator.getDataBase("Среда", user));
+        timetables.add(Notificator.getDataBase("Четверг", user));
+        timetables.add(Notificator.getDataBase("Пятница", user));
+        timetables.add(Notificator.getDataBase("Суббота", user));
+        for (var day : timetables) {
+            assertEquals(0, day.size());
+        }
     }
 
 }
