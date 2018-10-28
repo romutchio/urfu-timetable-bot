@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -30,7 +31,8 @@ public class TestNotifications {
     }
 
     @Test
-    public void test_notification_add(){
+    public void test_notification_add() {
+        DatabaseOfSessions.SessionsDataBase = "DataBase/SessionsTest.json";
         var message = new Message(
                 "",
                 "add notification");
@@ -45,6 +47,25 @@ public class TestNotifications {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get("Вторник");
         assertEquals(timeTable.size(), currentDayNotifications.Lessons.size());
+    }
+
+    @Test
+    public void test_cancel_all_notification() {
+        DatabaseOfSessions.SessionsDataBase = "DataBase/SessionsTest.json";
+        var message = new Message(
+                "",
+                "delete all notification");
+        initGraphOfMessages(message);
+        AnswerHandler.handleAnswer(
+                "test",
+                "Да");
+        var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers();
+        var user = currentDataBase.get("test");
+        var days = user.notifications.Days;
+        for (var day: days.values()){
+            assertEquals(0, day.Lessons.size());
+        }
+
     }
 
 }
