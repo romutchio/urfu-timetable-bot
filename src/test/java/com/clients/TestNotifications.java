@@ -32,6 +32,7 @@ public class TestNotifications {
 
     @Test
     public void test_notification_add() {
+        DatabaseOfSessions.SessionsDataBase = "DataBase/SessionsTest.json";
         var message = new Message(
                 "",
                 "add notification");
@@ -50,6 +51,7 @@ public class TestNotifications {
 
     @Test
     public void test_cancel_all_notification() {
+        DatabaseOfSessions.SessionsDataBase = "DataBase/SessionsTest.json";
         var message = new Message(
                 "",
                 "delete all notification");
@@ -57,19 +59,13 @@ public class TestNotifications {
         AnswerHandler.handleAnswer(
                 "test",
                 "Да");
-
         var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers();
         var user = currentDataBase.get("test");
-        var timetables = new ArrayList<ArrayList<Subject>>();
-        timetables.add(Notificator.getDataBase("Понедельник", user));
-        timetables.add(Notificator.getDataBase("Вторник", user));
-        timetables.add(Notificator.getDataBase("Среда", user));
-        timetables.add(Notificator.getDataBase("Четверг", user));
-        timetables.add(Notificator.getDataBase("Пятница", user));
-        timetables.add(Notificator.getDataBase("Суббота", user));
-        for (var day : timetables) {
-            assertEquals(0, day.size());
+        var days = user.notifications.Days;
+        for (var day: days.values()){
+            assertEquals(0, day.Lessons.size());
         }
+
     }
 
 }

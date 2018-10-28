@@ -136,9 +136,12 @@ public class Notificator implements Runnable {
     }
 
     public static void cancelAllUserNotification(String token) {
+        var user = DatabaseOfSessions.GetUserByToken(token);
         for (var notification : NotificationSchedule.get(token).values()) {
             notification.shutdownNow();
         }
+        user.notifications.Days.clear();
+        DatabaseOfSessions.UpdateUserInDatabase(user);
         NotificationSchedule.get(token).clear();
     }
 
