@@ -52,12 +52,11 @@ public class TestNotifications {
     public void test_cancel_all_notification() {
         var message = new Message(
                 "",
-                "get timetable");
+                "delete all notification");
         initGraphOfMessages(message);
-
-        var answ = AnswerHandler.handleAnswer(
+        AnswerHandler.handleAnswer(
                 "test",
-                "удалить все оповещения");
+                "Да");
 
         var currentDataBase = DatabaseOfSessions.getDatabaseOfUsers();
         var user = currentDataBase.get("test");
