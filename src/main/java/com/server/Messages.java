@@ -126,10 +126,7 @@ public class Messages {
     public Message successNotificationDeletion = new Message(
             "С этого момента вы не будете получать оповещения в %s перед %s парой",
             "success notification deletion",
-            new ArrayList<String>() {{
-                add("Да");
-                add("Нет");
-            }});
+            stndardButtons);
 
     public Message invalidNotificationDeletion = new Message(
             "Попробуйте ввести день и номер пары еще раз.",
@@ -139,7 +136,10 @@ public class Messages {
     public Message deleteAllNotification = new Message(
             "Напишите \"да\" если хотите удалить все оповещения",
             "delete all notification",
-            stndardButtons);
+            new ArrayList<String>() {{
+                add("Да");
+                add("Нет");
+            }});
 
     public Message successAllNotificationDeletion = new Message(
             "Все оповещения были удалены",
