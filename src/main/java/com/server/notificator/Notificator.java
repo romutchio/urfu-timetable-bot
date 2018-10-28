@@ -3,6 +3,7 @@ package com.server.notificator;
 import com.clients.TelegramAPI;
 import com.server.*;
 import net.fortuna.ical4j.model.TimeZone;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ public class Notificator implements Runnable {
 
 
     public void run() {
-        TimeFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
+//        TimeFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
         while (true){
             createSchedule();
             try {
@@ -66,7 +67,10 @@ public class Notificator implements Runnable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long delay = lessonStartDate.getTime() - System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(advanceTime);
+        long curr = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg")).getTimeInMillis();
+
+        long delay = lessonStartDate.getTime() - curr - TimeUnit.MINUTES.toMillis(advanceTime);
+        new TelegramAPI().sendMessage(user.token, "Notification in "+ delay + "mlsec");
         Date notificationTime = new Date(lessonStartDate.getTime() - TimeUnit.MINUTES.toMillis(advanceTime));
         System.out.println(delay);
         if (delay > 0) {
