@@ -48,6 +48,7 @@ public class Messages {
             " ",
             "get information about class",
             new ArrayList<String>() {{
+                this.addAll(stndardButtons);
                 add("Следующая пара");
             }});
 
