@@ -67,9 +67,7 @@ public class Notificator implements Runnable {
 //        long curr = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg")).getTimeInMillis();
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg"));
         Date currentDate = calendar.getTime();
-        new TelegramAPI().sendMessage(user.token, "Lesson time"+lessonStartDate+"curr"+currentDate.getTime());
         long delay = lessonStartDate.getTime() - currentDate.getTime() - TimeUnit.MINUTES.toMillis(advanceTime);
-        new TelegramAPI().sendMessage(user.token, "Delay"+delay);
         Date notificationTime = new Date(lessonStartDate.getTime() - TimeUnit.MINUTES.toMillis(advanceTime));
         System.out.println(delay);
         if (delay > 0) {
