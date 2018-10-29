@@ -22,7 +22,7 @@ public class Notificator implements Runnable {
 
 
     public void run() {
-//        TimeFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
+        TimeFormatter.setTimeZone(TimeZone.getTimeZone("Asia/Yekaterinburg"));
         while (true){
             createSchedule();
             try {
