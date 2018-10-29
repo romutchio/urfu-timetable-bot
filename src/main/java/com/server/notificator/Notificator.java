@@ -2,15 +2,12 @@ package com.server.notificator;
 
 import com.clients.TelegramAPI;
 import com.server.*;
-import net.fortuna.ical4j.model.TimeZone;
+//import net.fortuna.ical4j.model.TimeZone;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -67,10 +64,9 @@ public class Notificator implements Runnable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long curr = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg")).getTimeInMillis();
-
+        long curr = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis();
+        new TelegramAPI().sendMessage(user.token, "Lesson time"+lessonStartDate+"curr"+curr);
         long delay = lessonStartDate.getTime() - curr - TimeUnit.MINUTES.toMillis(advanceTime);
-        new TelegramAPI().sendMessage(user.token, "Notification in "+ delay + "mlsec");
         Date notificationTime = new Date(lessonStartDate.getTime() - TimeUnit.MINUTES.toMillis(advanceTime));
         System.out.println(delay);
         if (delay > 0) {
