@@ -162,7 +162,7 @@ public final class GraphOfMessages {
     }
 
     private static void onAllNotificationDeletion(User user) {
-        if (user.lastAnswer.equals("Да")) {
+        if (user.lastAnswer.toLowerCase().equals("да")) {
             try {
                 Notificator.cancelAllUserNotification(user.token);
             } catch (Exception e) {
@@ -309,7 +309,7 @@ public final class GraphOfMessages {
                 }
             }
         }
-        if (shortest >= 5)
+        if (shortest >= 3)
             return "";
         return date;
     }
