@@ -2,8 +2,6 @@ package com.server.notificator;
 
 import com.clients.TelegramAPI;
 import com.server.*;
-//import net.fortuna.ical4j.model.TimeZone;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-public class Notificator implements Runnable {
+public class Notificator implements Runnable, INotificator {
     private static String[] WeekDays = new String[]{"Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг",
             "Пятница", "Суббота"};
     private static SimpleDateFormat TimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -64,7 +62,6 @@ public class Notificator implements Runnable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        long curr = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg")).getTimeInMillis();
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Yekaterinburg"));
         Date currentDate = calendar.getTime();
         long delay = lessonStartDate.getTime() - currentDate.getTime() - TimeUnit.MINUTES.toMillis(advanceTime);
@@ -81,34 +78,34 @@ public class Notificator implements Runnable {
 
     }
 
-    public static void addNewNotificationAboutLesson(User user, String day, Integer lessonNumber) {
+    public void addNewNotificationAboutLesson(User user, String day, Integer lessonNumber) {
         addNewNotificationAboutLesson(user, day, lessonNumber, false);
     }
 
-    public static void addNewNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean notifyOnce) {
+    public void addNewNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean notifyOnce) {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get(day);
         var currentTimetable = getDataBase(day, user);
-        if (currentTimetable.size() < lessonNumber - 1)
+        if (currentTimetable.size() < lessonNumber)
             return;
         if (!notifyOnce) {
             currentDayNotifications.Lessons.add(new Lesson(lessonNumber, 15));
             DatabaseOfSessions.UpdateUserInDatabase(user);
         }
 
-        if (lessonNumber - 1 < currentTimetable.size()) {
-            var firstLesson = currentTimetable.get(lessonNumber - 1);
-            var lesson = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber -1);
+        if (lessonNumber < currentTimetable.size()) {
+            var firstLesson = currentTimetable.get(lessonNumber);
+            var lesson = Lesson.findLesson(currentDayNotifications.Lessons, lessonNumber);
             createNewNotification(user, firstLesson.lessonStartTime, firstLesson.lessonName, lesson.advanceTime);
         }
 
     }
 
-    public static void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber) {
+    public void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber) {
         deleteNotificationAboutLesson(user, day, lessonNumber, false);
     }
 
-    public static void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean deleteJustToday) {
+    public void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean deleteJustToday) {
         var userNotifications = user.notifications.Days;
         var currentDayNotifications = userNotifications.get(day);
         var currentTimetable = getDataBase(day, user);
@@ -136,7 +133,7 @@ public class Notificator implements Runnable {
         }
     }
 
-    public static void cancelAllUserNotification(String token) {
+    public void cancelAllUserNotification(String token) {
         var user = DatabaseOfSessions.GetUserByToken(token);
         for (var notification : NotificationSchedule.get(token).values()) {
             notification.shutdownNow();
@@ -146,7 +143,7 @@ public class Notificator implements Runnable {
         NotificationSchedule.get(token).clear();
     }
 
-    private static void cancelAllNotifications(){
+    private void cancelAllNotifications(){
         for (var user: NotificationSchedule.values()){
             for (var notification: user.values()){
                 notification.shutdownNow();

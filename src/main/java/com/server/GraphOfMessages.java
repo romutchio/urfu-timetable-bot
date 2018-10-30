@@ -14,6 +14,7 @@ public final class GraphOfMessages {
     }
 
     private final static HashMap<String, Consumer<User>> transitionDict;
+    private static Notificator notificator = new Notificator();
     private final static Messages messageManager = new Messages();
 
     static {
@@ -86,7 +87,7 @@ public final class GraphOfMessages {
                 "Пятница", "Суббота"};
         for (var day : days) {
             try {
-                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+                notificator.addNewNotificationAboutLesson(user, day, lesson);
             } catch (Exception e) {
             }
         }
@@ -101,7 +102,7 @@ public final class GraphOfMessages {
         var timeTable = Notificator.getDataBase(day, user);
         for (var lesson = 1; lesson <= timeTable.size(); lesson++) {
             try {
-                Notificator.addNewNotificationAboutLesson(user, day, lesson);
+                notificator.addNewNotificationAboutLesson(user, day, lesson);
             } catch (Exception e) {
             }
         }
@@ -127,7 +128,7 @@ public final class GraphOfMessages {
             onNotificationOnDayAddition(user, day);
         } else {
             try {
-                Notificator.addNewNotificationAboutLesson(user, day, classNum);
+                notificator.addNewNotificationAboutLesson(user, day, classNum);
             } catch (Exception e) {
             }
             user.nextMessage = messageManager.successNotificationAddition;
@@ -154,7 +155,7 @@ public final class GraphOfMessages {
             return;
         }
         try {
-            Notificator.deleteNotificationAboutLesson(user, day, classNum);
+            notificator.deleteNotificationAboutLesson(user, day, classNum);
         } catch (Exception e) {
         }
         user.nextMessage = messageManager.successNotificationDeletion;
@@ -164,7 +165,7 @@ public final class GraphOfMessages {
     private static void onAllNotificationDeletion(User user) {
         if (user.lastAnswer.toLowerCase().equals("да")) {
             try {
-                Notificator.cancelAllUserNotification(user.token);
+                notificator.cancelAllUserNotification(user.token);
             } catch (Exception e) {
             }
             user.nextMessage = messageManager.successAllNotificationDeletion;

@@ -5,10 +5,6 @@ import com.server.notificator.NotificationManager;
 import com.server.notificator.Notificator;
 import org.junit.Test;
 
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
