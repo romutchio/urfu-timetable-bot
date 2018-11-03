@@ -1,7 +1,8 @@
-package com.server;
+package com.DatabaseController;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.server.User;
 import flexjson.JSONSerializer;
 
 import java.io.FileNotFoundException;

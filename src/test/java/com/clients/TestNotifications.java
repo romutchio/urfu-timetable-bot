@@ -1,5 +1,6 @@
 package com.clients;
 
+import com.DatabaseController.DatabaseOfSessions;
 import com.server.*;
 import com.server.notificator.NotificationManager;
 import com.server.notificator.Notificator;

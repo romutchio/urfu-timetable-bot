@@ -1,6 +1,6 @@
 package com.clients;
 
-import com.server.DatabaseOfSessions;
+import com.DatabaseController.DatabaseOfSessions;
 import com.server.Message;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

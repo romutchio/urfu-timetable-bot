@@ -1,5 +1,6 @@
 package com.server.notificator;
 
+import com.DatabaseController.DatabaseOfSessions;
 import com.clients.TelegramAPI;
 import com.server.*;
 

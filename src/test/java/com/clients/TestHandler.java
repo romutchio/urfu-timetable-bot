@@ -2,6 +2,7 @@ package com.clients;
 
 import static org.junit.Assert.*;
 
+import com.DatabaseController.DatabaseOfSessions;
 import com.server.*;
 import com.server.notificator.NotificationManager;
 import org.junit.Test;
