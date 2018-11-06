@@ -12,12 +12,12 @@ public class TestNotifications {
     public User initGraphOfMessages(Message nextMessage) {
         var user = new User("test",
                 new Group(false,
-                        "МЕН-180101",
-                        1,
-                        978680,
-                        35175,
+                        "РИ-270018",
+                        2,
+                        977620,
+                        34115,
                         true,
-                        25714),
+                        15077),
                 nextMessage,
                 "",
                 new NotificationManager());
