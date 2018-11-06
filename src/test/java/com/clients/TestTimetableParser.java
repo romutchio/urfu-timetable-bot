@@ -16,7 +16,6 @@ public class TestTimetableParser {
 
     @Test
     public void testTimeTableParser() {
-        System.out.println(new File(".").getAbsolutePath());
         var calendar = TimetableParsing.ReadFile("DataBase/calendar_fiit_202.ics");
         ComponentList wholeTimetable = calendar.getComponents(Component.VEVENT);
         SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

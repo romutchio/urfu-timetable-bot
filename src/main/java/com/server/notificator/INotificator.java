@@ -13,5 +13,5 @@ public interface INotificator {
 
     void deleteNotificationAboutLesson(User user, String day, Integer lessonNumber, boolean deleteJustToday);
 
-    void cancelAllNotification(String token);
+    void cancelAllUserNotification(String token);
 }
