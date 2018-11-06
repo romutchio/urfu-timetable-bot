@@ -13,12 +13,12 @@ public class TestHandler {
 
         var user = new User("testHandleAnswer",
                 new Group(false,
-                        "МЕН-270810",
+                        "РИ-270018",
                         2,
-                        978737,
-                        35232,
+                        977620,
+                        34115,
                         true,
-                        25714),
+                        15077),
                 nextMessage,
                 "",
                 new NotificationManager());
@@ -40,7 +40,7 @@ public class TestHandler {
         var answ = AnswerHandler.handleAnswer(
                 "testHandleAnswer",
                 "расписание на понедельник");
-        assertEquals(165,
+        assertEquals(153,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
@@ -59,7 +59,7 @@ public class TestHandler {
                 "testHandleAnswer",
                 "1 пара вторник");
 
-        assertEquals(155,
+        assertEquals(135,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
@@ -77,7 +77,7 @@ public class TestHandler {
                 "testHandleAnswer",
                 "следующая пара");
 
-        assertEquals(132,
+        assertEquals(135,
                 answ.length());
 
         DatabaseOfSessions.RemoveUserFromDatabase("testHandleAnswer");
