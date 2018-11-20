@@ -35,6 +35,11 @@
      * Deploy on Heroku hosting;
      * Secure storage of TG_TOKEN in Heroku Config vars;
      * urfu.ru timetable parser;
+     
+   * #### Задача 4 
+     * Сделать подбазы данных на каждую академическую группу
+     * Сделть ролевую модель 
+     * Релизовать возможность добавления домашнего задания на занятия
    
 ## Работа с ботом
 
